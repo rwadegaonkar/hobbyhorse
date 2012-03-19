@@ -86,15 +86,7 @@ public class UserManager {
 		newuser.setName(name);
 		newuser.setLocation(user.getLocation());
 		newuser.setIsDeleted(0);
-		// String KEY2 = "sfsdfsd33333333";
-		// String cql = "UPDATE USER SET KEY='6', name='" + KEY1
-		// + "', description='" + KEY2 + "', isDeleted='0'";
-		// System.out.println(cql);
-		// CqlResult cR = client.execute_cql_query(
-		// ByteBuffer.wrap(cql.getBytes()), Compression.NONE);
-		// System.out.println(cR.getRowsSize());
-		// System.out.println("inserted...");
-		//
+	
 		// define consistency level
 		ConsistencyLevel consistencyLevel = ConsistencyLevel.ONE;
 		// define column parent
