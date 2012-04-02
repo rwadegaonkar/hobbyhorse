@@ -1,21 +1,18 @@
 package com.spring.controller;
 
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
-import org.springframework.web.servlet.HttpServletBean;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.datasource.Classroom;
 import com.spring.datasource.User;
+import com.spring.manager.UserManager;
 
 /**
  * @author Eggsy - eggsy_at_eggsylife.co.uk
@@ -35,31 +32,30 @@ public class UsersController {
 				new ByteArrayMultipartFileEditor());
 	}
 
-	@RequestMapping(method = RequestMethod.GET, value = "/{nonDel}")
-	public ModelAndView showUsers(@PathVariable("nonDel") String nonDel) {
-		Classroom classOfStudents = new Classroom();
-		classOfStudents.getNonDeletedUsers(nonDel);
+	@RequestMapping(method = RequestMethod.GET, value = "/")
+	public ModelAndView showUsers() {
+		UserManager users = new UserManager();
+		users.getAllUsers();
 		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
-		mav.addObject("classRoom", classOfStudents);
+		mav.addObject("users", users);
 		return mav;
 	}
 
-	@RequestMapping(method = RequestMethod.DELETE, value = "/delete/{id}")
-	public ModelAndView deleteUser(@PathVariable("id") String id) {
-		Classroom classOfStudents = new Classroom();
-		classOfStudents.deleteUser(id);
+	@RequestMapping(method = RequestMethod.DELETE, value = "/delete/{username}")
+	public ModelAndView deleteUser(@PathVariable("username") String username) {
+		UserManager userDelete = new UserManager();
+		userDelete.deleteUser(username);
 		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
-		mav.addObject("classRoom", classOfStudents);
-		return mav;
+		return null;
 	}
 
 	@RequestMapping(method = RequestMethod.POST, value = "/add", headers = "Accept=application/json")
 	@ResponseBody
 	public ModelAndView saveUser(@RequestBody User user) {
-		Classroom classOfStudents = new Classroom();
-		classOfStudents.saveUser(user);
+		UserManager userSave = new UserManager();
+		userSave.saveUser(user);
 		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
-		mav.addObject("userList", classOfStudents);
+		mav.addObject("newuser", userSave);
 		return mav;
 	}
 
