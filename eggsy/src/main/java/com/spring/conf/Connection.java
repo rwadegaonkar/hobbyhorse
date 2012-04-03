@@ -1,5 +1,5 @@
 package com.spring.conf;
-
+//This is my comment Sulagna
 import org.apache.cassandra.thrift.Cassandra;
 import org.apache.cassandra.thrift.Cassandra.Client;
 import org.apache.cassandra.thrift.TBinaryProtocol;
