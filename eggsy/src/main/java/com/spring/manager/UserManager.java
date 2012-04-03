@@ -41,6 +41,15 @@ public class UserManager {
 		}
 		return null;
 	}
+	public ArrayList<User> getUserByUsername(String username) {
+		try {
+			users = delegate.getUserByUsername(conn, username);
+			return users;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void deleteUser(String username) {
 		delegate.deleteUser(conn, username);

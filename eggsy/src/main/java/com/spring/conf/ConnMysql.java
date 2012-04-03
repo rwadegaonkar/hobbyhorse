@@ -31,10 +31,4 @@ public class ConnMysql {
 			e.printStackTrace();
 		}
 	}
-
-//	public static void main(String args[]) {
-//		ConnMysql connmysql = new ConnMysql();
-//		Connection conn1 = connmysql.connect();
-//		connmysql.disconnect(conn1);
-//	}
 }

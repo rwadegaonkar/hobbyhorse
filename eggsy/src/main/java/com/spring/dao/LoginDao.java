@@ -17,7 +17,7 @@ public class LoginDao {
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	static Date date = new Date();
 	private static final String CURRENT_TIMESTAMP = dateFormat.format(date);
-	private static final String SELECT_ALL = "SELECT * FROM loginType WHERE isDeleted=0";
+	private static final String SELECT_ALL = "SELECT * FROM login WHERE isDeleted=0";
 	public Query query = new Query();
 	ArrayList<Login> logins = new ArrayList<Login>();
 

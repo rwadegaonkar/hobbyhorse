@@ -40,6 +40,15 @@ public class UsersController {
 		mav.addObject("users", users);
 		return mav;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/{username}")
+	public ModelAndView showUserByUsername(@PathVariable("username") String username) {
+		UserManager users = new UserManager();
+		users.getUserByUsername(username);
+		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
+		mav.addObject("userByUsername", users);
+		return mav;
+	}
 
 	@RequestMapping(method = RequestMethod.DELETE, value = "/delete/{username}")
 	public ModelAndView deleteUser(@PathVariable("username") String username) {

@@ -9,6 +9,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import com.spring.conf.ConnMysql;
 import com.spring.dao.LessonDao;
 import com.spring.datasource.Lesson;
+import com.spring.datasource.User;
 
 public class LessonManager {
 	@JsonIgnore
@@ -28,5 +29,9 @@ public class LessonManager {
 			e.printStackTrace();
 		}
 		return null;
+	}
+
+	public void saveLesson(Lesson lesson) {
+		lessons = delegate.saveLesson(conn, lesson);
 	}
 }

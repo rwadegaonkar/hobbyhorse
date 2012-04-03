@@ -9,6 +9,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import com.spring.conf.ConnMysql;
 import com.spring.dao.LoginDao;
 import com.spring.datasource.Login;
+import com.spring.datasource.User;
 
 public class LoginManager {
 	@JsonIgnore
