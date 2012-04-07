@@ -1,8 +1,5 @@
 package com.spring.datasource;
 
-import java.lang.reflect.Field;
-import java.lang.reflect.Method;
-
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonProperty;
 

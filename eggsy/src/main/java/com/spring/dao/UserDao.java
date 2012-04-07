@@ -36,7 +36,7 @@ public class UserDao {
 	}
 
 	public ArrayList<User> getUserByUsername(Connection conn, String username) {
-		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME+username, conn);
+		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME+"'" + username + "'", conn);
 		try {
 			users = rowMapper.convertUserBean(rs);
 		} catch (SQLException e) {

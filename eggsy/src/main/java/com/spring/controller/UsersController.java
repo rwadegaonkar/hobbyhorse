@@ -34,10 +34,10 @@ public class UsersController {
 
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public ModelAndView showUsers() {
-		UserManager users = new UserManager();
-		users.getAllUsers();
+		UserManager allUsers = new UserManager();
+		allUsers.getAllUsers();
 		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
-		mav.addObject("users", users);
+		mav.addObject("users", allUsers);
 		return mav;
 	}
 	
