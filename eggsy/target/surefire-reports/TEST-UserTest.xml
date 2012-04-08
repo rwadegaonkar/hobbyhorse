@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<testsuite failures="0" time="0.57" errors="0" skipped="0" tests="2" name="UserTest">
+<testsuite failures="0" time="0.995" errors="0" skipped="0" tests="2" name="UserTest">
   <properties>
     <property name="java.runtime.name" value="Java(TM) SE Runtime Environment"/>
     <property name="sun.boot.library.path" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Libraries"/>
@@ -22,7 +22,7 @@
     <property name="basedir" value="/Users/vaibhavkulkarni/hobbyhorse_sjsu/eggsy"/>
     <property name="java.endorsed.dirs" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home/lib/endorsed"/>
     <property name="os.arch" value="x86_64"/>
-    <property name="surefire.real.class.path" value="/Users/vaibhavkulkarni/hobbyhorse_sjsu/eggsy/target/surefire/surefirebooter1783171857427001787.jar"/>
+    <property name="surefire.real.class.path" value="/Users/vaibhavkulkarni/hobbyhorse_sjsu/eggsy/target/surefire/surefirebooter2554893337900029197.jar"/>
     <property name="java.io.tmpdir" value="/var/folders/Ui/Uit3J6DsFTmwSuAzf+qsHk+++TI/-Tmp-/"/>
     <property name="line.separator" value="
 "/>
@@ -46,7 +46,7 @@
     <property name="java.vm.specification.version" value="1.0"/>
     <property name="sun.arch.data.model" value="64"/>
     <property name="java.home" value="/System/Library/Java/JavaVirtualMachines/1.6.0.jdk/Contents/Home"/>
-    <property name="sun.java.command" value="/Users/vaibhavkulkarni/hobbyhorse_sjsu/eggsy/target/surefire/surefirebooter1783171857427001787.jar /Users/vaibhavkulkarni/hobbyhorse_sjsu/eggsy/target/surefire/surefire1791604507812481170tmp /Users/vaibhavkulkarni/hobbyhorse_sjsu/eggsy/target/surefire/surefire2896698766187202135tmp"/>
+    <property name="sun.java.command" value="/Users/vaibhavkulkarni/hobbyhorse_sjsu/eggsy/target/surefire/surefirebooter2554893337900029197.jar /Users/vaibhavkulkarni/hobbyhorse_sjsu/eggsy/target/surefire/surefire7859739128712584237tmp /Users/vaibhavkulkarni/hobbyhorse_sjsu/eggsy/target/surefire/surefire300807661729191696tmp"/>
     <property name="java.specification.vendor" value="Sun Microsystems Inc."/>
     <property name="user.language" value="en"/>
     <property name="awt.toolkit" value="apple.awt.CToolkit"/>
@@ -65,6 +65,6 @@
     <property name="ftp.nonProxyHosts" value="local|*.local|169.254/16|*.169.254/16"/>
     <property name="sun.cpu.isalist" value=""/>
   </properties>
-  <testcase time="0.37" classname="UserTest" name="testGetAllUsers"/>
-  <testcase time="0.026" classname="UserTest" name="testSaveAndGetUserByUserNameAndDeleteUser"/>
+  <testcase time="0.542" classname="UserTest" name="testGetAllUsers"/>
+  <testcase time="0.016" classname="UserTest" name="testSaveAndGetUserByUserNameAndDeleteUser"/>
 </testsuite>

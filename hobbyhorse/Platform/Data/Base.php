@@ -130,17 +130,17 @@ class Platform_Data_Base
     /**
      * @param  $desc
      */
-    public function setDesc($desc)
+    public function setDescription($description)
     {
-        $this->_desc = $desc;
+        $this->_description = $description;
     }
 
     /**
      * @return
      */
-    public function getDesc()
+    public function getDescription()
     {
-        return $this->_desc;
+        return $this->_description;
     }
 
     /**

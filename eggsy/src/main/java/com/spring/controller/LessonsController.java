@@ -31,7 +31,7 @@ public class LessonsController {
 		LessonManager lessonSave = new LessonManager();
 		lessonSave.saveLesson(lesson);
 		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
-		mav.addObject("newlesson", lessonSave);
+		mav.addObject("lessons", lessonSave);
 		return mav;
 	}	
 
@@ -40,7 +40,7 @@ public class LessonsController {
 		LessonManager lessonsByType = new LessonManager();
 		lessonsByType.getLessonsByLessonTypeId(lessontypeid);
 		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
-		mav.addObject("lessonsByType", lessonsByType);
+		mav.addObject("lessons", lessonsByType);
 		return mav;
 	}
 }

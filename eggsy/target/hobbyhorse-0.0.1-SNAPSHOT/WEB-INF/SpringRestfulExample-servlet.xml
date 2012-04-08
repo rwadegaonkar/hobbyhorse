@@ -52,7 +52,7 @@
 	<!-- If no extension matched, use JSP view -->
 	<bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="order" value="0" />
+		<property name="order" value="1" />
 		<property name="prefix">
 			<value>/WEB-INF/pages/</value>
 		</property>

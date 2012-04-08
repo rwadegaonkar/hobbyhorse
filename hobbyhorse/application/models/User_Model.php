@@ -20,7 +20,7 @@ class User_Model extends CI_Model
     public function getUsers()
     {
         $myWrapper = new Platform_Webservices_Wrapper();
-        $jsonObj =  $myWrapper->request('users');
+        $jsonObj =  $myWrapper->request('users/');
         return  Platform_Data::getDataObject($jsonObj);
     }
 }

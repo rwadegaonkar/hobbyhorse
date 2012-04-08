@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by JetBrains PhpStorm.
  * User: radhika
@@ -7,15 +8,12 @@
  * To change this template use File | Settings | File Templates.
  */
 require_once('Zend/Http/Client.php');
-require_once('Platform/Data/Users.php');
-require_once('Platform/Data/Users/User.php');
 
-class Platform_Webservices_Wrapper
-{
+class Platform_Webservices_Wrapper {
+
     /**
-     *@var string
+     * @var string
      */
-
     protected $_host;
 
     /**
@@ -36,34 +34,32 @@ class Platform_Webservices_Wrapper
     /**
      *
      */
-    public function __construct()
-    {
+    public function __construct() {
         $this->_responseDataType = ".json";
-        $this->_host             = "http://192.168.1.3:8080";
-        $this->_port             = "8080";
+        $this->_host = "http://localhost";
+        $this->_port = "8080";
+        $this->_domain = "hobbyhorse";
     }
 
-    public function request($request_string = '',$data = null)
-    {
-        if($request_string == '')
+    public function request($request_string = '', $data = null) {
+        if ($request_string == '')
             throw new Exception("Error: Request string cannot be empty");
 
         $config = array(
-            'adapter'       => 'Zend_Http_Client_Adapter_Socket',
-            'ssltransport'  => 'tls'
+            'adapter' => 'Zend_Http_Client_Adapter_Socket',
+            'ssltransport' => 'tls'
         );
 
-
-        $this->_client = new Zend_Http_Client("http://192.168.1.3:8080/eggsy/{$request_string}/.json", $config);
-        try
-        {
+        $this->_client = new Zend_Http_Client($this->_host . ":" . 
+                                              $this->_port . "/" . 
+                                              $this->_domain . "/{$request_string}" . 
+                                              $this->_responseDataType, $config);
+        try {
             $response = $this->_client->request();
             $jsonData = $this->parseZendResponse($response);
             return json_decode($jsonData);
-
-        }
-        catch(Zend_Http_Client_Adapter_Exception $e){
-            echo('Request to webservice failed :'.$e->getMessage());
+        } catch (Zend_Http_Client_Adapter_Exception $e) {
+            echo('Request to webservice failed :' . $e->getMessage());
         }
     }
 
@@ -72,13 +68,11 @@ class Platform_Webservices_Wrapper
      * @return json string
      * @throws
      */
-    public function parseZendResponse(Zend_Http_Response $response)
-    {
-        if($response->getStatus() == 200) {
+    public function parseZendResponse(Zend_Http_Response $response) {
+        if ($response->getStatus() == 200) {
             return $response->getBody();
-        }
-        else {
-            throw new Exception("Error: Status is: ".$response->getStatus() . " message: ".$response->getMessage());
+        } else {
+            throw new Exception("Error: Status is: " . $response->getStatus() . " message: " . $response->getMessage());
         }
     }
 

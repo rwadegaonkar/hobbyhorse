@@ -1,0 +1,33 @@
+.left-login {
+    padding: 20px;
+}
+
+header, footer {
+    clear:both;
+}
+
+.form_elements li{
+  float:left;
+  list-style: none;
+  padding: 10px;
+}
+
+.label {
+    clear:left;
+    margin-right: 25px;
+}
+
+.text_box {
+clear:right;
+margin-left: 25px;
+}
+
+.securityQuestion {
+clear:none;
+float: left;
+}
+
+.submitButton {
+    clear: both;
+    margin-right: 20px;
+}

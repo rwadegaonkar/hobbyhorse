@@ -31,7 +31,7 @@ public class UsersController {
 		UserManager users = new UserManager();
 		users.getUserByUsername(username);
 		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
-		mav.addObject("userByUsername", users);
+		mav.addObject("users", users);
 		return mav;
 	}
 
@@ -49,7 +49,7 @@ public class UsersController {
 		UserManager userSave = new UserManager();
 		userSave.saveUser(user);
 		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
-		mav.addObject("newuser", userSave);
+		mav.addObject("users", userSave);
 		return mav;
 	}
 

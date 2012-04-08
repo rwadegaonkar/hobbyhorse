@@ -8,6 +8,7 @@
  */
 
 require_once('Platform/Data/Users.php');
+require_once('Platform/Data/Lessons.php');
 
 /**
  *
@@ -17,7 +18,7 @@ Class Platform_Data {
     /**
      * @return
      */
-    protected $_data = array();
+    public $_data = array();
 
 
     public function __construct($data,$map='')
@@ -65,10 +66,7 @@ Class Platform_Data {
 
         foreach($data as $key=>$val)
         {
-            if(is_string($val))
-            {
-                $obj->$key = $val;
-            }
+            $obj->$key = $val;
         }
         return $obj;
     }
@@ -104,8 +102,22 @@ Class Platform_Data {
         return false;
     }
 
+    /**
+     * @return
+     */
+    public function getData()
+    {
+        return $this->_data;
+    }
+
     public function __get($name)
     {
+
+        $method = 'get' . ucfirst($name);
+        if(method_exists($this,$method))
+        {
+            return call_user_func(array(&$this, $method));
+        }
         $objectName = "Platform_Data_". ucfirst($name);
         $value      = $this->getProperty($objectName);
         if($value == false)
