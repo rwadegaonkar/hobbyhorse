@@ -2,12 +2,9 @@ package com.spring.manager;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-
 import javax.xml.bind.annotation.XmlRootElement;
-
 import org.apache.log4j.Logger;
 import org.codehaus.jackson.annotate.JsonIgnore;
-
 import com.spring.conf.ConnMysql;
 import com.spring.dao.UserDao;
 import com.spring.datasource.User;
@@ -41,6 +38,7 @@ public class UserManager {
 		}
 		return null;
 	}
+
 	public ArrayList<User> getUserByUsername(String username) {
 		try {
 			users = delegate.getUserByUsername(conn, username);
@@ -53,11 +51,9 @@ public class UserManager {
 
 	public void deleteUser(String username) {
 		delegate.deleteUser(conn, username);
-		System.out.println("deleted...");
 	}
 
 	public void saveUser(User user) {
-		// TODO Auto-generated method stub
 		users = delegate.saveUser(conn, user);
 	}
 }

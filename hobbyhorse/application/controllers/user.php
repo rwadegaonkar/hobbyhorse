@@ -16,12 +16,12 @@ class User extends CI_Controller
     {
         parent::__construct();
         $this->load->model('User_Model','user_model');
-
     }
 
     public function index()
     {
-        $users = $this->user_model->getUsers();
-        print_r($users);
+        $data = $this->user_model->getUsers();
+        echo "<pre>";
+        print_r($data->users->user->name);
     }
 }

@@ -8,6 +8,8 @@
  */
 
 require_once('Platform/Webservices/Wrapper.php');
+require_once('Platform/Data.php');
+
 class User_Model extends CI_Model
 {
     public function __construct()
@@ -18,6 +20,7 @@ class User_Model extends CI_Model
     public function getUsers()
     {
         $myWrapper = new Platform_Webservices_Wrapper();
-        return $myWrapper->request();
+        $jsonObj =  $myWrapper->request('users');
+        return  Platform_Data::getDataObject($jsonObj);
     }
 }

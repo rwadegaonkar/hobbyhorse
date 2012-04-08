@@ -19,20 +19,20 @@ class Platform_Webservices_Wrapper
     {
     }
 
-    public function request()
+    public function request($request_string = '',$data = null)
     {
         $config = array(
             'adapter'       => 'Zend_Http_Client_Adapter_Socket',
             'ssltransport'  => 'tls'
         );
 
-        $client = new Zend_Http_Client('http://192.168.1.3:8080/eggsy/app/users/.json', $config);
+
+        $client = new Zend_Http_Client("http://192.168.1.3:8080/eggsy/{$request_string}/.json", $config);
         try
         {
             $response = $client->request();
             $jsonData = $this->parseZendResponse($response);
-            $userData = json_decode($jsonData);
-            return $this->populateUsersObject($userData);
+            return json_decode($jsonData);
 
         }
         catch(Zend_Http_Client_Adapter_Exception $e){
@@ -51,45 +51,8 @@ class Platform_Webservices_Wrapper
             return $response->getBody();
         }
         else {
-            throw new Exception("Error: ".$response->getMessage());
+            throw new Exception("Error: Status is: ".$response->getStatus() . " message: ".$response->getMessage());
         }
     }
-
-    /**
-     * @param Zend_Http_Response $response
-     * @return json string
-     * @throws
-     */
-    public function populateUsersObject(stdClass $data)
-    {
-        echo "<pre>";
-      //  var_dump($data->users->allUsers);
-        foreach($data->users as $userArr)
-        {
-            $usersObj = new Platform_Data_Users();
-            if(is_array($userArr))
-            {
-                $i = 1;
-                foreach($userArr as $userJsonObj)
-                {
-                    $usersObj->{"user$i"} = $this->populateUserObject($userJsonObj);
-                    $i++;
-                }
-            }
-        }
-        return $usersObj;
-     //   print_r($usersObj);exit;
-    }
-
-    public function populateUserObject($userJsonObj)
-    {
-        $userObj = new Platform_Data_Users_User();
-        foreach($userJsonObj as $key=>$val)
-        {
-            $userObj->$key = $val;
-        }
-        return $userObj;
-    }
-
 
 }

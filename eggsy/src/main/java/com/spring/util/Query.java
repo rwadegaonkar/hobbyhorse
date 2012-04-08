@@ -27,7 +27,6 @@ public class Query {
 		try {
 			stmt = conn.createStatement();
 			int res = stmt.executeUpdate(cql);
-			System.out.println(res);
 		} catch (SQLException e1) {
 			// TODO Auto-generated catch block
 			e1.printStackTrace();
