@@ -5,31 +5,29 @@ import java.util.Date;
 import org.codehaus.jackson.annotate.JsonAutoDetect;
 import org.codehaus.jackson.annotate.JsonProperty;
 
-@JsonAutoDetect
 public class CommonBean {
-	@JsonProperty
+	
 	private long id;
-	@JsonProperty
+	
 	private String name;
-	@JsonProperty
+	
 	private String description;
-	@JsonProperty
+	
 	private long isDeleted;
-	@JsonProperty
+	
 	private String createdBy;
-	@JsonProperty
+	
 	private String lastUpdatedBy;
-	@JsonProperty
+	
 	private Date createDate;
-	@JsonProperty
+	
 	private Date lastUpdateDate;
 
-	@JsonProperty
+
 	public long getId() {
 		return id;
 	}
 
-	@JsonProperty
 	public void setId(long id) {
 		this.id = id;
 	}

@@ -13,24 +13,51 @@ require_once('Platform/Data/Users/User.php');
 class Platform_Webservices_Wrapper
 {
     /**
+     *@var string
+     */
+
+    protected $_host;
+
+    /**
+     * @var string
+     */
+    protected $_port;
+
+    /**
+     * @var string
+     */
+    protected $_responseDataType;
+
+    /**
+     * @var
+     */
+    protected $_client;
+
+    /**
      *
      */
     public function __construct()
     {
+        $this->_responseDataType = ".json";
+        $this->_host             = "http://192.168.1.3:8080";
+        $this->_port             = "8080";
     }
 
     public function request($request_string = '',$data = null)
     {
+        if($request_string == '')
+            throw new Exception("Error: Request string cannot be empty");
+
         $config = array(
             'adapter'       => 'Zend_Http_Client_Adapter_Socket',
             'ssltransport'  => 'tls'
         );
 
 
-        $client = new Zend_Http_Client("http://192.168.1.3:8080/eggsy/{$request_string}/.json", $config);
+        $this->_client = new Zend_Http_Client("http://192.168.1.3:8080/eggsy/{$request_string}/.json", $config);
         try
         {
-            $response = $client->request();
+            $response = $this->_client->request();
             $jsonData = $this->parseZendResponse($response);
             return json_decode($jsonData);
 

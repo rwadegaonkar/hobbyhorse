@@ -2,18 +2,18 @@ package com.spring.manager;
 
 import java.sql.Connection;
 import java.util.ArrayList;
+
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlRootElement;
-import org.apache.log4j.Logger;
+
 import org.codehaus.jackson.annotate.JsonIgnore;
+
 import com.spring.conf.ConnMysql;
 import com.spring.dao.UserDao;
 import com.spring.datasource.User;
 
-@XmlRootElement(name = "users")
+@XmlRootElement(name="users")
 public class UserManager {
-	@JsonIgnore
-	private static final Logger logger = Logger.getLogger(UserManager.class);
-
 	@JsonIgnore
 	Connection conn = ConnMysql.connect();
 	@JsonIgnore
@@ -24,7 +24,8 @@ public class UserManager {
 	public ArrayList<User> getUsers() {
 		return users;
 	}
-
+	
+	@XmlElement
 	public void setUsers(ArrayList<User> userBeanList) {
 		this.users = userBeanList;
 	}

@@ -19,8 +19,10 @@ Class Platform_Data_Users extends Platform_Data{
     /**
      * @return
      */
-    public function __construct($users = null)
-    {
+ //   public function __construct($users = null,$map='')
+ //   {
+    //    parent::__construct($users,$map);
+        /*
         if(isset($users) && is_array($users))
         {
             foreach($users as $user)
@@ -28,17 +30,21 @@ Class Platform_Data_Users extends Platform_Data{
                 $this->_data[] = $this->getUserObject($user);
             }
         }
-    }
-
+        */
+  //  }
+/*
     public function getUserObject($user)
     {
+
         $userObj = new Platform_Data_Users_User();
+
         foreach($user as $key=>$val)
         {
             $userObj->$key = $val;
         }
         return $userObj;
     }
+
 
     public function __get($name)
     {
@@ -54,5 +60,6 @@ Class Platform_Data_Users extends Platform_Data{
             }
         }
     }
+*/
 
 }

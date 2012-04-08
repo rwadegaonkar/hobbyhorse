@@ -20,27 +20,63 @@ Class Platform_Data {
     protected $_data = array();
 
 
-    public function __construct($data)
+    public function __construct($data,$map='')
     {
-        if(isset($data->users))
+        if(is_array($data))
         {
-            $this->_data[] = new Platform_Data_Users($data->users->users);
+            foreach($data as $val)
+            {
+                if(is_object($val))
+                {
+                    $className = 'Platform_Data_' . ucfirst($map) . "_" . trim(ucfirst($map),'s');
+                    $this->_data[] = $this->getResponseObject($val,new $className);
+                }
+            }
+            return;
         }
-        else if(isset($data->lessons))
+
+        foreach($data as $key=>$val)
         {
 
-        }
-        else
-        {
-            throw new Exception("Error: Wrong response");
+            if(is_object($val))
+            {
+                $className = 'Platform_Data_' . ucfirst($key);
+                try{
+                    $this->_data[] = new $className($data->{$key}->{$key},$key); //@todo: double check this.
+                }
+                catch(Exception $e){
+                    echo('Error :'.$e->getMessage());
+                }
+            }
 
         }
-
     }
 
     /**
-     * @param Zend_Http_Response $response
-     * @return json string
+     * @param
+     * @return
+     * @throws
+     */
+
+    public function getResponseObject($data = null, $obj)
+    {
+        if(!is_object($obj))
+            throw new Exception("Error: data - {$obj} is not the object");
+
+        foreach($data as $key=>$val)
+        {
+            if(is_string($val))
+            {
+                $obj->$key = $val;
+            }
+        }
+        return $obj;
+    }
+
+
+    /**
+     * @param
+     * @return
      * @throws
      */
 
@@ -53,10 +89,8 @@ Class Platform_Data {
     }
 
 
-
-    public function __get($name)
+    public function getProperty($objectName)
     {
-        $objectName = "Platform_Data_". ucfirst($name);
         foreach($this->_data as $data)
         {
             if(is_object($data))
@@ -67,11 +101,27 @@ Class Platform_Data {
                 }
             }
         }
+        return false;
     }
 
-    public function __set($name,$val)
+    public function __get($name)
     {
-        $this->_data[$name] = $val;
+        $objectName = "Platform_Data_". ucfirst($name);
+        $value      = $this->getProperty($objectName);
+        if($value == false)
+            $objectName = 'Platform_Data_' . ucfirst($name) . "s_" . ucfirst($name);
+
+        $value      = $this->getProperty($objectName);
+        if($value == false)
+            throw new exception("Error: No class exists with the name '{$objectName}");
+
+        return $value;
+
+    }
+
+    public function __set($name = '',$val)
+    {
+        $this->_data[] = $val;
     }
 
 }

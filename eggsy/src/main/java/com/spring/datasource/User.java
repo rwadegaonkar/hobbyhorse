@@ -1,25 +1,103 @@
 package com.spring.datasource;
 
-import org.codehaus.jackson.annotate.JsonAutoDetect;
-import org.codehaus.jackson.annotate.JsonProperty;
+import java.util.Date;
 
-@JsonAutoDetect
-public class User extends CommonBean {
-	@JsonProperty
+import javax.xml.bind.annotation.XmlElement;
+import javax.xml.bind.annotation.XmlRootElement;
+
+@XmlRootElement(name = "user")
+public class User {
+	private long id;
+	private String name;
+	private String description;
+	private long isDeleted;
+	private String createdBy;
+	private String lastUpdatedBy;
+	private Date createDate;
+	private Date lastUpdateDate;
 	private String username;
-	@JsonProperty
 	private String email;
-	@JsonProperty
 	private String skills;
-	@JsonProperty
 	private String hobbies;
-	@JsonProperty
 	private String location;
+
+	public long getId() {
+		return id;
+	}
+
+	@XmlElement
+	public void setId(long id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	@XmlElement
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	@XmlElement
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public long getIsDeleted() {
+		return isDeleted;
+	}
+
+	@XmlElement
+	public void setIsDeleted(long isDeleted) {
+		this.isDeleted = isDeleted;
+	}
+
+	public String getCreatedBy() {
+		return createdBy;
+	}
+
+	@XmlElement
+	public void setCreatedBy(String createdBy) {
+		this.createdBy = createdBy;
+	}
+
+	public String getLastUpdatedBy() {
+		return lastUpdatedBy;
+	}
+
+	@XmlElement
+	public void setLastUpdatedBy(String lastUpdatedBy) {
+		this.lastUpdatedBy = lastUpdatedBy;
+	}
+
+	public Date getCreateDate() {
+		return createDate;
+	}
+
+	@XmlElement
+	public void setCreateDate(Date createDate) {
+		this.createDate = createDate;
+	}
+
+	public Date getLastUpdateDate() {
+		return lastUpdateDate;
+	}
+
+	@XmlElement
+	public void setLastUpdateDate(Date lastUpdateDate) {
+		this.lastUpdateDate = lastUpdateDate;
+	}
 
 	public String getUsername() {
 		return username;
 	}
 
+	@XmlElement
 	public void setUsername(String username) {
 		this.username = username;
 	}
@@ -28,6 +106,7 @@ public class User extends CommonBean {
 		return email;
 	}
 
+	@XmlElement
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -36,6 +115,7 @@ public class User extends CommonBean {
 		return skills;
 	}
 
+	@XmlElement
 	public void setSkills(String skills) {
 		this.skills = skills;
 	}
@@ -44,6 +124,7 @@ public class User extends CommonBean {
 		return hobbies;
 	}
 
+	@XmlElement
 	public void setHobbies(String hobbies) {
 		this.hobbies = hobbies;
 	}
@@ -52,6 +133,7 @@ public class User extends CommonBean {
 		return location;
 	}
 
+	@XmlElement
 	public void setLocation(String location) {
 		this.location = location;
 	}

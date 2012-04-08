@@ -22,6 +22,6 @@ class User extends CI_Controller
     {
         $data = $this->user_model->getUsers();
         echo "<pre>";
-        print_r($data->users->user->name);
+        print_r($data->users->user);
     }
 }
