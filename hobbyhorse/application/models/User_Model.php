@@ -12,15 +12,22 @@ require_once('Platform/Data.php');
 
 class User_Model extends CI_Model
 {
+    private $myWrapper;
+    
     public function __construct()
     {
-        parent::__construct();
+        parent::__construct();       
+        $this->myWrapper = new Platform_Webservices_Wrapper();
+
     }
 
     public function getUsers()
     {
-        $myWrapper = new Platform_Webservices_Wrapper();
-        $jsonObj =  $myWrapper->request('users/');
+        $jsonObj =  $this->myWrapper->request('users/');
         return  Platform_Data::getDataObject($jsonObj);
     }
+    
+    public function getUserByUserId($userId) {
+        $jsonObj =  $this->myWrapper->request('users/id/'.$userId);
+        return  Platform_Data::getDataObject($jsonObj);    }
 }

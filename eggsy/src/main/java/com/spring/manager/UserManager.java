@@ -49,6 +49,17 @@ public class UserManager {
 		}
 		return null;
 	}
+	
+	public ArrayList<User> getUserByUserId(long id) {
+		try {
+			System.out.println("In manager class "+id);
+			users = delegate.getUserByUserId(conn, id);
+			return users;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void deleteUser(String username) {
 		delegate.deleteUser(conn, username);

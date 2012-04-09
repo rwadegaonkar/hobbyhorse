@@ -27,11 +27,20 @@ public class UsersController {
 		mav.addObject("users", userList);
 		return mav;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/{username}")
 	public ModelAndView showUserByUsername(@PathVariable("username") String username) {
 		UserManager users = new UserManager();
 		ArrayList<User> userList = users.getUserByUsername(username);
+		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
+		mav.addObject("users", userList);
+		return mav;
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/id/{id}")
+	public ModelAndView showUserByUserId(@PathVariable("id") long id) {
+		UserManager users = new UserManager();
+		ArrayList<User> userList = users.getUserByUserId(id);
 		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
 		mav.addObject("users", userList);
 		return mav;

@@ -40,11 +40,11 @@ Class Platform_Data {
         foreach($data as $key=>$val)
         {
 
-            if(is_object($val))
+            if(is_array($val))
             {
                 $className = 'Platform_Data_' . ucfirst($key);
                 try{
-                    $this->_data[] = new $className($data->{$key}->{$key},$key); //@todo: double check this.
+                    $this->_data[] = new $className($val,$key); //@todo: double check this.
                 }
                 catch(Exception $e){
                     echo('Error :'.$e->getMessage());

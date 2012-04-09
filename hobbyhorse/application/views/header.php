@@ -15,7 +15,7 @@
         <title>HobbyHorse</title>
     </head>
     <body>
-        <header>
+        <header class="header hbg">
             <nav class="top-nav">
                 <div id="logo">
                     <a href='index.html'><img src='images/newlogo.jpg' id="logo" /></a>

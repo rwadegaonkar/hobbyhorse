@@ -25,10 +25,11 @@ public class UserTest extends TestCase {
 	/*
 	 * Test the total number of users
 	 */
-	public void testGetAllUsers() throws Exception {
+	public void testGetUserByUserId() throws Exception {
+		System.out.println("Test class");
 		UserManager o = new UserManager();
-		ArrayList<User> res = o.getAllUsers();
-		assertEquals(10, res.size());
+		ArrayList<User> res = o.getUserByUserId(2);
+		//assertEquals(1, res.size());
 	}
 
 	@Test

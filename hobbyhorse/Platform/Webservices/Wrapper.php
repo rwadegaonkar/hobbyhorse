@@ -41,27 +41,38 @@ class Platform_Webservices_Wrapper {
         $this->_domain = "hobbyhorse";
     }
 
-    public function request($request_string = '', $data = null) {
+    public function request($request_string = '', $method = 'get', $data = null) {
         if ($request_string == '')
             throw new Exception("Error: Request string cannot be empty");
 
         $config = array(
             'adapter' => 'Zend_Http_Client_Adapter_Socket',
-            'ssltransport' => 'tls'
+            'ssltransport' => 'tls',
+            'timeout'      => 30
         );
 
         $this->_client = new Zend_Http_Client($this->_host . ":" . 
                                               $this->_port . "/" . 
                                               $this->_domain . "/{$request_string}" . 
                                               $this->_responseDataType, $config);
+
+        if(!is_null(($data)))
+        {
+            if(is_string($data))
+                $this->_client->setRawData($data, 'application/json');
+            else if(is_array($data))
+                $this->_client->setParameter{ucfirst($method)}((array) $data);
+        }
+
         try {
-            $response = $this->_client->request();
+            $response = $this->_client->request(strtoupper($method));
             $jsonData = $this->parseZendResponse($response);
             return json_decode($jsonData);
         } catch (Zend_Http_Client_Adapter_Exception $e) {
             echo('Request to webservice failed :' . $e->getMessage());
         }
     }
+
 
     /**
      * @param Zend_Http_Response $response

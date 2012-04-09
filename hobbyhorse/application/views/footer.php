@@ -5,7 +5,7 @@
  * and open the template in the editor.
  */
 ?>
- <footer>
+ <footer class="footer">
             <p>HobbyHorse &copy; 2012</p>
             <nav class="footer-links">
                 <ul>

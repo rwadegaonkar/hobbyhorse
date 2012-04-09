@@ -14,6 +14,10 @@ class Platform_Data_Lessons_Lesson extends Platform_Data_Base
      * @var
      */
     protected $_lessonTypeId;
+    /**
+     * @var
+     */
+    protected $_userId;
 
     /**
      * @return
@@ -36,6 +40,19 @@ class Platform_Data_Lessons_Lesson extends Platform_Data_Base
     public function setLessonTypeId($lessonTypeId)
     {
         $this->_lessonTypeId = $lessonTypeId;
+    }
+    
+    public function getUserId()
+    {
+        return $this->_userId;
+    }
+
+    /**
+     * @param  $lessonTypeId
+     */
+    public function setUserId($userId)
+    {
+        $this->_userId = $userId;
     }
 
     

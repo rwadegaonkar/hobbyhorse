@@ -1,5 +1,7 @@
 package com.spring.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -7,6 +9,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
+
+import com.spring.datasource.CommonBean;
 import com.spring.manager.LessonTypeManager;
 
 @Controller
@@ -23,9 +27,9 @@ public class LessonTypeController {
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public ModelAndView showLessonTypes() {
 		LessonTypeManager lessonTypes = new LessonTypeManager();
-		lessonTypes.getAllLessonTypes();
+		ArrayList<CommonBean> lessontypeList = lessonTypes.getAllLessonTypes();
 		ModelAndView mav = new ModelAndView(LESSONTYPE_VIEW_KEY);
-		mav.addObject("lessonTypes", lessonTypes);
+		mav.addObject("lessonTypes", lessontypeList);
 		return mav;
 	}
 }

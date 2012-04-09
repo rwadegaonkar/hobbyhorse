@@ -16,6 +16,7 @@ public class Lesson {
 	private Date createDate;
 	private Date lastUpdateDate;
 	private long lessonTypeId;
+	private long userId;
 
 	public long getId() {
 		return id;
@@ -96,6 +97,16 @@ public class Lesson {
 	@XmlElement
 	public void setLessonTypeId(long lessonTypeId) {
 		this.lessonTypeId = lessonTypeId;
+	}
+	
+
+	public long getUserId() {
+		return userId;
+	}
+
+	@XmlElement
+	public void setUserId(long userId) {
+		this.userId = userId;
 	}
 
 }

@@ -31,4 +31,8 @@ public class ConnMysql {
 			e.printStackTrace();
 		}
 	}
+	
+	public void destructor() {
+		disconnect(conn);
+	}
 }

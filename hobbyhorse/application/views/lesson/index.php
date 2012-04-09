@@ -22,7 +22,9 @@
     foreach ($lessons->data as $l) {
         ?>
         <div class="grid_5">
-            <h4><?php echo $l->name ?></h4>
+            <h4><?php echo $l->name ?></h4> 
+            <h5 class="expertname"><?php echo $username[$l->id]?></h5>
+            <p><?php echo "Starts on: ".$l->createDate ?></p>
             <p><?php echo $l->description ?></p>
         </div>
         <?php

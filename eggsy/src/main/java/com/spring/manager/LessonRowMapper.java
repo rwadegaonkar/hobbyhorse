@@ -20,6 +20,7 @@ public class LessonRowMapper {
 			lessonBean.setCreateDate(rs.getDate("createDate"));
 			lessonBean.setLastUpdateDate(rs.getDate("lastUpdateDate"));
 			lessonBean.setLessonTypeId(rs.getInt("lessonTypeId"));
+			lessonBean.setUserId(rs.getInt("userId"));
 			lessons.add(lessonBean);
 		}
 		return lessons;
