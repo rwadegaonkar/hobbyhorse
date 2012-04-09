@@ -1,5 +1,7 @@
 package com.spring.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,9 +21,9 @@ public class LessonsController {
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public ModelAndView showLessons() {
 		LessonManager allLessons = new LessonManager();
-		allLessons.getAllLessons();
+		ArrayList<Lesson> lessonList = allLessons.getAllLessons();
 		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
-		mav.addObject("lessons", allLessons);
+		mav.addObject("lessons", lessonList);
 		return mav;
 	}
 	
@@ -38,9 +40,9 @@ public class LessonsController {
 	@RequestMapping(method = RequestMethod.GET, value = "/lessontype/{lessontypeid}")
 	public ModelAndView getLessonsByLessonId(@PathVariable("lessontypeid") int lessontypeid) {
 		LessonManager lessonsByType = new LessonManager();
-		lessonsByType.getLessonsByLessonTypeId(lessontypeid);
+		ArrayList<Lesson> lessonList = lessonsByType.getLessonsByLessonTypeId(lessontypeid);
 		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
-		mav.addObject("lessons", lessonsByType);
+		mav.addObject("lessons", lessonList);
 		return mav;
 	}
 }

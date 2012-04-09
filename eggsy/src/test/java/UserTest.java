@@ -28,7 +28,7 @@ public class UserTest extends TestCase {
 	public void testGetAllUsers() throws Exception {
 		UserManager o = new UserManager();
 		ArrayList<User> res = o.getAllUsers();
-		assertEquals(8, res.size());
+		assertEquals(10, res.size());
 	}
 
 	@Test

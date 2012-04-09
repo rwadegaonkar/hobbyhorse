@@ -35,7 +35,6 @@ public class LessonManager {
 			lessons = delegate.getAllLessons(conn);
 			return lessons;
 		} catch (Exception e) {
-			System.out.println("here*******");
 			e.printStackTrace();
 		}
 		return null;

@@ -23,10 +23,23 @@ class Lesson_Model extends CI_Model
         $jsonObj =  $myWrapper->request('lessons/');
         return  Platform_Data::getDataObject($jsonObj);
     }
-    public function getLessonsByLessonType()
+    public function getLessonsByLessonType($lessonId)
     {
         $myWrapper = new Platform_Webservices_Wrapper();
-        $jsonObj =  $myWrapper->request('lessons/lessontype/1');
+        $jsonObj =  $myWrapper->request('lessons/lessontype/'.$lessonId);
         return  Platform_Data::getDataObject($jsonObj);
+    }
+    public function getLessonTypes()
+    {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj =  $myWrapper->request('lessontypes/');
+        return  Platform_Data::getDataObject($jsonObj);
+    }
+    
+    public function getAjaxLessonsByLessonType($lessonId)
+    {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj =  $myWrapper->request('lessons/lessontype/'.$lessonId);
+        return $jsonObj;
     }
 }

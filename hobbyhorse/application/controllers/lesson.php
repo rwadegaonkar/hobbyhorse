@@ -18,13 +18,24 @@ class Lesson extends CI_Controller {
     }
 
     public function index() {
-        $lessonData = $this->lesson_model->getLessons();
+        $lessonData = $this->lesson_model->getLessonsByLessonType("1");
+        $lessonTypes = $this->lesson_model->getLessonTypes();
         $data['lessons'] = $lessonData->lessons;
+        $data['lessonTypes'] = $lessonTypes->lessonTypes;
+        $this->load->view('header',$data);
+        $this->load->view('sidebar',$data);
         $this->load->view('lesson/index',$data);
+        $this->load->view('footer',$data);
     } 
+    
     public function lessonsByLessonType() {
         $lessonData = $this->lesson_model->getLessonsByLessonType();
         $data['lessons'] = $lessonData->lessons;
         $this->load->view('lesson/index',$data);
     }
+    
+    public function getAjaxLessonsByLessonType($lessonId) {
+        $lessonData = $this->lesson_model->getAjaxLessonsByLessonType("1");
+        echo(json_encode($lessonData->lessons));
+        }
 }

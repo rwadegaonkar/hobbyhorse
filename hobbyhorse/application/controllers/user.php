@@ -20,7 +20,7 @@ class User extends CI_Controller {
     public function index() {
         $data = $this->user_model->getUsers();
         echo "<pre>";
-        print_r($data->users->user);
+        print_r($data->users->data);
     }
 
     public function login() {

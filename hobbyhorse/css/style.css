@@ -31,3 +31,10 @@ float: left;
     clear: both;
     margin-right: 20px;
 }
+.footer-links ul li{
+    float: left;
+    padding: 10px;
+}
+.footer p{
+    padding: 10px;
+}
