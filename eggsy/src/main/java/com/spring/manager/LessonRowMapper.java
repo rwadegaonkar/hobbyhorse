@@ -4,8 +4,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import com.spring.datasource.Lesson;
+import com.spring.datasource.User;
 
 public class LessonRowMapper {
+	UserManager userManager = new UserManager();
+
 	public ArrayList<Lesson> convertLessonBean(ResultSet rs)
 			throws SQLException {
 		ArrayList<Lesson> lessons = new ArrayList<Lesson>();
@@ -21,6 +24,9 @@ public class LessonRowMapper {
 			lessonBean.setLastUpdateDate(rs.getDate("lastUpdateDate"));
 			lessonBean.setLessonTypeId(rs.getInt("lessonTypeId"));
 			lessonBean.setUserId(rs.getInt("userId"));
+			ArrayList<User> userList = userManager.getUserByUserId(rs
+					.getInt("userId"));
+			lessonBean.setUsername(userList.get(0).getName());
 			lessons.add(lessonBean);
 		}
 		return lessons;

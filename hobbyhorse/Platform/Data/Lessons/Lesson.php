@@ -18,6 +18,10 @@ class Platform_Data_Lessons_Lesson extends Platform_Data_Base
      * @var
      */
     protected $_userId;
+/**
+     * @var
+     */
+    protected $_username;
 
     /**
      * @return
@@ -53,6 +57,19 @@ class Platform_Data_Lessons_Lesson extends Platform_Data_Base
     public function setUserId($userId)
     {
         $this->_userId = $userId;
+    }
+    
+    public function getUsername()
+    {
+        return $this->_username;
+    }
+
+    /**
+     * @param  $lessonTypeId
+     */
+    public function setUsername($username)
+    {
+        $this->_username = $username;
     }
 
     

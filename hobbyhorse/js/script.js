@@ -48,15 +48,19 @@ function updateResponse(resp) {
         var divElement = document.createElement("DIV");
         divElement.setAttribute("class","grid_5");
         var h4Element = document.createElement("h4");
+        var h5Element = document.createElement("h5");
         var h4Text = document.createTextNode(lessonJson[j].name)
+        var h5Text = document.createTextNode(lessonJson[j].username)
         var pElement = document.createElement("p");
         var pElementDate = document.createElement("p");
         var pText = document.createTextNode(lessonJson[j].description)
         var pTextDate = document.createTextNode("Starts on: "+lessonJson[j].createDate)
         h4Element.appendChild(h4Text);
+        h5Element.appendChild(h5Text);
         pElement.appendChild(pText);
         pElementDate.appendChild(pTextDate);
         divElement.appendChild(h4Element);
+        divElement.appendChild(h5Element);
         divElement.appendChild(pElementDate);
         divElement.appendChild(pElement);
         elementToUpdate.appendChild(divElement);

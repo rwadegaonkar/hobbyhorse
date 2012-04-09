@@ -23,13 +23,17 @@
         ?>
         <div class="grid_5">
             <h4><?php echo $l->name ?></h4> 
-            <h5 class="expertname"><?php echo $username[$l->id]?></h5>
+            <h5 class="expertname"><?php echo $l->username?></h5>
             <p><?php echo "Starts on: ".$l->createDate ?></p>
             <p><?php echo $l->description ?></p>
         </div>
         <?php
     }
     ?>
+        <div class="clr"></div>
+        <div>
+            <a href="">Cannot Find Your Lesson Type? Create a new one here!</a>
+        </div>
     </section>
 </section>
 

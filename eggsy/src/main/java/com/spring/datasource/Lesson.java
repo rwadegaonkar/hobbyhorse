@@ -17,7 +17,9 @@ public class Lesson {
 	private Date lastUpdateDate;
 	private long lessonTypeId;
 	private long userId;
-
+	private String username;
+	
+	
 	public long getId() {
 		return id;
 	}
@@ -107,6 +109,15 @@ public class Lesson {
 	@XmlElement
 	public void setUserId(long userId) {
 		this.userId = userId;
+	}
+	
+	public String getUsername() {
+		return username;
+	}
+
+	@XmlElement
+	public void setUsername(String username) {
+		this.username = username;
 	}
 
 }

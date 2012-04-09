@@ -22,10 +22,6 @@ class Lesson extends CI_Controller {
         $lessonData = $this->lesson_model->getLessonsByLessonType("1");
         $lessonTypes = $this->lesson_model->getLessonTypes();
         $data['lessons'] = $lessonData->lessons;
-        foreach($lessonData->lessons->data as $l) {
-             $usersData = $this->user_model->getUserByUserId($l->userId);
-             $data['username'][$l->id] = $usersData->users->user->name;
-        }
         $data['lessonTypes'] = $lessonTypes->lessonTypes;
         $this->load->view('header',$data);
         $this->load->view('sidebar',$data);

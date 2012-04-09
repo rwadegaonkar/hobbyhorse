@@ -18,7 +18,7 @@
         <header class="header hbg">
             <nav class="top-nav">
                 <div id="logo">
-                    <a href='index.html'><img src='images/newlogo.jpg' id="logo" /></a>
+                    <a href='index.html'><img src='<?php echo base_url() ?>images/newlogo.jpg' id="logo" /></a>
                 </div>
             </nav>
         </header>

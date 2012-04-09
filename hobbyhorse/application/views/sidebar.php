@@ -18,5 +18,4 @@
     </nav>
 </section>
 <aside class="grid_2">
-    
 </aside>
