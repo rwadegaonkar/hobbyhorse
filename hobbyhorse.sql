@@ -3,11 +3,17 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 02, 2012 at 11:11 PM
+-- Generation Time: Apr 09, 2012 at 09:55 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.2
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- Database: `hobbyhorse`
@@ -18,7 +24,7 @@ SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
 --
 -- Table structure for table `badge`
 --
-CREATE DATABASE hobbyhorse;
+
 CREATE TABLE `badge` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -59,13 +65,12 @@ CREATE TABLE `comment` (
   UNIQUE KEY `id` (`id`),
   KEY `userId` (`userId`),
   KEY `lessonId` (`lessonId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `comment`
 --
 
-INSERT INTO `comment` VALUES(1, 'Guitar lesson', 0x69742077617320737570657262202121, 0, 'admin', 'admin', '2012-04-01 17:20:09', '2012-04-01 17:20:12', 1, 1);
 
 -- --------------------------------------------------------
 
@@ -87,13 +92,12 @@ CREATE TABLE `feedback` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `feedback`
 --
 
-INSERT INTO `feedback` VALUES(1, 'none', 0x617765736f6d65206c6561726e696e6720657870657269656e6365, 0, 'admin', 'admin', '2012-04-01 17:49:26', '2012-04-01 17:49:29', 1, 5);
 
 -- --------------------------------------------------------
 
@@ -116,13 +120,12 @@ CREATE TABLE `forgotPassword` (
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `forgotPassword`
 --
 
-INSERT INTO `forgotPassword` VALUES(1, 'noen', 0x6e6f656e, 0, 'admin', 'admin', '2012-04-01 18:05:33', '2012-04-01 18:05:37', 'what is ur fav passtime?', 'kidding', 1);
 
 -- --------------------------------------------------------
 
@@ -168,16 +171,17 @@ CREATE TABLE `lesson` (
   `createDate` datetime NOT NULL,
   `lastUpdateDate` datetime NOT NULL,
   `lessonTypeId` int(11) NOT NULL,
+  `userId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `lessonTypeId` (`lessonTypeId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+  KEY `lessonTypeId` (`lessonTypeId`),
+  KEY `userId` (`userId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `lesson`
 --
 
-INSERT INTO `lesson` VALUES(1, 'guitar', 0x6974206973206120626567696e6e657220636f75727365, 0, 'admin', 'admin', '2012-04-01 17:18:10', '2012-04-01 17:18:13', 1);
 
 -- --------------------------------------------------------
 
@@ -195,13 +199,14 @@ CREATE TABLE `lessonType` (
   `createDate` datetime NOT NULL,
   `lastUpdateDate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=2 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `lessonType`
 --
 
-INSERT INTO `lessonType` VALUES(1, 'music', 0x6d75736963, 0, 'admin', 'admin', '2012-04-01 17:18:51', '2012-04-01 17:18:53');
+INSERT INTO `lessonType` VALUES(1, 'music', NULL, 0, 'admin', 'admin', '2012-04-08 23:35:04', '2012-04-08 23:35:07');
+INSERT INTO `lessonType` VALUES(2, 'art', NULL, 0, 'admin', 'admin', '2012-04-08 23:35:16', '2012-04-08 23:35:19');
 
 -- --------------------------------------------------------
 
@@ -352,22 +357,19 @@ CREATE TABLE `user` (
   `skills` text COLLATE utf8_bin NOT NULL,
   `hobbies` text COLLATE utf8_bin NOT NULL,
   `location` varchar(255) COLLATE utf8_bin NOT NULL,
-  `roleId` int(11) NOT NULL,
+  `roleId` int(11) NOT NULL DEFAULT '0',
+  `loginTypeId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `roleId` (`roleId`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=7 ;
+  KEY `roleId` (`roleId`),
+  KEY `id_2` (`id`),
+  KEY `loginTypeId` (`loginTypeId`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` VALUES(1, 'Radhika Wadegaonkar', 0x626c6168, 0, 'admin', 'admin', '2012-04-01 15:29:02', '2012-04-01 15:29:05', 'radhika_wadegaonkar', 'radhika@gmail.com', 0x677569746172, 0x677569746172, 'mountain view', 0);
-INSERT INTO `user` VALUES(2, 'Rad', 0x3b, 0, 'admin', 'admin', '2012-02-02 00:00:00', '2012-02-02 00:00:00', 'r', 'r', 0x72, 0x72, 'r', 0);
-INSERT INTO `user` VALUES(3, 'Radhika Wadegaonka88r', 0x492077616e7420746f206c6561726e20677569746172, 0, 'admin', 'admin', '2012-04-01 00:00:00', '2012-04-01 00:00:00', 'radhika_w', 'radhika@gmail.com', 0x677569746172, 0x677569746172, 'mountain view', 0);
-INSERT INTO `user` VALUES(4, 'Radhika Wadegaonka88r', 0x492077616e7420746f206c6561726e20677569746172, 0, 'admin', 'admin', '2012-04-01 00:00:00', '2012-04-01 00:00:00', 'radhika_w', 'radhika@gmail.com', 0x677569746172, 0x677569746172, 'mountain view', 0);
-INSERT INTO `user` VALUES(5, 'Radhika Wadegaonka88r', 0x492077616e7420746f206c6561726e20677569746172, 0, 'admin', 'admin', '2012-04-01 15:45:17', '2012-04-01 15:45:17', 'radhika_w', 'radhika@gmail.com', 0x677569746172, 0x677569746172, 'mountain view', 0);
-INSERT INTO `user` VALUES(6, 'Radhika Kulkarni', 0x492077616e7420746f206c6561726e20677569746172, 0, 'admin', 'admin', '2012-04-01 15:45:17', '2012-04-01 15:45:17', 'radhika_kulkarni', 'radhika1@gmail.com', 0x677569746172, 0x677569746172, 'mountain view', 0);
 
 -- --------------------------------------------------------
 
@@ -430,7 +432,8 @@ ALTER TABLE `friendsList`
 -- Constraints for table `lesson`
 --
 ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_1` FOREIGN KEY (`lessonTypeId`) REFERENCES `lesson` (`id`);
+  ADD CONSTRAINT `lesson_ibfk_4` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `lesson_ibfk_3` FOREIGN KEY (`lessonTypeId`) REFERENCES `lessonType` (`id`);
 
 --
 -- Constraints for table `login`
@@ -452,8 +455,14 @@ ALTER TABLE `redeemption`
   ADD CONSTRAINT `redeemption_ibfk_1` FOREIGN KEY (`badgeId`) REFERENCES `badge` (`id`);
 
 --
+-- Constraints for table `user`
+--
+ALTER TABLE `user`
+  ADD CONSTRAINT `user_ibfk_4` FOREIGN KEY (`loginTypeId`) REFERENCES `loginType` (`id`),
+  ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`);
+
+--
 -- Constraints for table `userbadgemap`
 --
 ALTER TABLE `userbadgemap`
   ADD CONSTRAINT `userbadgemap_ibfk_1` FOREIGN KEY (`badgeId`) REFERENCES `badge` (`id`);
-
