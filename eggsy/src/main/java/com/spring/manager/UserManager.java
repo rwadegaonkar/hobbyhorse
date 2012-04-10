@@ -52,7 +52,6 @@ public class UserManager {
 	
 	public ArrayList<User> getUserByUserId(long id) {
 		try {
-			System.out.println("In manager class "+id);
 			users = delegate.getUserByUserId(conn, id);
 			return users;
 		} catch (Exception e) {

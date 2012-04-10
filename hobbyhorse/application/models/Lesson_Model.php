@@ -42,4 +42,5 @@ class Lesson_Model extends CI_Model
         $jsonObj =  $myWrapper->request('lessons/lessontype/'.$lessonId);
         return $jsonObj;
     }
+    
 }

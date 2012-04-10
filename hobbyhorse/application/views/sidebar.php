@@ -8,12 +8,13 @@
 <section class="grid_2">
     <nav>
         <ul>
-            <li><a href=''>Home</a></li>
-            <li><a href=''>Available Lessons</a></li>
+            <li><a href="<?php echo base_url() ?>">Home</a></li>
+            <li><a href="<?php echo base_url() ?>index.php/lesson/">Available Lessons</a></li>
             <li><a href=''>Create New Lessons</a></li>
             <li><a href=''>My Attended Lessons</a></li>
             <li><a href=''>My Badges</a></li>
             <li><a href=''>Invite My Friends</a></li>
+            <li><a href="<?php echo base_url() ?>">Logout</a></li>
         </ul>
     </nav>
 </section>

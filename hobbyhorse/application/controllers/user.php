@@ -24,8 +24,18 @@ class User extends CI_Controller {
     }
 
     public function login() {
-        
+        $this->load->view('header');
+        $this->load->view('sidebar');
         $this->load->view('user/login');
+        $this->load->view('footer');
+        }
+        
+    public function saveUser() {
+        $data['name'] = $_REQUEST['firstName'];
+        $this->user_model->saveUser(json_encode($data));
     }
-
 }
+
+
+
+    

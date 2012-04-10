@@ -4,12 +4,15 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-include_once("../header.php");
+$urlreturn=urlencode('http://localhost/hobbyhorse/user/fbreturn');
 $htmlContent = <<< HTML
         <section class="main-content">
             <section class="grid_5">
                 <article>
-                    <p class="left-login">Connect with Google+!</p>
+                <a href="http://www.facebook.com/dialog/oauth?client_id=178137928932666
+&redirect_uri=$urlreturn
+&scope=offline_access,user_checkins,friends_checkins">Connect with Facebook</a>
+                    <p class="left-login">Connect with Facebook</p>
                     <p class="left-login">or</p>
                     <p class="left-login">Login With Linked In</p>
                 </article>
@@ -19,7 +22,7 @@ $htmlContent = <<< HTML
             </section>
             <section class="grid_6">
                 <h3>Create an account with Hobby Horse Now! </h3>
-                <form id="login" action="login.php" method="POST">
+                <form id="login" action="/hobbyhorse/index.php/user/saveUser" method="POST">
                 <input type="hidden" name="submit" value="1" />
                 <div class="form">
                     <ul class="form_elements">
@@ -63,15 +66,5 @@ $htmlContent = <<< HTML
             </section>
         </section>
 HTML;
-if ($_REQUEST['submit'] == "1") {
-    saveDate($_REQUEST);
-} else {
     echo $htmlContent;
-}
-
-function saveDate($params) {
-    echo "<pre>";
-    print_r($params);
-}
-include_once("../footer.php");
 ?>
