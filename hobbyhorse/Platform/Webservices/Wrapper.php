@@ -51,11 +51,12 @@ class Platform_Webservices_Wrapper {
             'timeout'      => 30
         );
 
+        if(!is_null($data)) $this->_responseDataType="";
+                                              
         $this->_client = new Zend_Http_Client($this->_host . ":" . 
                                               $this->_port . "/" . 
                                               $this->_domain . "/{$request_string}" . 
                                               $this->_responseDataType, $config);
-
         if(!is_null(($data)))
         {
             if(is_string($data))

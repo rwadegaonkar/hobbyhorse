@@ -20,6 +20,7 @@ public class User {
 	private String skills;
 	private String hobbies;
 	private String location;
+	private long loginTypeId;
 
 	public long getId() {
 		return id;
@@ -136,5 +137,15 @@ public class User {
 	@XmlElement
 	public void setLocation(String location) {
 		this.location = location;
+	}
+	
+
+	public long getLoginTypeId() {
+		return loginTypeId;
+	}
+	
+	@XmlElement
+	public void setLoginTypeId(long loginTypeId) {
+		this.loginTypeId = loginTypeId;
 	}
 }

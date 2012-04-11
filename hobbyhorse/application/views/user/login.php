@@ -4,14 +4,11 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-$urlreturn=urlencode('http://localhost/hobbyhorse/user/fbreturn');
 $htmlContent = <<< HTML
         <section class="main-content">
             <section class="grid_5">
                 <article>
-                <a href="http://www.facebook.com/dialog/oauth?client_id=178137928932666
-&redirect_uri=$urlreturn
-&scope=offline_access,user_checkins,friends_checkins">Connect with Facebook</a>
+                <a href="$dialog_url">Connect with Facebook</a>
                     <p class="left-login">Connect with Facebook</p>
                     <p class="left-login">or</p>
                     <p class="left-login">Login With Linked In</p>
@@ -31,7 +28,9 @@ $htmlContent = <<< HTML
                         <li class="label">Last Name:</li>
                         <li class="text_box"><input type="text" name="lastName"/></li>
                         <li class="label">User Name:</li>
-                        <li class="text_box"><input type="text" name="userName"/></li>
+                        <li class="text_box"><input type="text" name="username"/></li>
+                        <li class="label">Email:</li>
+                        <li class="text_box"><input type="text" name="email"/></li>
                         <li class="label">Security Question:</li>
                         <li class="text_box">
                             <select name="securityQuestion" class="securityQuestion">
@@ -66,5 +65,5 @@ $htmlContent = <<< HTML
             </section>
         </section>
 HTML;
-    echo $htmlContent;
+echo $htmlContent;
 ?>

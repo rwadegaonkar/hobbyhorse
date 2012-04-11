@@ -21,7 +21,7 @@ public class UserDao {
 	private static final String SELECT_BY_USERNAME = "SELECT * FROM user WHERE isDeleted=0 and username=";
 	private static final String SELECT_BY_ID = "SELECT * FROM user WHERE isDeleted=0 and id=";
 	private static final String DELETE_BY_USERNAME = "UPDATE user SET isDeleted=1 where username=";
-	private static final String INSERT_USER = "INSERT INTO user(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, username, email, skills, hobbies, location) VALUES";
+	private static final String INSERT_USER = "INSERT INTO user(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, username, email, skills, hobbies, location, roleId, loginTypeId) VALUES";
 	public Query query = new Query();
 	ArrayList<User> users = new ArrayList<User>();
 
@@ -32,12 +32,13 @@ public class UserDao {
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
-		}	
+		}
 		return users;
 	}
 
 	public ArrayList<User> getUserByUsername(Connection conn, String username) {
-		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME+"'" + username + "'", conn);
+		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME + "'" + username
+				+ "'", conn);
 		try {
 			users = rowMapper.convertUserBean(rs);
 		} catch (SQLException e) {
@@ -46,10 +47,10 @@ public class UserDao {
 		}
 		return users;
 	}
-	
-	public ArrayList<User> getUserByUserId(Connection conn, long id) {			
-		System.out.println("In DAO class "+id);
-		ResultSet rs = query.executeQuery(SELECT_BY_ID+id, conn);
+
+	public ArrayList<User> getUserByUserId(Connection conn, long id) {
+		System.out.println("In DAO class " + id);
+		ResultSet rs = query.executeQuery(SELECT_BY_ID + id, conn);
 		try {
 			users = rowMapper.convertUserBean(rs);
 		} catch (SQLException e) {
@@ -58,7 +59,7 @@ public class UserDao {
 		}
 		return users;
 	}
-	
+
 	public void deleteUser(Connection conn, String username) {
 		query.executeUpdate(DELETE_BY_USERNAME + "'" + username + "'", conn);
 	}
@@ -67,10 +68,10 @@ public class UserDao {
 		String insertQuery = INSERT_USER + "('" + user.getName() + "','"
 				+ user.getDescription() + "'," + user.getIsDeleted() + ",'"
 				+ user.getCreatedBy() + "','" + user.getLastUpdatedBy() + "','"
-				+ CURRENT_TIMESTAMP + "','" + CURRENT_TIMESTAMP
-				+ "','" + user.getUsername() + "','" + user.getEmail() + "','"
+				+ CURRENT_TIMESTAMP + "','" + CURRENT_TIMESTAMP + "','"
+				+ user.getUsername() + "','" + user.getEmail() + "','"
 				+ user.getSkills() + "','" + user.getHobbies() + "','"
-				+ user.getLocation() + "')";
+				+ user.getLocation() + "',2," + user.getLoginTypeId() + ")";
 		query.executeUpdate(insertQuery, conn);
 		return users;
 	}

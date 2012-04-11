@@ -1,4 +1,9 @@
 <?php
+session_start();
+
+define('APP_ID',"178137928932666");
+define('APP_SECRET',"a42462194a5c600f4b7b475eb41bb32c");
+define('REDIRECT_URL', "http://mysite.fb/hobbyhorse/index.php/user/login");
 
 /*
  *---------------------------------------------------------------

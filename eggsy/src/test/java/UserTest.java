@@ -64,6 +64,7 @@ public class UserTest extends TestCase {
 		user.setSkills("dance");
 		user.setLocation("Mountain View");
 		user.setUsername("r_k");
+		user.setLoginTypeId(1);
 		return user;
 	}
 }

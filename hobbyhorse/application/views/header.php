@@ -4,7 +4,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-//error_reporting(0);
+error_reporting(0);
 ?>
 <html>
     <head>

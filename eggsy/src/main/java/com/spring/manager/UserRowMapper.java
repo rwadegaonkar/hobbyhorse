@@ -31,6 +31,7 @@ public class UserRowMapper {
 			userBean.setSkills(rs.getString("skills"));
 			userBean.setHobbies(rs.getString("hobbies"));
 			userBean.setLocation(rs.getString("location"));
+			userBean.setLoginTypeId(rs.getInt("loginTypeId"));
 			users.add(userBean);
 		}
 		return users;

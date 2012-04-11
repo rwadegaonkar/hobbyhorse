@@ -14,7 +14,7 @@
             <li><a href=''>My Attended Lessons</a></li>
             <li><a href=''>My Badges</a></li>
             <li><a href=''>Invite My Friends</a></li>
-            <li><a href="<?php echo base_url() ?>">Logout</a></li>
+            <li><a href="<?php echo base_url() ?>index.php/user/logout">Logout</a></li>
         </ul>
     </nav>
 </section>
