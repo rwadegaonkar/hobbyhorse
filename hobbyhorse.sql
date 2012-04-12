@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 09, 2012 at 09:55 PM
+-- Generation Time: Apr 11, 2012 at 05:15 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.2
 
@@ -172,6 +172,7 @@ CREATE TABLE `lesson` (
   `lastUpdateDate` datetime NOT NULL,
   `lessonTypeId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
+  `sessionId` varchar(255) COLLATE utf8_bin NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
   KEY `lessonTypeId` (`lessonTypeId`),
@@ -251,12 +252,14 @@ CREATE TABLE `loginType` (
   `lastUpdateDate` datetime NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
 
 --
 -- Dumping data for table `loginType`
 --
 
+INSERT INTO `loginType` VALUES(1, 'facebook', NULL, 0, 'admin', 'admin', '2012-04-10 23:12:33', '2012-04-10 23:12:35');
+INSERT INTO `loginType` VALUES(2, 'hobbyhorse', NULL, 0, 'admin', 'admin', '2012-04-10 23:12:47', '2012-04-10 23:12:50');
 
 -- --------------------------------------------------------
 
@@ -353,15 +356,14 @@ CREATE TABLE `user` (
   `createDate` datetime NOT NULL,
   `lastUpdateDate` datetime NOT NULL,
   `username` varchar(255) COLLATE utf8_bin NOT NULL,
-  `email` varchar(255) COLLATE utf8_bin NOT NULL,
-  `skills` text COLLATE utf8_bin NOT NULL,
-  `hobbies` text COLLATE utf8_bin NOT NULL,
-  `location` varchar(255) COLLATE utf8_bin NOT NULL,
-  `roleId` int(11) NOT NULL DEFAULT '0',
+  `password` varchar(255) COLLATE utf8_bin NOT NULL DEFAULT 'admin',
+  `email` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `skills` text COLLATE utf8_bin,
+  `hobbies` text COLLATE utf8_bin,
+  `location` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `loginTypeId` int(11) NOT NULL,
   PRIMARY KEY (`id`),
   UNIQUE KEY `id` (`id`),
-  KEY `roleId` (`roleId`),
   KEY `id_2` (`id`),
   KEY `loginTypeId` (`loginTypeId`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
@@ -432,8 +434,8 @@ ALTER TABLE `friendsList`
 -- Constraints for table `lesson`
 --
 ALTER TABLE `lesson`
-  ADD CONSTRAINT `lesson_ibfk_4` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `lesson_ibfk_3` FOREIGN KEY (`lessonTypeId`) REFERENCES `lessonType` (`id`);
+  ADD CONSTRAINT `lesson_ibfk_3` FOREIGN KEY (`lessonTypeId`) REFERENCES `lessonType` (`id`),
+  ADD CONSTRAINT `lesson_ibfk_4` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `login`
@@ -458,8 +460,7 @@ ALTER TABLE `redeemption`
 -- Constraints for table `user`
 --
 ALTER TABLE `user`
-  ADD CONSTRAINT `user_ibfk_4` FOREIGN KEY (`loginTypeId`) REFERENCES `loginType` (`id`),
-  ADD CONSTRAINT `user_ibfk_3` FOREIGN KEY (`roleId`) REFERENCES `role` (`id`);
+  ADD CONSTRAINT `user_ibfk_6` FOREIGN KEY (`loginTypeId`) REFERENCES `loginType` (`id`);
 
 --
 -- Constraints for table `userbadgemap`
