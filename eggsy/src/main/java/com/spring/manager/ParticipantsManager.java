@@ -10,6 +10,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 import com.spring.conf.ConnMysql;
 import com.spring.dao.ParticipantsDao;
+import com.spring.datasource.Lesson;
 import com.spring.datasource.Participants;
 
 @XmlRootElement(name = "participants")
@@ -31,5 +32,9 @@ public class ParticipantsManager {
 			e.printStackTrace();
 		}
 		return null;
+	}
+//Method invoked when participant is added in a lesson
+	public void saveParticipant(Participants participant) {
+		participants = delegate.saveParticipant(conn, participant);
 	}
 }

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import java.util.Date;
 
 import junit.framework.TestCase;
@@ -22,12 +22,12 @@ public class LessonsTest extends TestCase {
 	}
 
 	@Test
-	/*
+	
 	 * Test the total number of users
-	 */
+	 
 	public void testGetAllLessonsByLessonTypeId() throws Exception {
 		LessonManager o = new LessonManager();
 		ArrayList<Lesson> res = o.getLessonsByLessonTypeId(2);
 		//assertEquals(0, res.size());
 	}
-}
+}*/

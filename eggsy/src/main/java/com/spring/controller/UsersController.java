@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.datasource.Login;
 import com.spring.datasource.User;
 import com.spring.manager.UserManager;
 
@@ -63,5 +64,14 @@ public class UsersController {
 		mav.addObject("users", userSave);
 		return mav;
 	}
-
+	//Method for login
+	@RequestMapping(method = RequestMethod.POST, value = "/login", headers = "Accept=application/json")
+	@ResponseBody
+	public ModelAndView loginUser(@RequestBody Login user) {
+		UserManager userLogin = new UserManager();
+		ArrayList<User> userList = userLogin.getUserByUsernameAndPassword(user.getLoginUserName(),user.getLoginUserPassword());
+		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
+		mav.addObject("users", userList);
+		return mav;
+	}
 }

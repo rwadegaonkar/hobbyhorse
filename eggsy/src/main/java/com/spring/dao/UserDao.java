@@ -19,9 +19,12 @@ public class UserDao {
 	private static final String CURRENT_TIMESTAMP = dateFormat.format(date);
 	private static final String SELECT_ALL = "SELECT * FROM user WHERE isDeleted=0";
 	private static final String SELECT_BY_USERNAME = "SELECT * FROM user WHERE isDeleted=0 and username=";
+	private static final String SELECT_BY_USERNAME_AND_PASSWORD = "SELECT * FROM user WHERE isDeleted=0,username=";
 	private static final String SELECT_BY_ID = "SELECT * FROM user WHERE isDeleted=0 and id=";
 	private static final String DELETE_BY_USERNAME = "UPDATE user SET isDeleted=1 where username=";
-	private static final String INSERT_USER = "INSERT INTO user(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, username, email, skills, hobbies, location, roleId, loginTypeId) VALUES";
+
+	private static final String INSERT_USER = "INSERT INTO user(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, username, password, email, skills, hobbies, location, loginTypeId) VALUES";
+
 	public Query query = new Query();
 	ArrayList<User> users = new ArrayList<User>();
 
@@ -48,9 +51,15 @@ public class UserDao {
 		return users;
 	}
 
+
 	public ArrayList<User> getUserByUserId(Connection conn, long id) {
 		System.out.println("In DAO class " + id);
 		ResultSet rs = query.executeQuery(SELECT_BY_ID + id, conn);
+		return users;
+	}
+	
+	public ArrayList<User> getUserByUsernameAndPassword(Connection conn, String username, String password) {
+		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME_AND_PASSWORD+"'" + username + "'"+" and password="+"'"+ password + "'", conn);
 		try {
 			users = rowMapper.convertUserBean(rs);
 		} catch (SQLException e) {
@@ -59,6 +68,7 @@ public class UserDao {
 		}
 		return users;
 	}
+	
 
 	public void deleteUser(Connection conn, String username) {
 		query.executeUpdate(DELETE_BY_USERNAME + "'" + username + "'", conn);
@@ -69,9 +79,10 @@ public class UserDao {
 				+ user.getDescription() + "'," + user.getIsDeleted() + ",'"
 				+ user.getCreatedBy() + "','" + user.getLastUpdatedBy() + "','"
 				+ CURRENT_TIMESTAMP + "','" + CURRENT_TIMESTAMP + "','"
-				+ user.getUsername() + "','" + user.getEmail() + "','"
-				+ user.getSkills() + "','" + user.getHobbies() + "','"
-				+ user.getLocation() + "',2," + user.getLoginTypeId() + ")";
+				+ user.getUsername() + "','" + user.getUserpassword() + "','"
+				+ user.getEmail() + "','" + user.getSkills() + "','" 
+				+ user.getHobbies() + "','" + user.getLocation() + "','" + user.getLoginTypeId() + ")";
+
 		query.executeUpdate(insertQuery, conn);
 		return users;
 	}

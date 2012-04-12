@@ -19,7 +19,7 @@ public class LessonDao {
 	private static final String CURRENT_TIMESTAMP = dateFormat.format(date);
 	private static final String SELECT_ALL = "SELECT * FROM lesson WHERE isDeleted=0";
 	private static final String SELECT_BY_LESSONTYPE_ID = "SELECT * FROM lesson WHERE isDeleted=0 and lessonTypeId=";
-	private static final String INSERT_LESSON = "INSERT INTO lesson(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, lessonTypeId) VALUES";
+	private static final String INSERT_LESSON = "INSERT INTO lesson(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, lessonTypeId, userId, sessionId) VALUES";
 	public Query query = new Query();
 	ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 
@@ -52,7 +52,8 @@ public class LessonDao {
 				+ lesson.getCreatedBy() + "','" + lesson.getLastUpdatedBy()
 				+ "','" + CURRENT_TIMESTAMP + "','" + CURRENT_TIMESTAMP + "','"
 				+ lesson.getLessonTypeId() + "','"
-				+ lesson.getUserId() + "')";
+				+ lesson.getUserId() + "','"
+				+ lesson.getSessionId()+"')";
 		query.executeUpdate(insertQuery, conn);
 		return lessons;
 	}

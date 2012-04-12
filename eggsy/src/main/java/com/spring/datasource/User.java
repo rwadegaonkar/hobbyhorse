@@ -16,11 +16,14 @@ public class User {
 	private Date createDate;
 	private Date lastUpdateDate;
 	private String username;
+	private String userpassword;
 	private String email;
 	private String skills;
 	private String hobbies;
 	private String location;
+
 	private long loginTypeId;
+
 
 	public long getId() {
 		return id;
@@ -138,7 +141,7 @@ public class User {
 	public void setLocation(String location) {
 		this.location = location;
 	}
-	
+
 
 	public long getLoginTypeId() {
 		return loginTypeId;
@@ -148,4 +151,13 @@ public class User {
 	public void setLoginTypeId(long loginTypeId) {
 		this.loginTypeId = loginTypeId;
 	}
+
+	public String getUserpassword() {
+		return userpassword;
+	}
+
+	public void setUserpassword(String userpassword) {
+		this.userpassword = userpassword;
+	}
+
 }

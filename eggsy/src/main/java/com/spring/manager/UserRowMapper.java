@@ -27,11 +27,12 @@ public class UserRowMapper {
 			userBean.setCreateDate(rs.getDate("createDate"));
 			userBean.setLastUpdateDate(rs.getDate("lastUpdateDate"));
 			userBean.setUsername(rs.getString("username"));
+			userBean.setUserpassword(rs.getString("password"));
 			userBean.setEmail(rs.getString("email"));
 			userBean.setSkills(rs.getString("skills"));
 			userBean.setHobbies(rs.getString("hobbies"));
 			userBean.setLocation(rs.getString("location"));
-			userBean.setLoginTypeId(rs.getInt("loginTypeId"));
+			userBean.setLoginTypeId(rs.getLong("loginTypeId"));
 			users.add(userBean);
 		}
 		return users;

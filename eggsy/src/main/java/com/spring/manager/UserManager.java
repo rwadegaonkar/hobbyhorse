@@ -50,6 +50,16 @@ public class UserManager {
 		return null;
 	}
 	
+	public ArrayList<User> getUserByUsernameAndPassword(String username, String password) {
+		try {
+			users = delegate.getUserByUsernameAndPassword(conn, username, password);
+			return users;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 	public ArrayList<User> getUserByUserId(long id) {
 		try {
 			users = delegate.getUserByUserId(conn, id);

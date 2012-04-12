@@ -12,7 +12,8 @@ import com.spring.datasource.CommonBean;
 import com.spring.manager.CommonRowMapper;
 import com.spring.util.Query;
 
-public class LessonTypeDao {
+public class LessonTypeDao
+{
 	private static CommonRowMapper rowMapper = new CommonRowMapper();
 	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
 	static Date date = new Date();

@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+/*import java.util.ArrayList;
 import java.util.Date;
 
 import junit.framework.TestCase;
@@ -22,9 +22,9 @@ public class UserTest extends TestCase {
 	}
 
 	@Test
-	/*
+	
 	 * Test the total number of users
-	 */
+	 
 	public void testGetUserByUserId() throws Exception {
 		System.out.println("Test class");
 		UserManager o = new UserManager();
@@ -33,9 +33,9 @@ public class UserTest extends TestCase {
 	}
 
 	@Test
-	/*
+	
 	 * Test the save, getuserbyusername, deleteuser functionality
-	 */
+	 
 	public void testSaveAndGetUserByUserNameAndDeleteUser() throws Exception {
 		UserManager o = new UserManager();
 		User user = makeTestUserBean();
@@ -47,9 +47,9 @@ public class UserTest extends TestCase {
 				.getUsername());
 	}
 
-	/*
+	
 	 * Create a test user object
-	 */
+	 
 	private User makeTestUserBean() {
 		User user = new User();
 		user.setName("Radhika");
@@ -67,4 +67,4 @@ public class UserTest extends TestCase {
 		user.setLoginTypeId(1);
 		return user;
 	}
-}
+}*/
