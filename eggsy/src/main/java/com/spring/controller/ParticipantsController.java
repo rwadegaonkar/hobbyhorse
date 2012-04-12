@@ -1,8 +1,11 @@
 package com.spring.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -28,9 +31,9 @@ public class ParticipantsController {
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public ModelAndView showParticipants() {
 		ParticipantsManager participants = new ParticipantsManager();
-		participants.getAllParticipants();
+		ArrayList<Participants> allparticipants = participants.getAllParticipants();
 		ModelAndView mav = new ModelAndView(PARTICIPANTS_VIEW_KEY);
-		mav.addObject("participants", participants);
+		mav.addObject("participants", allparticipants);
 		return mav;
 	}
 	//Method is called when a participant joins a lesson
@@ -42,5 +45,14 @@ public class ParticipantsController {
 		ModelAndView mav = new ModelAndView(PARTICIPANTS_VIEW_KEY);
 		mav.addObject("participants", participants);
 		return mav;
-	}	
+	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/checkjoined/{lessonid}/{username}")
+	public ModelAndView checkParticipants(@PathVariable("lessonid") String lessonid, @PathVariable("username") String username) {
+		ParticipantsManager participants = new ParticipantsManager();
+		ArrayList<Participants> allparticipants = participants.checkIfLessonJoined(lessonid,username);
+		ModelAndView mav = new ModelAndView(PARTICIPANTS_VIEW_KEY);
+		mav.addObject("participants", allparticipants);
+		return mav;
+	}
 }

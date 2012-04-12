@@ -6,9 +6,8 @@
 ?>
 <section class="main-content">
     <div>
-        <p>Available Lesson Categories:            
+        <p>Lesson Categories:            
             <select id="lessonCategories" onChange="getLessonByTypes()">
-
                 <?php
                 foreach ($lessonTypes->data as $lessontype) {
                     ?>
@@ -24,8 +23,18 @@
             <div class="grid_5">
                 <h4><?php echo $l->name ?></h4> 
                 <h5 class="expertname"><?php echo $l->username ?></h5>
-                <p><?php echo "Starts on: " . $l->createDate ?></p>
+                <p><?php echo "Starts on: " . $l->eventDate; echo " at "; echo $l->eventTime ?></p>
                 <p><?php echo $l->description ?></p>
+                <?php if($joined[$l->id]==0) { ?>
+                <input type="button" name="joinLesson" id="joinLesson" value="Join" onclick="joinLesson(<?php echo $l->id ?>);disableElement(this)"/>
+                <?php }
+                else {
+                  ?>
+                <input type="button" name="joinLesson" id="joinLesson" value="Join" disabled="true"/>
+
+                <?php
+                }
+                ?>
             </div>
             <?php
         }
@@ -34,19 +43,9 @@
     <div class="clr"></div>
     <section>
         <div>
-            <a href="">Cannot Find Your Lesson Type? Create a new one here!</a>
+            <a href="<?php echo base_url()?>index.php/lesson/create">Cannot Find Your Lesson? Create a new one here!</a>
         </div>
     </section>
-    <?php
-    require_once 'Platform/opentok/API_Config.php';
-    require_once 'Platform/opentok/OpenTokSDK.php';
-
-    $apiObj = new OpenTokSDK(API_Config::API_KEY, API_Config::API_SECRET);
-
-    $session = $apiObj->create_session($_SERVER["REMOTE_ADDR"]);
-    $sessionId = $session->getSessionId();
-    
-    ?>
       <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
      
       <script type="text/javascript">

@@ -20,7 +20,8 @@ public class ParticipantsDao {
 	static Date date = new Date();
 	private static final String CURRENT_TIMESTAMP = dateFormat.format(date);
 	private static final String SELECT_ALL = "SELECT * FROM participants WHERE isDeleted=0";
-	//Query to add participants in the participant table
+	private static final String SELECT_TO_CHECK_IF_JOINED = "SELECT * FROM participants as p, user as u WHERE p.isDeleted=0 and u.id=p.userId and p.lessonId =";
+	// Query to add participants in the participant table
 	private static final String INSERT_PARTICIPANT = "INSERT INTO participants(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, userId, lessonId) VALUES";
 	public Query query = new Query();
 	ArrayList<Participants> participants = new ArrayList<Participants>();
@@ -35,20 +36,33 @@ public class ParticipantsDao {
 		}
 		return participants;
 	}
-	
-//Method for adding participants when they join a lesson.	
-	public ArrayList<Participants> saveParticipant(Connection conn, Participants participant) {
-		User user = new User();
-		user.setId(participant.getUserId());
-		String insertQuery = INSERT_PARTICIPANT + "('" + user.getName() + "','"
-				+ user.getDescription() + "'," + user.getIsDeleted() + ",'"
-				+ user.getCreatedBy() + "','" + user.getLastUpdatedBy()
-				+ "','" + CURRENT_TIMESTAMP + "','" + CURRENT_TIMESTAMP + "','"
-				+ participant.getUserId() + "','"
-				+ participant.getLessonId() + "')";
+
+	// Method for adding participants when they join a lesson.
+	public ArrayList<Participants> saveParticipant(Connection conn,
+			Participants participant) {
+		String insertQuery = INSERT_PARTICIPANT + "('" + participant.getName()
+				+ "','" + participant.getDescription() + "',0,'"
+				+ participant.getCreatedBy() + "','"
+				+ participant.getLastUpdatedBy() + "','" + CURRENT_TIMESTAMP
+				+ "','" + CURRENT_TIMESTAMP + "','" + participant.getUserId()
+				+ "','" + participant.getLessonId() + "')";
 		query.executeUpdate(insertQuery, conn);
-		return participants;	
-	
+		return participants;
+
 	}
-		
+
+	public ArrayList<Participants> checkIfLessonJoined(Connection conn,
+			String lessonid, String username) {
+		String checkQuery = SELECT_TO_CHECK_IF_JOINED + lessonid
+				+ " and u.username='" + username + "'";
+		ResultSet rs = query.executeQuery(checkQuery, conn);
+		try {
+			participants = rowMapper.convertParticipantsBean(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return participants;
+	}
+
 }

@@ -15,12 +15,14 @@ public class Lesson {
 	private String lastUpdatedBy;
 	private Date createDate;
 	private Date lastUpdateDate;
+	private String eventDate;
+	private String eventTime;
 	private long lessonTypeId;
 	private long userId;
-	//private String username
+	private String username;
+
 	private String sessionId;
-	
-	
+
 	public long getId() {
 		return id;
 	}
@@ -101,7 +103,6 @@ public class Lesson {
 	public void setLessonTypeId(long lessonTypeId) {
 		this.lessonTypeId = lessonTypeId;
 	}
-	
 
 	public long getUserId() {
 		return userId;
@@ -111,7 +112,6 @@ public class Lesson {
 	public void setUserId(long userId) {
 		this.userId = userId;
 	}
-	
 
 	public String getSessionId() {
 		return sessionId;
@@ -119,6 +119,30 @@ public class Lesson {
 
 	public void setSessionId(String sessionId) {
 		this.sessionId = sessionId;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
+	public void setUsername(String username) {
+		this.username = username;
+	}
+
+	public String getEventDate() {
+		return eventDate;
+	}
+
+	public void setEventDate(String eventDate) {
+		this.eventDate = eventDate;
+	}
+
+	public String getEventTime() {
+		return eventTime;
+	}
+
+	public void setEventTime(String eventTime) {
+		this.eventTime = eventTime;
 	}
 
 }

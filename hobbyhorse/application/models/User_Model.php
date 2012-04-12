@@ -28,6 +28,12 @@ class User_Model extends CI_Model {
         $jsonObj = $this->myWrapper->request('users/id/' . $userId);
         return Platform_Data::getDataObject($jsonObj);
     }
+    
+    public function getUserByUsername($username) {
+        $jsonObj = $this->myWrapper->request('users/' . $username);        
+        return Platform_Data::getDataObject($jsonObj);
+
+    }
 
     public function saveUser($data) {
         $jsonObj = $this->myWrapper->request('users/add/', 'POST', $data);

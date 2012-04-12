@@ -27,6 +27,10 @@ class Platform_Data_Users_User extends Platform_Data_Base
      * @var
      */
     protected $_location;
+    /**
+     * @var
+     */
+    protected $_userpassword;
 
     /**
      * @return
@@ -113,5 +117,19 @@ class Platform_Data_Users_User extends Platform_Data_Base
     public function setLocation($location)
     {
         $this->_location = $location;
+    }/**
+     * @return
+     */
+    public function getUserpassword()
+    {
+        return $this->_userpassword;
+    }
+
+    /**
+     * @param  $location
+     */
+    public function setUserPassword($userpassword)
+    {
+        $this->_userpassword = $userpassword;
     }
 }

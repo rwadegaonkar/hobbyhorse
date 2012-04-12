@@ -77,6 +77,7 @@ class User extends CI_Controller {
         session_destroy();
         header('location: '.base_url());
     }
+ 
 
 }
 

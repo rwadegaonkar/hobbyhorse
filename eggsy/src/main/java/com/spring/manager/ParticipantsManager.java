@@ -16,7 +16,8 @@ import com.spring.datasource.Participants;
 @XmlRootElement(name = "participants")
 public class ParticipantsManager {
 	@JsonIgnore
-	private static final Logger logger = Logger.getLogger(ParticipantsManager.class);
+	private static final Logger logger = Logger
+			.getLogger(ParticipantsManager.class);
 
 	@JsonIgnore
 	Connection conn = ConnMysql.connect();
@@ -33,8 +34,15 @@ public class ParticipantsManager {
 		}
 		return null;
 	}
-//Method invoked when participant is added in a lesson
+
+	// Method invoked when participant is added in a lesson
 	public void saveParticipant(Participants participant) {
 		participants = delegate.saveParticipant(conn, participant);
+	}
+
+	public ArrayList<Participants> checkIfLessonJoined(String lessonid,
+			String username) {
+		participants = delegate.checkIfLessonJoined(conn, lessonid, username);
+		return participants;
 	}
 }

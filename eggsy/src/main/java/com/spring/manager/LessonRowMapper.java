@@ -22,11 +22,13 @@ public class LessonRowMapper {
 			lessonBean.setLastUpdatedBy(rs.getString("lastUpdatedBy"));
 			lessonBean.setCreateDate(rs.getDate("createDate"));
 			lessonBean.setLastUpdateDate(rs.getDate("lastUpdateDate"));
+			lessonBean.setEventDate(rs.getString("eventDate"));
+			lessonBean.setEventTime(rs.getString("eventTime"));
 			lessonBean.setLessonTypeId(rs.getInt("lessonTypeId"));
 			lessonBean.setUserId(rs.getInt("userId"));
-			/*ArrayList<User> userList = userManager.getUserByUserId(rs
+			ArrayList<User> userList = userManager.getUserByUserId(rs
 					.getInt("userId"));
-			lessonBean.setUsername(userList.get(0).getName());*/
+			lessonBean.setUsername(userList.get(0).getName());
 			lessonBean.setSessionId(rs.getString("sessionId"));
 			lessons.add(lessonBean);
 		}

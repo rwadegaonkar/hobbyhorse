@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by JetBrains PhpStorm.
  * User: radhika
@@ -6,41 +7,59 @@
  * Time: 4:27 PM
  * To change this template use File | Settings | File Templates.
  */
-
 require_once('Platform/Webservices/Wrapper.php');
 require_once('Platform/Data.php');
 
-class Lesson_Model extends CI_Model
-{
-    public function __construct()
-    {
+class Lesson_Model extends CI_Model {
+
+    public function __construct() {
         parent::__construct();
     }
 
-    public function getLessons()
-    {
+    public function getLessons() {
         $myWrapper = new Platform_Webservices_Wrapper();
-        $jsonObj =  $myWrapper->request('lessons/');
-        return  Platform_Data::getDataObject($jsonObj);
+        $jsonObj = $myWrapper->request('lessons/');
+        return Platform_Data::getDataObject($jsonObj);
     }
-    public function getLessonsByLessonType($lessonId)
-    {
+
+    public function getLessonsByLessonType($lessonId) {
         $myWrapper = new Platform_Webservices_Wrapper();
-        $jsonObj =  $myWrapper->request('lessons/lessontype/'.$lessonId);
-        return  Platform_Data::getDataObject($jsonObj);
+        $jsonObj = $myWrapper->request('lessons/lessontype/' . $lessonId);
+        return Platform_Data::getDataObject($jsonObj);
     }
-    public function getLessonTypes()
-    {
+
+    public function getLessonTypes() {
         $myWrapper = new Platform_Webservices_Wrapper();
-        $jsonObj =  $myWrapper->request('lessontypes/');
-        return  Platform_Data::getDataObject($jsonObj);
+        $jsonObj = $myWrapper->request('lessontypes/');
+        return Platform_Data::getDataObject($jsonObj);
     }
-    
-    public function getAjaxLessonsByLessonType($lessonId)
-    {
+
+    public function getAjaxLessonsByLessonType($lessonId) {
         $myWrapper = new Platform_Webservices_Wrapper();
-        $jsonObj =  $myWrapper->request('lessons/lessontype/'.$lessonId);
+        $jsonObj = $myWrapper->request('lessons/lessontype/' . $lessonId);
         return $jsonObj;
     }
-    
+
+    public function joinLesson($participate) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('participants/join', "POST", $participate);
+        header('location: ' . base_url() . 'index.php/lesson/');
+    }
+
+    public function saveLesson($lesson) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('lessons/add', "POST", $lesson);
+        header('location: ' . base_url() . 'index.php/lesson/');
+    }
+
+    public function checkIfAlreadyJoined($lessonId, $method=null) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('participants/checkjoined/' . $lessonId . '/' . $_SESSION['user']->username);
+        if (!$method) {
+            return Platform_Data::getDataObject($jsonObj);
+        } else {
+            return $jsonObj;
+        }
+    }
+
 }

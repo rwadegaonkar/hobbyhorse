@@ -21,7 +21,13 @@ class Platform_Data_Lessons_Lesson extends Platform_Data_Base
 /**
      * @var
      */
-    protected $_username;
+    protected $_username;/**
+     * @var
+     */
+    protected $_eventDate;/**
+     * @var
+     */
+    protected $_eventTime;
 
     /**
      * @return
@@ -71,6 +77,30 @@ class Platform_Data_Lessons_Lesson extends Platform_Data_Base
     {
         $this->_username = $username;
     }
+    
+    public function getEventDate()
+    {
+        return $this->_eventDate;
+    }
 
+    /**
+     * @param  $eventDate
+     */
+    public function setEventDate($eventDate)
+    {
+        $this->_eventDate = $eventDate;
+    }
+    public function getEventTime()
+    {
+        return $this->_eventTime;
+    }
+
+    /**
+     * @param  $lessonTypeId
+     */
+    public function setEventTime($eventTime)
+    {
+        $this->_eventTime = $eventTime;
+    }
     
 }

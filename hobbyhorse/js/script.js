@@ -6,7 +6,7 @@
 function getLessonByTypes(id) {
     var e = document.getElementById("lessonCategories");
     var id = e.options[e.selectedIndex].value;
-    var url = "http://localhost/hobbyhorse/index.php/lesson/getAjaxLessonsByLessonType/"+id;
+    var url = "http://mysite.fb/hobbyhorse/index.php/lesson/getAjaxLessonsByLessonType/"+id;
     var xmlhttp;
     if (window.XMLHttpRequest)
     {// code for IE7+, Firefox, Chrome, Opera, Safari
@@ -54,7 +54,13 @@ function updateResponse(resp) {
         var pElement = document.createElement("p");
         var pElementDate = document.createElement("p");
         var pText = document.createTextNode(lessonJson[j].description)
-        var pTextDate = document.createTextNode("Starts on: "+lessonJson[j].createDate)
+        var pTextDate = document.createTextNode("Starts on: "+lessonJson[j].eventDate+" at "+lessonJson[j].eventTime)
+        var joinBtn = document.createElement("input");
+        joinBtn.setAttribute("type", "button");
+        joinBtn.setAttribute("id", lessonJson[j].id);
+        joinBtn.setAttribute("name", "joinLesson");
+        joinBtn.setAttribute("value", "Join");
+        joinBtn.setAttribute("onClick", "joinLesson("+lessonJson[j].id+");disableElement(this);");
         h4Element.appendChild(h4Text);
         h5Element.appendChild(h5Text);
         pElement.appendChild(pText);
@@ -63,7 +69,63 @@ function updateResponse(resp) {
         divElement.appendChild(h5Element);
         divElement.appendChild(pElementDate);
         divElement.appendChild(pElement);
+        divElement.appendChild(joinBtn);
         elementToUpdate.appendChild(divElement);
+        checkIfLessonJoined(lessonJson[j].id);
     }
 }
 
+function joinLesson(id) {
+    var url = "http://mysite.fb/hobbyhorse/index.php/lesson/joinLesson/"+id;
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            xmlhttp.responseText;
+        }
+    }
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send();
+}
+
+function checkResponse(resp) {
+    var lessonJson = eval('(' + resp + ')');
+    if(lessonJson.length > 0) {
+        document.getElementById(lessonJson[0].lessonId).disabled = true;
+    }
+}
+
+function checkIfLessonJoined(id) {
+    var url = "http://mysite.fb/hobbyhorse/index.php/lesson/checkIfAlreadyJoined/"+id;
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            checkResponse(xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send();
+}
+
+function disableElement(element) {
+    element.disabled = true;
+}

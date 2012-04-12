@@ -51,15 +51,18 @@ public class UserDao {
 		return users;
 	}
 
-
-	public ArrayList<User> getUserByUserId(Connection conn, long id) {
-		System.out.println("In DAO class " + id);
+	public ArrayList<User> getUserByUserId(Connection conn, long id)
+			throws SQLException {
 		ResultSet rs = query.executeQuery(SELECT_BY_ID + id, conn);
+		users = rowMapper.convertUserBean(rs);
 		return users;
 	}
-	
-	public ArrayList<User> getUserByUsernameAndPassword(Connection conn, String username, String password) {
-		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME_AND_PASSWORD+"'" + username + "'"+" and password="+"'"+ password + "'", conn);
+
+	public ArrayList<User> getUserByUsernameAndPassword(Connection conn,
+			String username, String password) {
+		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME_AND_PASSWORD + "'"
+				+ username + "'" + " and password=" + "'" + password + "'",
+				conn);
 		try {
 			users = rowMapper.convertUserBean(rs);
 		} catch (SQLException e) {
@@ -68,7 +71,6 @@ public class UserDao {
 		}
 		return users;
 	}
-	
 
 	public void deleteUser(Connection conn, String username) {
 		query.executeUpdate(DELETE_BY_USERNAME + "'" + username + "'", conn);
@@ -80,8 +82,9 @@ public class UserDao {
 				+ user.getCreatedBy() + "','" + user.getLastUpdatedBy() + "','"
 				+ CURRENT_TIMESTAMP + "','" + CURRENT_TIMESTAMP + "','"
 				+ user.getUsername() + "','" + user.getUserpassword() + "','"
-				+ user.getEmail() + "','" + user.getSkills() + "','" 
-				+ user.getHobbies() + "','" + user.getLocation() + "','" + user.getLoginTypeId() + ")";
+				+ user.getEmail() + "','" + user.getSkills() + "','"
+				+ user.getHobbies() + "','" + user.getLocation() + "',"
+				+ user.getLoginTypeId() + ")";
 
 		query.executeUpdate(insertQuery, conn);
 		return users;
