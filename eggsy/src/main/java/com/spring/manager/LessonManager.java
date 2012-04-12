@@ -53,4 +53,15 @@ public class LessonManager {
 		}
 		return null;
 	}
+	
+
+	public ArrayList<Lesson> getLessonsByUsername(String username) {
+		try {
+			lessons = delegate.getLessonsByUsername(conn, username);
+			return lessons;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

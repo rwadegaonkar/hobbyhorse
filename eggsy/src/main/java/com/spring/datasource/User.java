@@ -16,7 +16,7 @@ public class User {
 	private Date createDate;
 	private Date lastUpdateDate;
 	private String username;
-	private String userpassword;
+	private String password;
 	private String email;
 	private String skills;
 	private String hobbies;
@@ -152,12 +152,12 @@ public class User {
 		this.loginTypeId = loginTypeId;
 	}
 
-	public String getUserpassword() {
-		return userpassword;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setUserpassword(String userpassword) {
-		this.userpassword = userpassword;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 }

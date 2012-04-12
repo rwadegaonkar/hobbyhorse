@@ -5,13 +5,12 @@
  * and open the template in the editor.
  */
 ?>
-Hi Welcome <?php echo $user->name ?>
-
-You like all this:<br/>
+<?php echo "<h2>Welcome, ".ucfirst($user->name)."</h2>" ?>
+<div>
+    <h4>
+    Here are some suggested lessons for you:
+    </h4>
+</div>
 <?php
 //print_r($likes);
-foreach($likes->data as $like) {
-echo "PAGE: ".$like->name." in the CATEGORY: ".$like->category;
-echo "<br/>";
-}
 ?>

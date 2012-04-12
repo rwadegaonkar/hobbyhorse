@@ -32,17 +32,20 @@ class Lesson extends CI_Controller {
             }
         }
         $data['lessonTypes'] = $lessonTypes->lessonTypes;
-        $this->load->view('header', $data);
-        $this->load->view('sidebar', $data);
-        $this->load->view('lesson/index', $data);
-        $this->load->view('footer', $data);
-    }
+        $data['title'] = 'Hobbyhorse - Browse Lessons';
+        $data['content'] = $this->load->view('lesson/index', $data, true);
+        $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+        $this->load->view('templates/main', $data);
+        }
 
     public function lessonsByLessonType() {
         $lessonData = $this->lesson_model->getLessonsByLessonType();
         $data['lessons'] = $lessonData->lessons;
-        $this->load->view('lesson/index', $data);
-    }
+        $data['title'] = 'Hobbyhorse - Lessons By Category';
+        $data['content'] = $this->load->view('lesson/index', $data, true);
+        $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+        $this->load->view('templates/main', $data);   
+        }
 
     public function getAjaxLessonsByLessonType($lessonId) {
         $lessonData = $this->lesson_model->getAjaxLessonsByLessonType($lessonId);
@@ -60,22 +63,35 @@ class Lesson extends CI_Controller {
         $data = createLessonObject($_REQUEST);
         $data['userId'] = $this->user_model->getUserByUsername($data['createdBy'])->users->user->id;
         $this->lesson_model->saveLesson(json_encode($data));
+        $request['lessonId'] = $lessonId;
+        $request['userId'] = $this->user_model->getUserByUsername($_SESSION['user']->username)->users->user->id;
+        $participate = createParticipantObject($request);
+        $this->lesson_model->joinLesson(json_encode($participate));
         return $this->index();
     }
 
     public function create() {
         $lessonTypes = $this->lesson_model->getLessonTypes();
         $data['lessonTypes'] = $lessonTypes->lessonTypes;
-        $this->load->view('header', $data);
-        $this->load->view('sidebar', $data);
-        $this->load->view('lesson/create', $data);
-        $this->load->view('footer', $data);
+        $data['title'] = 'Hobbyhorse - Create Lesson';
+        $data['content'] = $this->load->view('lesson/create', $data, true);
+        $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+        $this->load->view('templates/main', $data);
     }
 
     public function checkIfAlreadyJoined($lessonId) {
-        $check = $this->lesson_model->checkIfAlreadyJoined($lessonId,"ajax");
+        $check = $this->lesson_model->checkIfAlreadyJoined($lessonId, "ajax");
         $check = $check->participants;
         echo(json_encode($check));
+    }
+    
+    public function joinedLesson() {
+        $lessonData = $this->lesson_model->getLessonsByUsername();
+        $data['lessons'] = $lessonData->lessons;
+        $data['title'] = 'Hobbyhorse - My Forthcoming Lessons';
+        $data['content'] = $this->load->view('lesson/joinedLesson', $data, true);
+        $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+        $this->load->view('templates/main', $data);
     }
 
 }

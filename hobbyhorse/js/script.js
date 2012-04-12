@@ -46,11 +46,13 @@ function updateResponse(resp) {
     }
     for(j=0;j<lessonJson.length;j++) {
         var divElement = document.createElement("DIV");
-        divElement.setAttribute("class","grid_5");
+        divElement.setAttribute("class","div2");
         var h4Element = document.createElement("h4");
-        var h5Element = document.createElement("h5");
+        var h5Element = document.createElement("h5");        
+        h5Element.setAttribute("class","expertname");
+        h4Element.setAttribute("class","lessonName");
         var h4Text = document.createTextNode(lessonJson[j].name)
-        var h5Text = document.createTextNode(lessonJson[j].username)
+        var h5Text = document.createTextNode("The Expert: " +lessonJson[j].username)
         var pElement = document.createElement("p");
         var pElementDate = document.createElement("p");
         var pText = document.createTextNode(lessonJson[j].description)

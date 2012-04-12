@@ -45,4 +45,14 @@ public class LessonsController {
 		mav.addObject("lessons", lessonList);
 		return mav;
 	}
+	
+
+	@RequestMapping(method = RequestMethod.GET, value = "/user/{username}")
+	public ModelAndView getLessonsByUsername(@PathVariable("username") String username) {
+		LessonManager lessonsByType = new LessonManager();
+		ArrayList<Lesson> lessonList = lessonsByType.getLessonsByUsername(username);
+		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
+		mav.addObject("lessons", lessonList);
+		return mav;
+	}
 }

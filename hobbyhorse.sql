@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Apr 11, 2012 at 05:15 PM
+-- Generation Time: Apr 12, 2012 at 01:36 PM
 -- Server version: 5.1.44
 -- PHP Version: 5.3.2
 
@@ -170,6 +170,8 @@ CREATE TABLE `lesson` (
   `lastUpdatedBy` varchar(255) COLLATE utf8_bin NOT NULL,
   `createDate` datetime NOT NULL,
   `lastUpdateDate` datetime NOT NULL,
+  `eventDate` varchar(255) COLLATE utf8_bin DEFAULT NULL,
+  `eventTime` varchar(255) COLLATE utf8_bin DEFAULT NULL,
   `lessonTypeId` int(11) NOT NULL,
   `userId` int(11) NOT NULL,
   `sessionId` varchar(255) COLLATE utf8_bin NOT NULL,
@@ -177,12 +179,17 @@ CREATE TABLE `lesson` (
   UNIQUE KEY `id` (`id`),
   KEY `lessonTypeId` (`lessonTypeId`),
   KEY `userId` (`userId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=36 ;
 
 --
 -- Dumping data for table `lesson`
 --
 
+INSERT INTO `lesson` VALUES(23, 'Boxing', 0x57652077696c6c2068617665206f6e6520686f7572206f6620626f78696e672066756e20212121, 0, 'radhika.wadegaonkar', 'radhika.wadegaonkar', '2012-04-11 22:27:55', '2012-04-11 22:27:55', 'April 12, 2012', '14:00', 1, 2, '1_MX41ODc1MjMxfjEyNy4wLjAuMX4yMDEyLTA0LTEyIDA1OjQwOjI3LjU3MDY1NCswMDowMH4wLjY5NzM3MTc3ODQ3N34');
+INSERT INTO `lesson` VALUES(31, 'Dancing', 0x3120686f75722073657373696f6e, 0, 'radhika.wadegaonkar', 'radhika.wadegaonkar', '2012-04-11 22:27:55', '2012-04-11 22:27:55', 'April 30, 2012', '14:00', 1, 2, '2_MX41ODc1MjMxfjEyNy4wLjAuMX4yMDEyLTA0LTEyIDA2OjExOjM1LjAyMjU2MSswMDowMH4wLjY2NDY0NjkyMjA3NH4');
+INSERT INTO `lesson` VALUES(33, 'Radhika', 0x3120686f75722073657373696f6e, 0, 'radhika.wadegaonkar', 'radhika.wadegaonkar', '2012-04-11 22:27:55', '2012-04-11 22:27:55', 'April 12, 2012', '14:00', 3, 2, '1_MX41ODc1MjMxfjEyNy4wLjAuMX4yMDEyLTA0LTEyIDA2OjE0OjA2LjE0OTY2MSswMDowMH4wLjY1MjkyNjE1NDI3MX4');
+INSERT INTO `lesson` VALUES(34, 'Boxing', 0x3220686f75722073657373696f6e, 0, 'radhika.wadegaonkar', 'radhika.wadegaonkar', '2012-04-12 01:23:23', '2012-04-12 01:23:23', 'April 15, 2012', '17:00', 3, 2, '1_MX41ODc1MjMxfjEyNy4wLjAuMX4yMDEyLTA0LTEyIDEwOjA5OjQxLjE5ODI2OCswMDowMH4wLjE3MTM5OTY5MDk2Mn4');
+INSERT INTO `lesson` VALUES(35, 'Mandolin', 0x57652074616b6520746869732075702c20696e2031306d696e7574657321, 0, 'radhika.wadegaonkar', 'radhika.wadegaonkar', '2012-04-12 12:30:19', '2012-04-12 12:30:19', '04/10/2012', '17:00', 1, 2, '1_MX41ODc1MjMxfjEyNy4wLjAuMX4yMDEyLTA0LTEyIDE5OjU0OjA4Ljg1ODEzMyswMDowMH4wLjE5OTQxNzExMzAwMX4');
 
 -- --------------------------------------------------------
 
@@ -200,14 +207,17 @@ CREATE TABLE `lessonType` (
   `createDate` datetime NOT NULL,
   `lastUpdateDate` datetime NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=3 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=6 ;
 
 --
 -- Dumping data for table `lessonType`
 --
 
-INSERT INTO `lessonType` VALUES(1, 'music', NULL, 0, 'admin', 'admin', '2012-04-08 23:35:04', '2012-04-08 23:35:07');
-INSERT INTO `lessonType` VALUES(2, 'art', NULL, 0, 'admin', 'admin', '2012-04-08 23:35:16', '2012-04-08 23:35:19');
+INSERT INTO `lessonType` VALUES(1, 'Music', NULL, 0, 'admin', 'admin', '2012-04-08 23:35:04', '2012-04-08 23:35:07');
+INSERT INTO `lessonType` VALUES(2, 'Art', NULL, 0, 'admin', 'admin', '2012-04-08 23:35:16', '2012-04-08 23:35:19');
+INSERT INTO `lessonType` VALUES(3, 'Sports', NULL, 0, 'admin', 'admin', '2012-04-11 21:57:32', '2012-04-11 21:57:35');
+INSERT INTO `lessonType` VALUES(4, 'Coding', NULL, 0, 'admin', 'admin', '2012-04-11 21:57:55', '2012-04-11 21:57:58');
+INSERT INTO `lessonType` VALUES(5, 'Others', NULL, 0, 'admin', 'admin', '2012-04-11 21:58:31', '2012-04-11 21:58:33');
 
 -- --------------------------------------------------------
 
@@ -258,8 +268,8 @@ CREATE TABLE `loginType` (
 -- Dumping data for table `loginType`
 --
 
-INSERT INTO `loginType` VALUES(1, 'facebook', NULL, 0, 'admin', 'admin', '2012-04-10 23:12:33', '2012-04-10 23:12:35');
-INSERT INTO `loginType` VALUES(2, 'hobbyhorse', NULL, 0, 'admin', 'admin', '2012-04-10 23:12:47', '2012-04-10 23:12:50');
+INSERT INTO `loginType` VALUES(1, 'hobbyhorse', NULL, 0, 'admin', 'admin', '2012-04-10 23:12:33', '2012-04-10 23:12:35');
+INSERT INTO `loginType` VALUES(2, 'facebook', NULL, 0, 'admin', 'admin', '2012-04-10 23:12:47', '2012-04-10 23:12:50');
 
 -- --------------------------------------------------------
 
@@ -282,12 +292,18 @@ CREATE TABLE `participants` (
   UNIQUE KEY `id` (`id`),
   KEY `userId` (`userId`),
   KEY `lessonId` (`lessonId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=39 ;
 
 --
 -- Dumping data for table `participants`
 --
 
+INSERT INTO `participants` VALUES(33, 'radhika.wadegaonkar', 0x6e756c6c, 0, 'radhika.wadegaonkar', 'radhika.wadegaonkar', '2012-04-12 01:20:38', '2012-04-12 01:20:38', 2, 31);
+INSERT INTO `participants` VALUES(34, 'radhika.wadegaonkar', 0x6e756c6c, 0, 'radhika.wadegaonkar', 'radhika.wadegaonkar', '2012-04-12 01:20:38', '2012-04-12 01:20:38', 2, 33);
+INSERT INTO `participants` VALUES(35, 'vaibhavkulkarni', 0x6e756c6c, 0, 'vaibhavkulkarni', 'vaibhavkulkarni', '2012-04-12 12:19:02', '2012-04-12 12:19:02', 23, 23);
+INSERT INTO `participants` VALUES(36, 'vaibhavkulkarni', 0x6e756c6c, 0, 'vaibhavkulkarni', 'vaibhavkulkarni', '2012-04-12 12:19:02', '2012-04-12 12:19:02', 23, 33);
+INSERT INTO `participants` VALUES(37, 'radhika.wadegaonkar', 0x6e756c6c, 0, 'radhika.wadegaonkar', 'radhika.wadegaonkar', '2012-04-12 12:35:37', '2012-04-12 12:35:37', 2, 35);
+INSERT INTO `participants` VALUES(38, 'vaibhavkulkarni', 0x6e756c6c, 0, 'vaibhavkulkarni', 'vaibhavkulkarni', '2012-04-12 12:35:37', '2012-04-12 12:35:37', 23, 35);
 
 -- --------------------------------------------------------
 
@@ -366,12 +382,14 @@ CREATE TABLE `user` (
   UNIQUE KEY `id` (`id`),
   KEY `id_2` (`id`),
   KEY `loginTypeId` (`loginTypeId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=1 ;
+) ENGINE=InnoDB  DEFAULT CHARSET=utf8 COLLATE=utf8_bin AUTO_INCREMENT=24 ;
 
 --
 -- Dumping data for table `user`
 --
 
+INSERT INTO `user` VALUES(2, 'Radhika Wadegaonkar Kulkarni', 0x6e756c6c, 0, 'radhika.wadegaonkar', 'radhika.wadegaonkar', '2012-04-11 21:31:02', '2012-04-11 21:31:02', 'radhika.wadegaonkar', 'radhika', '', '', 0x534c5320486f74656c2061742042657665726c792048696c6c73, '', 2);
+INSERT INTO `user` VALUES(23, 'Sulagna', 0x6e756c6c, 0, 'sulagna', 'sulagna', '2012-04-12 11:26:03', '2012-04-12 11:26:03', 'sulagna', 'sulagna', 'sbal2050@gmail.com', 0x477569746172, 0x477569746172, 'San Jose', 1);
 
 -- --------------------------------------------------------
 
@@ -408,8 +426,8 @@ CREATE TABLE `userbadgemap` (
 -- Constraints for table `comment`
 --
 ALTER TABLE `comment`
-  ADD CONSTRAINT `comment_ibfk_4` FOREIGN KEY (`lessonId`) REFERENCES `lesson` (`id`),
-  ADD CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `comment_ibfk_3` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `comment_ibfk_4` FOREIGN KEY (`lessonId`) REFERENCES `lesson` (`id`);
 
 --
 -- Constraints for table `feedback`
@@ -427,8 +445,8 @@ ALTER TABLE `forgotPassword`
 -- Constraints for table `friendsList`
 --
 ALTER TABLE `friendsList`
-  ADD CONSTRAINT `friendsList_ibfk_2` FOREIGN KEY (`friendUserId`) REFERENCES `user` (`id`),
-  ADD CONSTRAINT `friendsList_ibfk_1` FOREIGN KEY (`mainUserId`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `friendsList_ibfk_1` FOREIGN KEY (`mainUserId`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `friendsList_ibfk_2` FOREIGN KEY (`friendUserId`) REFERENCES `user` (`id`);
 
 --
 -- Constraints for table `lesson`
@@ -447,8 +465,8 @@ ALTER TABLE `login`
 -- Constraints for table `participants`
 --
 ALTER TABLE `participants`
-  ADD CONSTRAINT `participants_ibfk_2` FOREIGN KEY (`lessonId`) REFERENCES `lesson` (`id`),
-  ADD CONSTRAINT `participants_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`);
+  ADD CONSTRAINT `participants_ibfk_1` FOREIGN KEY (`userId`) REFERENCES `user` (`id`),
+  ADD CONSTRAINT `participants_ibfk_2` FOREIGN KEY (`lessonId`) REFERENCES `lesson` (`id`);
 
 --
 -- Constraints for table `redeemption`

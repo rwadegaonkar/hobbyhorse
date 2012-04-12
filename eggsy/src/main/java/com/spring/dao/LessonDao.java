@@ -20,6 +20,7 @@ public class LessonDao {
 	private static final String SELECT_ALL = "SELECT * FROM lesson WHERE isDeleted=0";
 	private static final String SELECT_BY_LESSONTYPE_ID = "SELECT * FROM lesson WHERE isDeleted=0 and lessonTypeId=";
 	private static final String INSERT_LESSON = "INSERT INTO lesson(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, eventDate, eventTime, lessonTypeId, userId, sessionId) VALUES";
+	private static final String SELECT_BY_USERNAME = "SELECT l.* FROM lesson as l, user as u, participants as p WHERE l.isDeleted=0 and p.userId=u.id and p.lessonId=l.id and p.isDeleted=0 and u.username=";
 	public Query query = new Query();
 	ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 
@@ -34,8 +35,24 @@ public class LessonDao {
 		return lessons;
 	}
 
-	public ArrayList<Lesson> getLessonsByLessonTypeId(Connection conn, int lessonId) {
-		ResultSet rs = query.executeQuery(SELECT_BY_LESSONTYPE_ID + lessonId, conn);
+	public ArrayList<Lesson> getLessonsByLessonTypeId(Connection conn,
+			int lessonId) {
+		ResultSet rs = query.executeQuery(SELECT_BY_LESSONTYPE_ID + lessonId,
+				conn);
+		try {
+			lessons = rowMapper.convertLessonBean(rs);
+			System.out.println(lessons.size());
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lessons;
+	}
+
+	public ArrayList<Lesson> getLessonsByUsername(Connection conn,
+			String username) {
+		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME + "'" + username
+				+ "'", conn);
 		try {
 			lessons = rowMapper.convertLessonBean(rs);
 			System.out.println(lessons.size());
@@ -51,11 +68,9 @@ public class LessonDao {
 				+ lesson.getDescription() + "'," + lesson.getIsDeleted() + ",'"
 				+ lesson.getCreatedBy() + "','" + lesson.getLastUpdatedBy()
 				+ "','" + CURRENT_TIMESTAMP + "','" + CURRENT_TIMESTAMP + "','"
-				+ lesson.getEventDate() + "','"
-				+ lesson.getEventTime() + "','"
-				+ lesson.getLessonTypeId() + "','"
-				+ lesson.getUserId() + "','"
-				+ lesson.getSessionId()+"')";
+				+ lesson.getEventDate() + "','" + lesson.getEventTime() + "','"
+				+ lesson.getLessonTypeId() + "','" + lesson.getUserId() + "','"
+				+ lesson.getSessionId() + "')";
 		query.executeUpdate(insertQuery, conn);
 		return lessons;
 	}

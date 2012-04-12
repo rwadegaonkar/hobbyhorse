@@ -39,6 +39,12 @@ class Lesson_Model extends CI_Model {
         $jsonObj = $myWrapper->request('lessons/lessontype/' . $lessonId);
         return $jsonObj;
     }
+    
+    public function getLessonsByUsername() {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('lessons/user/' . $_SESSION['user']->username);
+        return Platform_Data::getDataObject($jsonObj);
+    }
 
     public function joinLesson($participate) {
         $myWrapper = new Platform_Webservices_Wrapper();

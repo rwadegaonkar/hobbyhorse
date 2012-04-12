@@ -16,11 +16,11 @@ function createUserObject($request) {
         $data['email'] = "";
         $data['skills'] = "";
         $data['location'] = "";
-        $data['userpassword'] = $request->id;
+        $data['password'] = $request->id;
     } else {
         $data['name'] = $request['firstName'];
         $data['username'] = $request['username'];
-        $data['userpassword'] = $request['password'];
+        $data['password'] = $request['password'];
         $data['email'] = $request['email'];
         $data['skills'] = $request['skills'];
         $data['hobbies'] = $request['hobbies'];

@@ -1,0 +1,38 @@
+/* 
+    Document   : main
+    Created on : Apr 12, 2012, 10:40:29 AM
+    Author     : vaibhavkulkarni
+    Description:
+        Purpose of the stylesheet follows.
+*/
+
+/* 
+   TODO customize this sample style
+   Syntax recommendation http://www.w3.org/TR/REC-CSS2/
+*/
+
+/********** CUSTOM ********************/
+
+.error {
+    background: #FAAC58;
+    padding: 1px;
+    border: 1px solid red;
+}
+
+.div2{
+    float: left;
+    width: 40%;
+    padding: 15px;
+    padding-left:20px;
+    margin: 10px;
+    border-left: 1px dotted #efefef;
+}
+.clr{
+    clear: both;
+}
+
+.expertname {
+}
+
+.lessonName{
+}

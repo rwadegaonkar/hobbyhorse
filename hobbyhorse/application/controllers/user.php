@@ -24,7 +24,7 @@ class User extends CI_Controller {
     }
 
     public function login() {
-        $code = isset($_REQUEST["code"])? $_REQUEST["code"]:"";
+        $code = isset($_REQUEST["code"]) ? $_REQUEST["code"] : "";
         if (empty($code)) {
             $_SESSION['state'] = md5(uniqid(rand(), TRUE)); //CSRF protection
             $dialog_url = "https://www.facebook.com/dialog/oauth?client_id="
@@ -32,7 +32,7 @@ class User extends CI_Controller {
                     . $_SESSION['state'] . "&scope=user_likes,user_relationships";
             $data['dialog_url'] = $dialog_url;
         }
-        
+
         if (isset($_REQUEST['state']) && ($_REQUEST['state'] == $_SESSION['state'])) {
             $token_url = "https://graph.facebook.com/oauth/access_token?"
                     . "client_id=" . APP_ID . "&redirect_uri=" . urlencode(REDIRECT_URL)
@@ -51,33 +51,104 @@ class User extends CI_Controller {
             $_SESSION['user'] = $user;
             $_SESSION['likes'] = $likes;
             $_SESSION['loginType'] = 2;
-            $dataToSend = createUserObject($user);  
+            $dataToSend = createUserObject($user);
             $user = $this->user_model->saveUser(json_encode($dataToSend));
         }
-        $this->load->view('header');
-        $this->load->view('sidebar');
-        if (!isset($_SESSION['user'])) {
-            $this->load->view('user/login', $data);
-        } else {
-            $this->load->view('user/home', $_SESSION);
 
+
+        if (!isset($_SESSION['user'])) {
+            $data['title'] = 'Hobbyhorse - Login';
+            $data['header_content'] = $this->load->view('common/login_box', $data, true);
+            $data['content'] = $this->load->view('user/user_login', $data, true);
+            $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+            $this->load->view('templates/home', $data);
+        } else {
+            $data['title'] = 'Hobbyhorse - Home';
+            $data['user'] = $_SESSION['user'];
+            if (isset($_SESSION['likes'])) {
+                $data['likes'] = $_SESSION['likes'];
+            }
+            $data['loginType'] = $_SESSION['loginType'];
+            $data['content'] = $this->load->view('user/home', $data, true);
+            $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+            $this->load->view('templates/main', $data);
         }
-        $this->load->view('footer');
     }
 
-    public function saveUser() {        
+    public function saveUser() {
         $_SESSION['loginType'] = 1;
-        $data = createUserObject($_REQUEST);       
+        $data = createUserObject($_REQUEST);
         $user = $this->user_model->saveUser(json_encode($data));
-        $_SESSION['user'] = $user;           
-        header('location: '.base_url());
+        if (!empty($user->data[0])) {
+            $_SESSION['user'] = $user->users->user;
+            $data['title'] = 'Hobbyhorse - Home';
+            $data['user'] = $_SESSION['user'];
+            $data['content'] = $this->load->view('user/home', $data, true);
+            $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+            $this->load->view('templates/main', $data);
+        } else {
+            $code = isset($_REQUEST["code"]) ? $_REQUEST["code"] : "";
+            if (empty($code)) {
+                $_SESSION['state'] = md5(uniqid(rand(), TRUE)); //CSRF protection
+                $dialog_url = "https://www.facebook.com/dialog/oauth?client_id="
+                        . APP_ID . "&redirect_uri=" . urlencode(REDIRECT_URL) . "&state="
+                        . $_SESSION['state'] . "&scope=user_likes,user_relationships";
+                $data['dialog_url'] = $dialog_url;
+            }
+            $data['error'] = "User Already Exists !";
+            $data['title'] = 'Hobbyhorse - Login';
+            $data['header_text'] = 'Login';
+            $data['header_content'] = $this->load->view('common/login_box', $data, true);
+            $data['content'] = $this->load->view('user/user_login', $data, true);
+            $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+            $this->load->view('templates/home', $data);
+        }
     }
 
     public function logout() {
         session_destroy();
-        header('location: '.base_url());
+        header('location: ' . base_url());
     }
- 
+
+    public function checkLogin() {
+        $data['username'] = $_REQUEST['username'];
+        $data['password'] = $_REQUEST['password'];
+        $data['loginTypeId'] = 2;
+        $data['createdBy'] = "admin";
+        $data['lastUpdatedBy'] = "admin";
+        $data['email'] = "abc";
+        $data['skills'] = "abc";
+        $data['location'] = "abc";
+        $data['hobbies'] = "abc";
+        $data['name'] = "abc";
+        $userData = $this->user_model->checkLogin(json_encode($data));
+
+        if (!empty($userData->users->data[0])) {
+            $_SESSION['user'] = $userData->users->user;
+            $_SESSION['loginType'] = 1;
+            $data['title'] = 'Hobbyhorse - Home';
+            $data['user'] = $_SESSION['user'];
+            $data['content'] = $this->load->view('user/home', $data, true);
+            $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+            $this->load->view('templates/main', $data);
+        } else {
+            $code = isset($_REQUEST["code"]) ? $_REQUEST["code"] : "";
+            if (empty($code)) {
+                $_SESSION['state'] = md5(uniqid(rand(), TRUE)); //CSRF protection
+                $dialog_url = "https://www.facebook.com/dialog/oauth?client_id="
+                        . APP_ID . "&redirect_uri=" . urlencode(REDIRECT_URL) . "&state="
+                        . $_SESSION['state'] . "&scope=user_likes,user_relationships";
+                $data['dialog_url'] = $dialog_url;
+            }
+            $data['error'] = "Authentication Failed!";
+            $data['title'] = 'Hobbyhorse - Login';
+            $data['header_text'] = 'Login';
+            $data['header_content'] = $this->load->view('common/login_box', $data, true);
+            $data['content'] = $this->load->view('user/user_login', $data, true);
+            $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+            $this->load->view('templates/home', $data);
+        }
+    }
 
 }
 

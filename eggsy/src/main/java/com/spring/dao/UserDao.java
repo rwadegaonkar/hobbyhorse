@@ -19,7 +19,7 @@ public class UserDao {
 	private static final String CURRENT_TIMESTAMP = dateFormat.format(date);
 	private static final String SELECT_ALL = "SELECT * FROM user WHERE isDeleted=0";
 	private static final String SELECT_BY_USERNAME = "SELECT * FROM user WHERE isDeleted=0 and username=";
-	private static final String SELECT_BY_USERNAME_AND_PASSWORD = "SELECT * FROM user WHERE isDeleted=0,username=";
+	private static final String SELECT_BY_USERNAME_AND_PASSWORD = "SELECT * FROM user WHERE isDeleted=0 and loginTypeId=1 and username=";
 	private static final String SELECT_BY_ID = "SELECT * FROM user WHERE isDeleted=0 and id=";
 	private static final String DELETE_BY_USERNAME = "UPDATE user SET isDeleted=1 where username=";
 
@@ -44,11 +44,12 @@ public class UserDao {
 				+ "'", conn);
 		try {
 			users = rowMapper.convertUserBean(rs);
+			return users;
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
+			return null;
 		}
-		return users;
 	}
 
 	public ArrayList<User> getUserByUserId(Connection conn, long id)
@@ -77,16 +78,31 @@ public class UserDao {
 	}
 
 	public ArrayList<User> saveUser(Connection conn, User user) {
-		String insertQuery = INSERT_USER + "('" + user.getName() + "','"
-				+ user.getDescription() + "'," + user.getIsDeleted() + ",'"
-				+ user.getCreatedBy() + "','" + user.getLastUpdatedBy() + "','"
-				+ CURRENT_TIMESTAMP + "','" + CURRENT_TIMESTAMP + "','"
-				+ user.getUsername() + "','" + user.getUserpassword() + "','"
-				+ user.getEmail() + "','" + user.getSkills() + "','"
-				+ user.getHobbies() + "','" + user.getLocation() + "',"
-				+ user.getLoginTypeId() + ")";
+		ArrayList<User> checkUser = getUserByUsername(conn, user.getUsername());
+		if (checkUser.size() == 0) {
+			String insertQuery = INSERT_USER + "('" + user.getName() + "','"
+					+ user.getDescription() + "'," + user.getIsDeleted() + ",'"
+					+ user.getCreatedBy() + "','" + user.getLastUpdatedBy()
+					+ "','" + CURRENT_TIMESTAMP + "','" + CURRENT_TIMESTAMP
+					+ "','" + user.getUsername() + "','" + user.getPassword()
+					+ "','" + user.getEmail() + "','" + user.getSkills()
+					+ "','" + user.getHobbies() + "','" + user.getLocation()
+					+ "'," + user.getLoginTypeId() + ")";
 
-		query.executeUpdate(insertQuery, conn);
-		return users;
+			query.executeUpdate(insertQuery, conn);
+			ResultSet rs = query.executeQuery(
+					SELECT_BY_USERNAME + "'" + user.getUsername() + "'", conn);
+			try {
+				users = rowMapper.convertUserBean(rs);
+				System.out.println(users + "DAO*****");
+				return users;
+			} catch (SQLException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+				return null;
+			}
+		} else {
+			return null;
+		}
 	}
 }

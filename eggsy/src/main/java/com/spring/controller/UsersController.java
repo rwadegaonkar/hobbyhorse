@@ -59,17 +59,17 @@ public class UsersController {
 	@ResponseBody
 	public ModelAndView saveUser(@RequestBody User user) {
 		UserManager userSave = new UserManager();
-		userSave.saveUser(user);
+		ArrayList<User> savedUser = userSave.saveUser(user);
 		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
-		mav.addObject("users", userSave);
+		mav.addObject("users", savedUser);
 		return mav;
 	}
 	//Method for login
 	@RequestMapping(method = RequestMethod.POST, value = "/login", headers = "Accept=application/json")
 	@ResponseBody
-	public ModelAndView loginUser(@RequestBody Login user) {
+	public ModelAndView loginUser(@RequestBody User user) {
 		UserManager userLogin = new UserManager();
-		ArrayList<User> userList = userLogin.getUserByUsernameAndPassword(user.getLoginUserName(),user.getLoginUserPassword());
+		ArrayList<User> userList = userLogin.getUserByUsernameAndPassword(user.getUsername(),user.getPassword());
 		ModelAndView mav = new ModelAndView(USERS_VIEW_KEY);
 		mav.addObject("users", userList);
 		return mav;

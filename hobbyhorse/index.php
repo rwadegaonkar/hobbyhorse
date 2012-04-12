@@ -1,4 +1,5 @@
-<?php
+<?php      
+require_once 'Platform/Data.php';
 session_start();
 
 define('APP_ID',"178137928932666");

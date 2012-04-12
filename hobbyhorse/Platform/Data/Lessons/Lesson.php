@@ -28,6 +28,10 @@ class Platform_Data_Lessons_Lesson extends Platform_Data_Base
      * @var
      */
     protected $_eventTime;
+    
+    /* @var
+     */
+    protected $_sessionId;
 
     /**
      * @return
@@ -101,6 +105,19 @@ class Platform_Data_Lessons_Lesson extends Platform_Data_Base
     public function setEventTime($eventTime)
     {
         $this->_eventTime = $eventTime;
+    }
+    
+     public function getSessionId()
+    {
+        return $this->_sessionId;
+    }
+
+    /**
+     * @param  $lessonTypeId
+     */
+    public function setSessionId($sessionId)
+    {
+        $this->_sessionId = $sessionId;
     }
     
 }

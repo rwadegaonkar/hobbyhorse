@@ -74,7 +74,9 @@ public class UserManager {
 		delegate.deleteUser(conn, username);
 	}
 
-	public void saveUser(User user) {
+	public ArrayList<User> saveUser(User user) {
 		users = delegate.saveUser(conn, user);
+		System.out.println(users+"MANAGER*****");
+		return users;
 	}
 }

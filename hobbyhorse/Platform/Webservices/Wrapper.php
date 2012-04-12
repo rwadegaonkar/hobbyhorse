@@ -41,7 +41,7 @@ class Platform_Webservices_Wrapper {
         $this->_domain = "hobbyhorse";
     }
 
-    public function request($request_string = '', $method = 'get', $data = null) {
+    public function request($request_string = '', $method = 'get', $data = null,$responseType = '') {
         if ($request_string == '')
             throw new Exception("Error: Request string cannot be empty");
 
@@ -51,13 +51,15 @@ class Platform_Webservices_Wrapper {
             'timeout'      => 30
         );
 
-        if(!is_null($data)) $this->_responseDataType="";
+        if(!is_null($data) && $responseType == '') 
+            $this->_responseDataType="";
                                               
         $this->_client = new Zend_Http_Client($this->_host . ":" . 
                                               $this->_port . "/" . 
                                               $this->_domain . "/{$request_string}" . 
                                               $this->_responseDataType, $config);
-                                              
+            
+      
         if(!is_null(($data)))
         {
             if(is_string($data))
