@@ -36,3 +36,13 @@
 
 .lessonName{
 }
+
+.lessontypeimg{
+    clear:both;
+    float: left;
+    height: 200px;
+    width: 300px;
+}
+#lessonList {
+    clear: both;
+}

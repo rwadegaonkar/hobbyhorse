@@ -131,3 +131,9 @@ function checkIfLessonJoined(id) {
 function disableElement(element) {
     element.disabled = true;
 }
+
+function changeLessonTypeImage() {
+    var e = document.getElementById("lessonCategories");
+    var id = e.options[e.selectedIndex].value;
+    document.getElementById("lessontypeimg").src="/hobbyhorse/images/lessontype/"+id+".jpg";
+}

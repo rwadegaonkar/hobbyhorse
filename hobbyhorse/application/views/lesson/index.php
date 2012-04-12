@@ -7,7 +7,7 @@
 <section class="main-content">
     <div>
         <p>Lesson Categories:            
-            <select id="lessonCategories" onChange="getLessonByTypes()">
+            <select id="lessonCategories" onChange="getLessonByTypes();changeLessonTypeImage()">
                 <?php
                 foreach ($lessonTypes->data as $lessontype) {
                     ?>
@@ -15,6 +15,7 @@
                 <?php } ?>
             </select>
         </p>
+            <img class="lessontypeimg" id="lessontypeimg" src="<?php echo base_url() ?>images/lessontype/1.jpg" />
     </div>
     <section id="lessonList">
         <?php
