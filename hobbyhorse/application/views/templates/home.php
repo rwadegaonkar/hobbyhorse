@@ -48,11 +48,15 @@
                 </ul>
             </div>
             <div class="logo">
+                <div id="logo-img" style="float: left;margin-top: 10px;">
+                    <a href="<?=base_url()?>"><img src="images/website/fbg_img.jpg" width="112" height="68" alt="" border="0" style="float:left;" /></a>
+                </div>
                 <h1><a href="<?=base_url()?>">Hobby<span>Horse</span> <small> | Learn More...</small></a></h1>
             </div>
             <div class="clr"></div>
-            <a href="<?=base_url()?>"><img src="images/website/fbg_img.jpg" width="337" height="204" alt="" border="0" style="float:left;" /></a>
+            <a href="<?=$dialog_url?>"><img src="images/fb-sign-up-button.png" border="0" style="float:left; margin-top: 20px;" /></a>
             <div class="headertext">
+                <h2>Login</h2>
                 <?  if(isset($header_content))  echo $header_content;   ?>
             </div>
             <div style="clear:both;"></div>
@@ -69,20 +73,20 @@
     <div class="fbg">
         <div class="fbg_resize">
             <div class="col c1">
-                <h2><span>Image Gallery</span></h2>
-                <a href="#"><img src="images/website/pix1.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/website/pix2.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/website/pix3.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/website/pix4.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/website/pix5.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/website/pix6.jpg" width="58" height="58" alt="" /></a> </div>
+                <h2><span>Lesson Categories</span></h2>
+                <a href="#"><img src="images/website/music.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/lessontype/1.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/lessontype/2.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/lessontype/3.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/website/pix5.jpg" width="58" height="58" alt="" /></a> <a href="#"><img src="images/website/pix6.jpg" width="58" height="58" alt="" /></a> </div>
             <div class="col c2">
-                <h2><span>Lorem Ipsum</span></h2>
-                <p>Lorem ipsum dolor<br />
-                    Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Donec libero. Suspendisse bibendum. Cras id urna. <a href="#">Morbi tincidunt, orci ac convallis aliquam</a>, lectus turpis varius lorem, eu posuere nunc justo tempus leo. Donec mattis, purus nec placerat bibendum, dui pede condimentum odio, ac blandit ante orci ut diam.</p>
+                <h2><span>Social Learning</span></h2>
+                <p>
+                    Have you ever dreamed about exploring - learning about your hobby? your interest? Have you ever wished, you could play that guitar very well and impress your friends? <br/>
+                    It's time to stop thinking and start learning. Yes, you can learn different lessons in vast categories from the people around the globe. Explore the new way of learning.
+                    Social Learning!
+                </p>
             </div>
             <div class="col c3">
                 <h2><span>Contact</span></h2>
-                <p>Praesent dapibus, neque id cursus faucibus, tortor neque egestas augue.</p>
-                <p><a href="#">support@yoursite.com</a></p>
-                <p>+1 (123) 444-5677<br />
-                    +1 (123) 444-5678</p>
-                <p>Address: 123 TemplateAccess Rd1</p>
+                <p>- Radhika Wadegaonkar<br/>- Sulagna Bal</p>
+                <p><a href="#">radhika.wadegaonkar@gmail.com</a><br/><a href="#">sbal2050@gmail.com</a></p>
             </div>
             <div class="clr"></div>
         </div>

@@ -46,3 +46,11 @@
 #lessonList {
     clear: both;
 }
+
+
+.comments {
+    padding: 10px;
+    margin: 20px;
+    padding-left: 0px;
+    margin-left: 0px;
+}

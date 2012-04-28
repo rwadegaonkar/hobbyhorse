@@ -52,8 +52,9 @@ class Lesson extends CI_Controller {
         echo(json_encode($lessonData->lessons));
     }
 
-    public function joinLesson($lessonId) {
+    public function joinLesson($lessonId, $lessonName) {
         $request['lessonId'] = $lessonId;
+        $request['lessonName'] = $lessonName;
         $request['userId'] = $this->user_model->getUserByUsername($_SESSION['user']->username)->users->user->id;
         $participate = createParticipantObject($request);
         $this->lesson_model->joinLesson(json_encode($participate));
@@ -63,9 +64,10 @@ class Lesson extends CI_Controller {
         $data = createLessonObject($_REQUEST);
         $data['userId'] = $this->user_model->getUserByUsername($data['createdBy'])->users->user->id;
         $this->lesson_model->saveLesson(json_encode($data));
-        $request['lessonId'] = $lessonId;
-        $request['userId'] = $this->user_model->getUserByUsername($_SESSION['user']->username)->users->user->id;
-        $participate = createParticipantObject($request);
+        $lessonObj = $this->lesson_model->getLatestLesson($data['userId'])->lessons->lesson;
+        $data['lessonId'] = $lessonObj->id;
+        $data['lessonName'] = $lessonObj->name;
+        $participate = createParticipantObject($data);
         $this->lesson_model->joinLesson(json_encode($participate));
         return $this->index();
     }
@@ -90,6 +92,15 @@ class Lesson extends CI_Controller {
         $data['lessons'] = $lessonData->lessons;
         $data['title'] = 'Hobbyhorse - My Forthcoming Lessons';
         $data['content'] = $this->load->view('lesson/joinedLesson', $data, true);
+        $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+        $this->load->view('templates/main', $data);
+    }
+    
+    public function main($lessonId) {
+        $lessonData = $this->lesson_model->getLessonsByLessonId($lessonId);
+        $data['lesson'] = $lessonData->lessons->lesson;
+        $data['title'] = 'Hobbyhorse - My Forthcoming Lessons';
+        $data['content'] = $this->load->view('lesson/main', $data, true);
         $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
         $this->load->view('templates/main', $data);
     }

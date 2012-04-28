@@ -3,9 +3,11 @@
     <h2>What is Hobbyhorse?</h2>
     <div class="clr"></div>
 
-    <img src="images/website/img1.jpg" width="201" height="146" alt="" class="fl" />
-    <p>This is a free CSS website template by AtomicWebsiteTemplates.com. This work is distributed under the Creative Commons Attribution 3.0 License, which means that you are free to use it for any personal or commercial purpose provided the credit links in the template footer are left intact.</p>
-    <p>Aenean consequat porttitor adipiscing. Nam pellentesque justo ut tortor congue lobortis. </p>
+    <img src="images/tp_bg2.jpg" width="201" height="146" alt="" class="fl" />
+    <p>Various social networking sites have become a prominent part of life of the current generation. However, apart from the status updates and pictures of the friends across the network, there is not much that one learns from it. In view of this scenario and access of such rich and large user data, we have developed a web-based / mobile social data-mining project named Hobby Horse (Social Learning). This system is for the users who would  like to impart their talents related to their hobbies in the form of 
+       teaching online (real-time) and for the users who wish to pursue a hobby of their choice at their leisure. 
+    </p>
+    <p>Users of the system can have a role of ‘expert hobbyist’, a ‘novice hobbyist’ or both. Users can participate in different learning categories, or can create one dynamically. Hobbyists will be rewarded points and ratings to define their badge-levels or skill-levels based on the feedbacks. The ratings or badge levels will be used to recommend them to each other. They can then redeem their points towards free gifts or coupons.</p>
  </div>
 
 <div id="popupContact">

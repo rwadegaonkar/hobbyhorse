@@ -45,11 +45,23 @@ function createLessonObject($request) {
 }
 
 function createParticipantObject($request) {
-    $data['name'] = $_SESSION['user']->username;
+    $data['name'] = $request['lessonName'];
     $data['createdBy'] = $_SESSION['user']->username;
     $data['lastUpdatedBy'] = $_SESSION['user']->username;
     $data['lessonId'] = $request['lessonId'];
     $data['userId'] = $request['userId'];
+    return $data;
+}
+
+
+function createCommentObject($request) {
+    $data['name'] = $request['lessonName'];
+    $data['description'] = $request['description'];
+    $data['lessonId'] = $request['lessonId'];
+    $data['userId'] = $request['userId'];
+    $data['createdBy'] = $_SESSION['user']->username;
+    $data['lastUpdatedBy'] = $_SESSION['user']->username;
+    $data['rating'] = $request['rating'];
     return $data;
 }
 

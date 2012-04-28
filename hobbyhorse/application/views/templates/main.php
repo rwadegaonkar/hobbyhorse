@@ -45,7 +45,10 @@
                         </ul>
                     </div>
                     <div class="logo">
-                        <h1><a href="<?= base_url() ?>">Hobby<span>Horse</span> <small> | Learn More...</small></a></h1>
+                        <div id="logo-img" style="float: left;margin-top: 10px;">
+                            <a href="<?=base_url()?>"><img src="images/website/fbg_img.jpg" width="112" height="68" alt="" border="0" style="float:left;" /></a>
+                        </div>
+                        <h1><a href="<?=base_url()?>">Hobby<span>Horse</span> <small> | Learn More...</small></a></h1>
                     </div>
                     <div class="clr"></div>
                     <div style="clear:both;"></div>

@@ -27,6 +27,12 @@ class Lesson_Model extends CI_Model {
         $jsonObj = $myWrapper->request('lessons/lessontype/' . $lessonId);
         return Platform_Data::getDataObject($jsonObj);
     }
+    
+    public function getLessonsByLessonId($lessonId) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('lessons/id/' . $lessonId);
+        return Platform_Data::getDataObject($jsonObj);
+    }
 
     public function getLessonTypes() {
         $myWrapper = new Platform_Webservices_Wrapper();
@@ -46,6 +52,13 @@ class Lesson_Model extends CI_Model {
         return Platform_Data::getDataObject($jsonObj);
     }
 
+    
+    public function getLatestLesson($userId) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('lessons/lastlesson/'.$userId);
+        return Platform_Data::getDataObject($jsonObj);
+    }
+    
     public function joinLesson($participate) {
         $myWrapper = new Platform_Webservices_Wrapper();
         $jsonObj = $myWrapper->request('participants/join', "POST", $participate);

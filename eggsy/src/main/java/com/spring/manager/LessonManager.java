@@ -64,4 +64,25 @@ public class LessonManager {
 		}
 		return null;
 	}
+	
+	public ArrayList<Lesson> getLastLessonByUser(int userId) {
+		try {
+			lessons = delegate.getLastLessonByUser(conn, userId);
+			return lessons;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+
+	public ArrayList<Lesson> getLessonByLessonId(int id) {
+		try {
+			lessons = delegate.getLessonByLessonId(conn, id);
+			return lessons;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

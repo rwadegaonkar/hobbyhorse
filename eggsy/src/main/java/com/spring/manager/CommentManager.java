@@ -9,6 +9,8 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 import com.spring.conf.ConnMysql;
 import com.spring.dao.CommentDao;
 import com.spring.datasource.Comment;
+import com.spring.datasource.Lesson;
+import com.spring.datasource.Participants;
 
 public class CommentManager {
 	@JsonIgnore
@@ -28,5 +30,17 @@ public class CommentManager {
 			e.printStackTrace();
 		}
 		return null;
+	}
+	
+
+	public void saveComment(Comment comment) {
+		comments = delegate.saveComment(conn, comment);
+	}
+	
+	public ArrayList<Comment> checkCommented(String lessonid,
+			String username) {
+		delegate.checkCommented(conn, lessonid, username);
+		comments = delegate.getLastComment(conn, lessonid, username);
+		return comments;
 	}
 }

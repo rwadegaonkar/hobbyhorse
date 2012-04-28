@@ -55,4 +55,23 @@ public class LessonsController {
 		mav.addObject("lessons", lessonList);
 		return mav;
 	}
+	
+	@RequestMapping(method = RequestMethod.GET, value = "/lastlesson/{userId}")
+	public ModelAndView getLastLessonByUser(@PathVariable("userId") int userId) {
+		LessonManager lessonsByType = new LessonManager();
+		ArrayList<Lesson> lessonList = lessonsByType.getLastLessonByUser(userId);
+		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
+		mav.addObject("lessons", lessonList);
+		return mav;
+	}
+	
+
+	@RequestMapping(method = RequestMethod.GET, value = "/id/{id}")
+	public ModelAndView getLessonByLessonId(@PathVariable("id") int id) {
+		LessonManager lessonsByType = new LessonManager();
+		ArrayList<Lesson> lessonList = lessonsByType.getLessonByLessonId(id);
+		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
+		mav.addObject("lessons", lessonList);
+		return mav;
+	}
 }

@@ -94,7 +94,6 @@ public class UserDao {
 					SELECT_BY_USERNAME + "'" + user.getUsername() + "'", conn);
 			try {
 				users = rowMapper.convertUserBean(rs);
-				System.out.println(users + "DAO*****");
 				return users;
 			} catch (SQLException e) {
 				// TODO Auto-generated catch block

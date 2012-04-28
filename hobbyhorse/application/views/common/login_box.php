@@ -18,7 +18,7 @@
         </div>
     </form>
 
-    <div id='facebook-login'>
-    Or <br/><a href="<?=$dialog_url?>"><img src="images/fb-login-button.png"  /></a>
-    </div>
+
 </div>
+
+

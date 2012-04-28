@@ -7,6 +7,8 @@ public class Comment extends CommonBean {
 	private int userId;
 	@JsonProperty
 	private int lessonId;
+	@JsonProperty
+	private int rating;
 	
 	public int getUserId() {
 		return userId;
@@ -19,5 +21,11 @@ public class Comment extends CommonBean {
 	}
 	public void setLessonId(int lessonId) {
 		this.lessonId = lessonId;
+	}
+	public int getRating() {
+		return rating;
+	}
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 }

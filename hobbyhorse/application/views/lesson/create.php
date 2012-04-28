@@ -14,6 +14,7 @@ $sessionId = $session->getSessionId();
 <script>
     $(function() {
         $("#eventDate").datepicker();
+        $("#eventDate").datepicker("option","dateFormat","yy-mm-dd");
     });
 </script>
 <section class="main-content">           
@@ -34,7 +35,7 @@ $sessionId = $session->getSessionId();
         <div>
             <input type="hidden" value="<?php echo $sessionId ?>" name="sessionId"/>
             <p>Name: <input type="text" name="name" /></p>
-            <p>Description: <input type="text" name="description" /></p>
+            <p>Description: <textarea name="description" /></textarea></p>
             <p>Date: <input type="text" name="eventDate" id="eventDate"/></p>
             <p>Time: <input type="text" name="eventTime" /></p>
             <input type="submit" value="Create My Lesson!" />

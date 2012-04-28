@@ -22,6 +22,7 @@ public class CommentRowMapper {
 			commentBean.setLastUpdateDate(rs.getDate("lastUpdateDate"));
 			commentBean.setUserId(rs.getInt("userId"));
 			commentBean.setLessonId(rs.getInt("lessonId"));
+			commentBean.setRating(rs.getInt("rating"));
 			comments.add(commentBean);
 		}
 		return comments;
