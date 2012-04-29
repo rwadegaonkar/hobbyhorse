@@ -29,24 +29,34 @@
                 } else {
                     ?>
                     <h4 class="lessonName"><?php echo $l->name ?></h4> 
-                   <?php 
-                   }
+                    <?php
+                }
                 ?>
                 <h5 class="expertname">The Expert: <?php
-                if ($l->username == $_SESSION['user']->name) {
-                    echo "Me !";
-                } else {
-                    echo $l->username;
-                }
+            if ($l->username == $_SESSION['user']->name) {
+                echo "Me !";
+            } else {
+                echo $l->username;
+            }
                 ?></h5>
                 <p><?php
                 echo "Starts on: " . date("M d, Y", strtotime($l->eventDate));
                 echo " at ";
                 echo $l->eventTime
                 ?></p>
-                <p><?php echo $l->description ?></p>
+                <p><?php echo $l->description ?>
+                <div class="rating">
+                    Rating for the Expert:<br/> 
+                    <?php
+                    for ($i = 0; $i < $l->rating; $i++) {
+                        ?>
+                        <img src="images/gold_star.jpeg" />
+                        <?php
+                    }
+                    ?>
+                </div></p>
                 <?php if ($joined[$l->id] == 0) { ?>
-                    <input type="button" name="joinLesson" id="joinLesson" value="Join" onclick="joinLesson(<?php echo $l->id .",'". $l->name."'" ?>);disableElement(this)"/>
+                    <input type="button" name="joinLesson" id="joinLesson" value="Join" onclick="joinLesson(<?php echo $l->id . ",'" . $l->name . "'" ?>);disableElement(this)"/>
                     <?php
                 } else {
                     ?>

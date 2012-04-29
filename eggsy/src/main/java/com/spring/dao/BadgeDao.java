@@ -8,23 +8,22 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
+import com.spring.datasource.Badge;
 import com.spring.datasource.CommonBean;
+import com.spring.manager.BadgeRowMapper;
 import com.spring.manager.CommonRowMapper;
 import com.spring.util.Query;
 
 public class BadgeDao {
-	private static CommonRowMapper rowMapper = new CommonRowMapper();
-	static DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	static Date date = new Date();
-	private static final String CURRENT_TIMESTAMP = dateFormat.format(date);
+	private static BadgeRowMapper rowMapper = new BadgeRowMapper();
 	private static final String SELECT_ALL = "SELECT * FROM badge WHERE isDeleted=0";
 	public Query query = new Query();
-	ArrayList<CommonBean> badges = new ArrayList<CommonBean>();
+	ArrayList<Badge> badges = new ArrayList<Badge>();
 
-	public ArrayList<CommonBean> getAllBadges(Connection conn) {
+	public ArrayList<Badge> getAllBadges(Connection conn) {
 		ResultSet rs = query.executeQuery(SELECT_ALL, conn);
 		try {
-			badges = rowMapper.convertCommonBean(rs);
+			badges = rowMapper.convertBadgeBean(rs);
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();

@@ -7,7 +7,7 @@ $l = $lesson;
 ?>
 <section class="main-content">
     <div class="">
-        <h2  class="lessonName"><?php echo $l->name ?></h2> 
+        <h2  class="lessonName"><?php echo $l->name ?></h2>
         <h5 class="expertname">The Expert: <?php
 if ($l->username == $_SESSION['user']->name) {
     echo "Me !";
@@ -22,45 +22,58 @@ if ($l->username == $_SESSION['user']->name) {
 ?></p>
         <p><?php echo $l->description ?></p>
 
-          <input type="button" value="Start Lesson" onclick="startLesson('<?php echo $l->sessionId ?>');showEndLessonButton();"/>
+          <input type="button" id="startLesson" value="Start Lesson" onclick="startLesson('<?php echo $l->sessionId ?>');showEndLessonButton('<?php echo $l->createdBy ?>','<?php echo $_SESSION['user']->username ?>');updateLessonObject('<?php echo $l->id ?>','1')"/>
     </div>
     <div id="myPublisherDiv"></div>
     <div id="endLesson"></div>
-    
-<section class="comments">
-    Comments:
-    <p>
-        <input type="hidden" id="lessonId" value="<?php echo $l->id?>" />
-        <input type="hidden" id="lessonName" value="<?php echo $l->name?>" />
-        <textarea id="comment" name="comment"></textarea>
-        <select id="rating" name="rating">
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-        </select>
-        <input type="button" value="Post!" id="post" onclick="postComment();disableElement(this)" />
-    </p>
-</section>
+
+    <section class="comments">
+        Comments:
+        <div id="commentsDiv"><?php
+            foreach ($comments->data as $comment) {
+                echo "<li>" . $comment->description . "</li>";
+            }
+?></div>
+        <p>
+            <input type="hidden" id="lessonId" value="<?php echo $l->id ?>" />
+            <input type="hidden" id="lessonName" value="<?php echo $l->name ?>" />
+            <textarea id="comment" name="comment"></textarea>
+        <div class="rating">
+            <img src="images/white_star.jpeg" id="img1" onClick="changeImage(this)"/>
+            <img src="images/white_star.jpeg" id="img2" onClick="changeImage(this)"/>
+            <img src="images/white_star.jpeg" id="img3" onClick="changeImage(this)"/>
+            <img src="images/white_star.jpeg" id="img4" onClick="changeImage(this)"/>
+            <img src="images/white_star.jpeg" id="img5" onClick="changeImage(this)"/>
+        </div>
+        <input type="button" value="Post!" id="post" onclick="postComment(this);" />
+        </p>
+    </section>
 </section>
 <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
  
   <script type="text/javascript">
-    checkIfCommented('<?php echo $l->id?>');
-    function showEndLessonButton() {
-        document.getElementById('endLesson').innerHTML = "<a href='<?php echo base_url() ?>index.php/lesson/main/<?php echo $l->id ?>'><input type='button' name='closeLesson' value='End My Lesson'/></a>";
+    checkCommentCanBePosted('<?php echo $l->eventDate . " " . $l->eventTime; ?>');
+    checkExpertHobbyistAndTimeOfLesson('<?php echo $l->userId ?>','<?php echo $_SESSION['user']->username ?>','<?php echo $l->eventDate . " " . $l->eventTime; ?>','<?php echo $l->isLive ?>');
+    checkIfCommented('<?php echo $l->id ?>');
+    function showEndLessonButton(lessonUser,sessionUser) {
+        if(lessonUser==sessionUser) {
+            document.getElementById('endLesson').innerHTML = "<a href=\"javascript:updateLessonObject('<?php echo $l->id ?>','0');\"><input type='button' name='closeLesson' value='End My Lesson'/></a>";
+        }
+        else {
+            document.getElementById('endLesson').innerHTML = "<a href=\"javascript:(window.location.href=window.location.href);\"><input type='button' name='closeLesson' value='End My Lesson'/></a>";
+        }
     }
+
     function startLesson(sessionId) {
             var apiKey = '14098051';
             //var sessionId = '2_MX41ODc1MjMxfjEyNy4wLjAuMX4yMDEyLTA0LTExIDA1OjAxOjA3LjYyMTM4MCswMDowMH4wLjc3OTU1NTAzMjQxOX4';
-            var token = 'devtoken';           
+            var token = 'devtoken';          
              
-            TB.setLogLevel(TB.DEBUG);     
+            TB.setLogLevel(TB.DEBUG);    
          
-            var session = TB.initSession(sessionId);      
+            var session = TB.initSession(sessionId);     
             session.addEventListener('sessionConnected', sessionConnectedHandler);
-            session.addEventListener('streamCreated', streamCreatedHandler);      
+            session.addEventListener('streamCreated', streamCreatedHandler);     
             session.connect(apiKey, token);
          
             var publisher;

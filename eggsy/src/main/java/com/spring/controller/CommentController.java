@@ -40,22 +40,35 @@ public class CommentController {
 		mav.addObject("comments", allComments);
 		return mav;
 	}
-	
 
 	@RequestMapping(method = RequestMethod.POST, value = "/add", headers = "Accept=application/json")
 	@ResponseBody
 	public ModelAndView saveComment(@RequestBody Comment comment) {
 		CommentManager commentSave = new CommentManager();
-		commentSave.saveComment(comment);
+		ArrayList<Comment> savedComment = commentSave.saveComment(comment);
 		ModelAndView mav = new ModelAndView(COMMENT_VIEW_KEY);
-		mav.addObject("comments", commentSave);
+		mav.addObject("comments", savedComment);
 		return mav;
 	}
-	
-	@RequestMapping(method = RequestMethod.GET, value = "/checkcommented/{lessonid}/{username}")
-	public ModelAndView checkCommented(@PathVariable("lessonid") String lessonid, @PathVariable("username") String username) {
+
+	@RequestMapping(method = RequestMethod.GET, value = "/lessonid/{lessonid}")
+	public ModelAndView getCommentsByLessonId(
+			@PathVariable("lessonid") String lessonid) {
 		CommentManager commentCheck = new CommentManager();
-		ArrayList<Comment> checkComments = commentCheck.checkCommented(lessonid,username);
+		ArrayList<Comment> commentsByLesson = commentCheck
+				.getCommentsByLessonId(lessonid);
+		ModelAndView mav = new ModelAndView(COMMENT_VIEW_KEY);
+		mav.addObject("comments", commentsByLesson);
+		return mav;
+	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/checkcommented/{lessonid}/{username}")
+	public ModelAndView checkCommented(
+			@PathVariable("lessonid") String lessonid,
+			@PathVariable("username") String username) {
+		CommentManager commentCheck = new CommentManager();
+		ArrayList<Comment> checkComments = commentCheck.checkCommented(
+				lessonid, username);
 		ModelAndView mav = new ModelAndView(COMMENT_VIEW_KEY);
 		mav.addObject("comments", checkComments);
 		return mav;

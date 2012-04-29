@@ -25,7 +25,17 @@
                 echo " at ";
                 echo $l->eventTime
             ?></p>
-                <p><?php echo $l->description ?></p>
+                <p><?php echo $l->description ?>
+                <div class="rating">
+                    Rating for the Expert:<br/> 
+                    <?php
+                    for ($i = 0; $i < $l->rating; $i++) {
+                        ?>
+                        <img src="images/gold_star.jpeg" />
+                        <?php
+                    }
+                    ?>
+                </div></p>
                   </div>
             <?php
         }

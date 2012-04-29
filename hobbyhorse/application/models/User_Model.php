@@ -24,14 +24,22 @@ class User_Model extends CI_Model {
         return Platform_Data::getDataObject($jsonObj);
     }
 
-    public function getUserByUserId($userId) {
+    public function getUserByUserId($userId, $method=null) {
         $jsonObj = $this->myWrapper->request('users/id/' . $userId);
-        return Platform_Data::getDataObject($jsonObj);
+        if (!$method) {
+            return Platform_Data::getDataObject($jsonObj);
+        } else {
+            return $jsonObj;
+        }
     }
 
-    public function getUserByUsername($username) {
+    public function getUserByUsername($username, $method=null) {
         $jsonObj = $this->myWrapper->request('users/' . $username);
-        return Platform_Data::getDataObject($jsonObj);
+        if (!$method) {
+            return Platform_Data::getDataObject($jsonObj);
+        } else {
+            return $jsonObj;
+        }
     }
 
     public function checkLogin($data) {

@@ -8,6 +8,7 @@ import com.spring.datasource.User;
 
 public class LessonRowMapper {
 	UserManager userManager = new UserManager();
+	LessonManager lessonManager = new LessonManager();
 
 	public ArrayList<Lesson> convertLessonBean(ResultSet rs)
 			throws SQLException {
@@ -30,6 +31,9 @@ public class LessonRowMapper {
 					.getInt("userId"));
 			lessonBean.setUsername(userList.get(0).getName());
 			lessonBean.setSessionId(rs.getString("sessionId"));
+			lessonBean.setIsLive(rs.getInt("isLive"));
+			int avgRating = userManager.getAverageRating(rs.getInt("userId"));
+			lessonBean.setRating(avgRating);
 			lessons.add(lessonBean);
 		}
 		return lessons;

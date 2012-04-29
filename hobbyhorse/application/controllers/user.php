@@ -150,5 +150,10 @@ class User extends CI_Controller {
         }
     }
 
+    function getUserByUsername($userName) {
+        $userData = $this->user_model->getUserByUsername($userName,"ajax");
+        echo(json_encode($userData->users));
+    }
+
 }
 

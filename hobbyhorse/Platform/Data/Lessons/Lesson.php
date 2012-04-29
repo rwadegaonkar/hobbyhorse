@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Created by JetBrains PhpStorm.
  * User: radhika
@@ -8,17 +9,19 @@
  */
 require_once("Platform/Data/Base.php");
 
-class Platform_Data_Lessons_Lesson extends Platform_Data_Base
-{
+class Platform_Data_Lessons_Lesson extends Platform_Data_Base {
+
     /**
      * @var
      */
     protected $_lessonTypeId;
+
     /**
      * @var
      */
     protected $_userId;
-/**
+
+    /**
      * @var
      */
     protected $_username;/**
@@ -28,96 +31,110 @@ class Platform_Data_Lessons_Lesson extends Platform_Data_Base
      * @var
      */
     protected $_eventTime;
-    
+
     /* @var
      */
     protected $_sessionId;
+    /* @var
+     */
+    protected $_isLive;
+    /* @var
+     */
+    protected $_rating;
 
     /**
      * @return
      */
-
-    public function __construct()
-    {
-
+    public function __construct() {
+        
     }
 
-
-    public function getLessonTypeId()
-    {
+    public function getLessonTypeId() {
         return $this->_lessonTypeId;
     }
 
     /**
      * @param  $lessonTypeId
      */
-    public function setLessonTypeId($lessonTypeId)
-    {
+    public function setLessonTypeId($lessonTypeId) {
         $this->_lessonTypeId = $lessonTypeId;
     }
-    
-    public function getUserId()
-    {
+
+    public function getUserId() {
         return $this->_userId;
     }
 
     /**
      * @param  $lessonTypeId
      */
-    public function setUserId($userId)
-    {
+    public function setUserId($userId) {
         $this->_userId = $userId;
     }
-    
-    public function getUsername()
-    {
+
+    public function getUsername() {
         return $this->_username;
     }
 
     /**
      * @param  $lessonTypeId
      */
-    public function setUsername($username)
-    {
+    public function setUsername($username) {
         $this->_username = $username;
     }
-    
-    public function getEventDate()
-    {
+
+    public function getEventDate() {
         return $this->_eventDate;
     }
 
     /**
      * @param  $eventDate
      */
-    public function setEventDate($eventDate)
-    {
+    public function setEventDate($eventDate) {
         $this->_eventDate = $eventDate;
     }
-    public function getEventTime()
-    {
+
+    public function getEventTime() {
         return $this->_eventTime;
     }
 
     /**
      * @param  $lessonTypeId
      */
-    public function setEventTime($eventTime)
-    {
+    public function setEventTime($eventTime) {
         $this->_eventTime = $eventTime;
     }
-    
-     public function getSessionId()
-    {
+
+    public function getSessionId() {
         return $this->_sessionId;
     }
 
     /**
      * @param  $lessonTypeId
      */
-    public function setSessionId($sessionId)
-    {
+    public function setSessionId($sessionId) {
         $this->_sessionId = $sessionId;
     }
+
+    public function getIsLive() {
+        return $this->_isLive;
+    }
+
+    /**
+     * @param  $lessonTypeId
+     */
+    public function setIsLive($isLive) {
+        $this->_isLive = $isLive;
+    }
     
+    public function getRating() {
+        return $this->_rating;
+    }
+
+    /**
+     * @param  $lessonTypeId
+     */
+    public function setRating($rating) {
+        $this->_rating = $rating;
+    }
+
 }

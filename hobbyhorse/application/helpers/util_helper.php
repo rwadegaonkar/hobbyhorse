@@ -41,6 +41,7 @@ function createLessonObject($request) {
     $data['lastUpdatedBy'] = $_SESSION['user']->username;
     $data['lessonTypeId'] = $request['lessonTypeId'];
     $data['sessionId'] = $request['sessionId'];
+    $data['isLive'] = 0;
     return $data;
 }
 

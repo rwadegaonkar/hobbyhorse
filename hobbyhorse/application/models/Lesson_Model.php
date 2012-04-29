@@ -80,5 +80,11 @@ class Lesson_Model extends CI_Model {
             return $jsonObj;
         }
     }
+    
+    
+    public function updateLessonIsLive($lesson) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $myWrapper->request('lessons/updateislive', "POST", $lesson);
+    }
 
 }

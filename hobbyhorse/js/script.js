@@ -28,7 +28,8 @@ function getLessonByTypes(id) {
 }
 
 function updateResponse(resp) {
-    var elementToUpdate = document.getElementById("lessonList");
+    var elementToUpdate = document.getElementById("lessonList");        
+    var host = "http://mysite.fb/hobbyhorse/";
     if(elementToUpdate!=undefined) {
         while(elementToUpdate.firstChild) {
             elementToUpdate.removeChild(elementToUpdate.firstChild);
@@ -53,11 +54,25 @@ function updateResponse(resp) {
         h4Element.setAttribute("class","lessonName");
         h4Element.setAttribute("id","lessonName"+lessonJson[j].id)
         var h4Text = document.createTextNode(lessonJson[j].name)
-        var h5Text = document.createTextNode("The Expert: " +lessonJson[j].username)
+        var h5Text = document.createTextNode("The Expert: " +lessonJson[j].username);
+        var divRatingElement = document.createElement("div");
+        divRatingElement.setAttribute("class","rating");
+        var divRatingText = document.createTextNode("Ratings for the Expert: ");
+        var brRating = document.createElement("br");
+        if(lessonJson[0].rating>0){
+            divRatingElement.appendChild(divRatingText);
+            divRatingElement.appendChild(brRating);
+        }
+        for(k=0;k<lessonJson[0].rating;k++) {
+            var divImageElement = document.createElement("img");
+            divImageElement.src=host+"images/gold_star.jpeg";
+            divRatingElement.appendChild(divImageElement);
+        }
         var pElement = document.createElement("p");
         var pElementDate = document.createElement("p");
         var pText = document.createTextNode(lessonJson[j].description)
         var formattedDate = formatDate(lessonJson[j].eventDate);
+        var brElement = document.createElement("br");
         var pTextDate = document.createTextNode("Starts on: "+formattedDate+" at "+lessonJson[j].eventTime)
         var joinBtn = document.createElement("input");
         joinBtn.setAttribute("type", "button");
@@ -67,7 +82,9 @@ function updateResponse(resp) {
         joinBtn.setAttribute("onClick", "joinLesson("+lessonJson[j].id+");disableElement(this);");
         h4Element.appendChild(h4Text);
         h5Element.appendChild(h5Text);
-        pElement.appendChild(pText);
+        pElement.appendChild(pText);  
+        pElement.appendChild(brElement);
+        pElement.appendChild(divRatingElement);
         pElementDate.appendChild(pTextDate);
         divElement.appendChild(h4Element);
         divElement.appendChild(h5Element);
@@ -157,10 +174,18 @@ function checkResponse(resp) {
     }
 }
 
-function postComment() {
+function postComment(elementId) {
     var lessonName = encodeURIComponent(document.getElementById("lessonName").value);
     var description = encodeURIComponent(document.getElementById("comment").value);
-    var rating = encodeURIComponent(document.getElementById("rating").value);
+    if(description=="") {
+        alert("Please enter a comment!");
+        return false;
+    }
+    var rating = encodeURIComponent(calculateRating());
+    if(rating==0) {
+        alert("Please rate the lesson!");
+        return false;
+    }
     var lessonId = encodeURIComponent(document.getElementById("lessonId").value);
     var url = "http://mysite.fb/hobbyhorse/index.php/comment/saveComment/"+lessonName+"/"+description+"/"+lessonId+"/"+rating;
     var xmlhttp;
@@ -182,13 +207,21 @@ function postComment() {
     xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send();
+    disableElement(elementId);
+    return true;
 }
 
 
 function updateMainLessonPage(resp) {
-    alert(resp);
+    var commentJson = eval('(' + resp + ')');
+    if(commentJson.comments.length > 0) {
+        var lastComment = commentJson.comments[0].description;
+    }    
     var allComments = document.getElementById("commentsDiv");
-    allComments.innerHTML = allComments.innerHTML + "";
+    var liElement = document.createElement("li");
+    liElement.appendChild(document.createTextNode(lastComment));
+    allComments.appendChild(liElement);
+    document.getElementById("comment").value="";
 }
 
 function checkIfLessonJoined(id) {
@@ -250,4 +283,123 @@ function checkResponseComment(resp) {
     if(commentJson.length > 0) {
         document.getElementById('post').disabled = true;
     }
+}
+
+function changeImage(element) {
+    var host = "http://mysite.fb/hobbyhorse/";
+    var ida = element.id.substring(3,4);
+    if(element.src==host+"images/gold_star.jpeg") {
+        for(i=parseInt(ida);i<5;i++) {
+            var newid = i+1;
+            var el = document.getElementById("img"+newid);
+            el.src = host+"images/white_star.jpeg";
+        }
+    }
+    if(element.src==host+"images/white_star.jpeg") {
+        for(i=0;i<parseInt(ida);i++) {
+            var newid = i+1;
+            var el = document.getElementById("img"+newid);
+            el.src = host+"images/gold_star.jpeg";
+        }
+    }
+    
+}
+
+function calculateRating() {
+    var host = "http://mysite.fb/hobbyhorse/";
+    var rating = 0;
+    for(i=1;i<6;i++) {
+        if(document.getElementById("img"+i).src==host+"images/gold_star.jpeg") {
+            rating = i;
+        }
+    }
+    return rating;
+}
+
+function checkCommentCanBePosted(eventDateTime) {
+    var today = new Date();
+    var diffInMinutes = ((new Date(eventDateTime) - today)/(1000*60));
+    if(diffInMinutes > 0) {
+        document.getElementById("post").disabled = true;
+        return;
+    }  
+}
+
+
+function checkExpertHobbyistAndTimeOfLesson(lessonUserId, username, eventDateTime, isLiveVal) {
+    var today = new Date();
+    var diffInMinutes = ((new Date(eventDateTime) - today)/(1000*60));
+    if(diffInMinutes > 5) {
+        document.getElementById("startLesson").disabled = true;
+        return;
+    }
+    var host = "http://mysite.fb/hobbyhorse/";
+    var url = host+"index.php/user/getUserByUsername/"+username;
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            checkId(lessonUserId, isLiveVal, xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("GET",url,true);
+    xmlhttp.send();
+    
+}
+
+function checkId(lessonUserId,isLiveVal,resp){
+    var userJson = eval('(' + resp + ')');
+    if(userJson[0].id!=lessonUserId && isLiveVal==0){
+        document.getElementById("startLesson").disabled=true;
+        return;
+    }
+    if(userJson[0].id==lessonUserId){
+        document.getElementById("startLesson").disabled=false;
+        return;
+    }
+    if(userJson[0].id!=lessonUserId && isLiveVal==1){
+        document.getElementById("startLesson").disabled=false;
+        return;
+    }
+}
+
+function updateLessonObject(lessonId,isLiveVal) {
+    var lessonId = encodeURIComponent(lessonId);
+    var isLiveVal = encodeURIComponent(isLiveVal);
+    var url = "http://mysite.fb/hobbyhorse/index.php/lesson/updateLessonIsLive/"+lessonId+"/"+isLiveVal;
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            if(isLiveVal==0) {
+                reloadPage(xmlhttp.responseText);
+            }
+
+        }
+    }
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send();  
+}
+
+function reloadPage(resp){
+    window.location.href=window.location.href;
 }

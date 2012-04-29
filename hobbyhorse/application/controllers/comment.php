@@ -25,7 +25,8 @@ class Comment extends CI_Controller {
         $request['rating'] = urldecode($rating);
         $request['userId'] = $this->user_model->getUserByUsername($_SESSION['user']->username)->users->user->id;
         $data = createCommentObject($request);
-        $this->comment_model->saveComment(json_encode($data));
+        $savedComment = $this->comment_model->saveComment(json_encode($data),"ajax");
+        echo(json_encode($savedComment));
     }
     
     public function checkCommented($lessonId) {
@@ -33,5 +34,4 @@ class Comment extends CI_Controller {
         $check = $check->comments;
         echo(json_encode($check));
     }
-
 }

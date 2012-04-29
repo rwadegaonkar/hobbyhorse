@@ -1,5 +1,7 @@
 package com.spring.controller;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -8,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.datasource.CommonBean;
 import com.spring.manager.BadgeManager;
 
 @Controller
@@ -24,9 +27,9 @@ public class BadgeController {
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public ModelAndView showBadges() {
 		BadgeManager badges = new BadgeManager();
-		badges.getAllBadges();
+		ArrayList<CommonBean> allBadges = badges.getAllBadges();
 		ModelAndView mav = new ModelAndView(BADGE_VIEW_KEY);
-		mav.addObject("badges", badges);
+		mav.addObject("badges", allBadges);
 		return mav;
 	}
 }

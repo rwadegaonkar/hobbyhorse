@@ -33,8 +33,14 @@ public class CommentManager {
 	}
 	
 
-	public void saveComment(Comment comment) {
+	public ArrayList<Comment> saveComment(Comment comment) {
 		comments = delegate.saveComment(conn, comment);
+		return comments;
+	}
+	
+	public ArrayList<Comment> getCommentsByLessonId(String lessonid) {
+		comments = delegate.getCommentsByLessonId(conn, lessonid);
+		return comments;
 	}
 	
 	public ArrayList<Comment> checkCommented(String lessonid,

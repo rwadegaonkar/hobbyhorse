@@ -16,6 +16,7 @@ class Lesson extends CI_Controller {
         parent::__construct();
         $this->load->model('Lesson_Model', 'lesson_model');
         $this->load->model('User_Model', 'user_model');
+        $this->load->model('Comment_Model', 'comment_model');
     }
 
     public function index() {
@@ -36,7 +37,7 @@ class Lesson extends CI_Controller {
         $data['content'] = $this->load->view('lesson/index', $data, true);
         $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
         $this->load->view('templates/main', $data);
-        }
+    }
 
     public function lessonsByLessonType() {
         $lessonData = $this->lesson_model->getLessonsByLessonType();
@@ -44,12 +45,26 @@ class Lesson extends CI_Controller {
         $data['title'] = 'Hobbyhorse - Lessons By Category';
         $data['content'] = $this->load->view('lesson/index', $data, true);
         $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
-        $this->load->view('templates/main', $data);   
-        }
+        $this->load->view('templates/main', $data);
+    }
 
     public function getAjaxLessonsByLessonType($lessonId) {
         $lessonData = $this->lesson_model->getAjaxLessonsByLessonType($lessonId);
         echo(json_encode($lessonData->lessons));
+    }
+    
+    public function updateLessonIsLive($lessonId, $isLiveVal) {
+        $data['name'] = 'a';
+        $data['description'] = "a";
+        $data['eventDate'] = "a";
+        $data['eventTime'] = "a";
+        $data['createdBy'] = $_SESSION['user']->username;
+        $data['lastUpdatedBy'] = $_SESSION['user']->username;
+        $data['lessonTypeId'] = 1;
+        $data['sessionId'] = "";
+        $data['isLive'] = $isLiveVal;
+        $data['id'] = $lessonId;
+        $this->lesson_model->updateLessonIsLive(json_encode($data));
     }
 
     public function joinLesson($lessonId, $lessonName) {
@@ -86,7 +101,7 @@ class Lesson extends CI_Controller {
         $check = $check->participants;
         echo(json_encode($check));
     }
-    
+
     public function joinedLesson() {
         $lessonData = $this->lesson_model->getLessonsByUsername();
         $data['lessons'] = $lessonData->lessons;
@@ -95,9 +110,11 @@ class Lesson extends CI_Controller {
         $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
         $this->load->view('templates/main', $data);
     }
-    
+
     public function main($lessonId) {
         $lessonData = $this->lesson_model->getLessonsByLessonId($lessonId);
+        $comments = $this->comment_model->getCommentsForLesson($lessonId);
+        $data['comments'] = $comments->comments;
         $data['lesson'] = $lessonData->lessons->lesson;
         $data['title'] = 'Hobbyhorse - My Forthcoming Lessons';
         $data['content'] = $this->load->view('lesson/main', $data, true);

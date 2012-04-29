@@ -79,4 +79,15 @@ public class UserManager {
 		System.out.println(users+"MANAGER*****");
 		return users;
 	}
+	
+
+	public int getAverageRating(int userid) {
+		int rating = 0;
+		try {
+			rating = delegate.getAverageRating(conn, userid);
+		}catch (Exception e) {
+			e.printStackTrace();
+		}
+		return rating;
+	}
 }

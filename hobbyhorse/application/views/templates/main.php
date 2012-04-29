@@ -1,3 +1,8 @@
+<?php
+if (!isset($_SESSION['user'])) {
+    header('location: ' . REDIRECT_URL);
+}
+?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
     <head>
@@ -46,9 +51,9 @@
                     </div>
                     <div class="logo">
                         <div id="logo-img" style="float: left;margin-top: 10px;">
-                            <a href="<?=base_url()?>"><img src="images/website/fbg_img.jpg" width="112" height="68" alt="" border="0" style="float:left;" /></a>
+                            <a href="<?= base_url() ?>"><img src="images/website/fbg_img.jpg" width="112" height="68" alt="" border="0" style="float:left;" /></a>
                         </div>
-                        <h1><a href="<?=base_url()?>">Hobby<span>Horse</span> <small> | Learn More...</small></a></h1>
+                        <h1><a href="<?= base_url() ?>">Hobby<span>Horse</span> <small> | Learn More...</small></a></h1>
                     </div>
                     <div class="clr"></div>
                     <div style="clear:both;"></div>
@@ -58,8 +63,8 @@
                 <div class="content_resize">
                     <div class="mainbar">
                         <div class="article">
-<? if (isset($content))
-    echo $content; ?>
+                            <? if (isset($content))
+                                echo $content; ?>
                         </div>
                     </div>
                     <? if (isset($sidebar))

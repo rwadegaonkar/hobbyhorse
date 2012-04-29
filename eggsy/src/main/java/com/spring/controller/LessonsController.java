@@ -36,6 +36,16 @@ public class LessonsController {
 		mav.addObject("lessons", lessonSave);
 		return mav;
 	}	
+	
+	@RequestMapping(method = RequestMethod.POST, value = "/updateislive", headers = "Accept=application/json")
+	@ResponseBody
+	public ModelAndView updateLessonIsLive(@RequestBody Lesson lesson) {
+		LessonManager lessonSave = new LessonManager();
+		lessonSave.updateLessonIsLive(lesson);
+		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
+		mav.addObject("lessons", lessonSave);
+		return mav;
+	}	
 
 	@RequestMapping(method = RequestMethod.GET, value = "/lessontype/{lessontypeid}")
 	public ModelAndView getLessonsByLessonId(@PathVariable("lessontypeid") int lessontypeid) {

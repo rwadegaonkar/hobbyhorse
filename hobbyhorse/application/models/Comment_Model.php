@@ -19,10 +19,15 @@ class Comment_Model extends CI_Model {
         $this->myWrapper = new Platform_Webservices_Wrapper();
     }
 
-    public function saveComment($data) {
+    public function saveComment($data, $method=null) {
         $jsonObj = $this->myWrapper->request('comments/add', 'POST', $data, "true");
-        return Platform_Data::getDataObject($jsonObj);        
+        if (!$method) {
+            return Platform_Data::getDataObject($jsonObj);
+        } else {
+            return $jsonObj;
+        }
     }
+
     public function checkCommented($lessonId, $method=null) {
         $myWrapper = new Platform_Webservices_Wrapper();
         $jsonObj = $myWrapper->request('comments/checkcommented/' . $lessonId . '/' . $_SESSION['user']->username);
@@ -31,6 +36,12 @@ class Comment_Model extends CI_Model {
         } else {
             return $jsonObj;
         }
+    }
+
+    public function getCommentsForLesson($lessonId) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('comments/lessonid/' . $lessonId);
+        return Platform_Data::getDataObject($jsonObj);
     }
 
 }

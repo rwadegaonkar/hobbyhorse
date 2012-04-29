@@ -54,3 +54,13 @@
     padding-left: 0px;
     margin-left: 0px;
 }
+
+.rating img{
+    cursor:pointer;
+    height: 20px;
+    width: 20px;
+}
+
+.rating {
+    padding: 5px 0 5px 0;
+}

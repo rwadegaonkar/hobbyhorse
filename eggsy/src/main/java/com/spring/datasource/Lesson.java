@@ -20,8 +20,9 @@ public class Lesson {
 	private long lessonTypeId;
 	private long userId;
 	private String username;
-
 	private String sessionId;
+	private long isLive;
+	private int rating;
 
 	public long getId() {
 		return id;
@@ -143,6 +144,21 @@ public class Lesson {
 
 	public void setEventTime(String eventTime) {
 		this.eventTime = eventTime;
+	}
+	
+	public long getIsLive() {
+		return isLive;
+	}
+
+	public void setIsLive(long isLive) {
+		this.isLive = isLive;
+	}
+	public long getRating() {
+		return rating;
+	}
+
+	public void setRating(int rating) {
+		this.rating = rating;
 	}
 
 }

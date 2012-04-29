@@ -85,4 +85,15 @@ public class LessonManager {
 		}
 		return null;
 	}
+	
+	public ArrayList<Lesson> updateLessonIsLive(Lesson lesson) {
+		try {
+			lessons = delegate.updateLessonIsLive(conn, lesson);
+			return lessons;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
 }

@@ -25,7 +25,8 @@ public class CommentDao {
 	private static final String SELECT_ALL = "SELECT * FROM comment WHERE isDeleted=0";
 	private static final String INSERT_COMMENT = "INSERT INTO comment(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, userId, lessonId, rating) VALUES";
 	private static final String SELECT_TO_CHECK_IF_COMMENTED = "SELECT * FROM comment as c, user as u WHERE c.isDeleted=0 and u.id=c.userId and c.lessonId =";
-	private static final String SELECT_LAST_USER_COMMENT = "SELECT * from comment where id=(SELECT max(id) from comment as c, user as u where c.userId=user.id and c.lessonId=";
+	private static final String SELECT_LAST_USER_COMMENT = "SELECT * from comment where id=(SELECT max(c.id) from comment as c, user as u where c.userId=u.id and c.lessonId=";
+	private static final String SELECT_COMMENTS_BY_LESSONID = "SELECT * FROM comment where lessonId=";
 	public Query query = new Query();
 	ArrayList<Comment> comments = new ArrayList<Comment>();
 
@@ -49,11 +50,18 @@ public class CommentDao {
 				+ "','" + comment.getLessonId() + "','" + comment.getRating()
 				+ "')";
 		query.executeUpdate(insertQuery, conn);
+		String checkQuery = SELECT_LAST_USER_COMMENT + comment.getLessonId()
+				+ " and u.id='" + comment.getUserId() + "')";
+		ResultSet rs = query.executeQuery(checkQuery, conn);
+		try {
+			comments = rowMapper.convertCommentBean(rs);
+		} catch (SQLException e) {
+		}
 		return comments;
 	}
-	
-	public ArrayList<Comment> checkCommented(Connection conn,
-			String lessonid, String username) {
+
+	public ArrayList<Comment> checkCommented(Connection conn, String lessonid,
+			String username) {
 		String checkQuery = SELECT_TO_CHECK_IF_COMMENTED + lessonid
 				+ " and u.username='" + username + "'";
 		ResultSet rs = query.executeQuery(checkQuery, conn);
@@ -65,9 +73,21 @@ public class CommentDao {
 		}
 		return comments;
 	}
-	
-	public ArrayList<Comment> getLastComment(Connection conn,
-			String lessonid, String username) {
+
+	public ArrayList<Comment> getCommentsByLessonId(Connection conn,
+			String lessonid) {
+		String checkQuery = SELECT_COMMENTS_BY_LESSONID + lessonid;
+		ResultSet rs = query.executeQuery(checkQuery, conn);
+		try {
+			comments = rowMapper.convertCommentBean(rs);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return comments;
+	}
+
+	public ArrayList<Comment> getLastComment(Connection conn, String lessonid,
+			String username) {
 		String checkQuery = SELECT_LAST_USER_COMMENT + lessonid
 				+ " and u.username='" + username + "')";
 		ResultSet rs = query.executeQuery(checkQuery, conn);
@@ -79,4 +99,5 @@ public class CommentDao {
 		}
 		return comments;
 	}
+
 }

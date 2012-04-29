@@ -22,7 +22,7 @@ public class UserDao {
 	private static final String SELECT_BY_USERNAME_AND_PASSWORD = "SELECT * FROM user WHERE isDeleted=0 and loginTypeId=1 and username=";
 	private static final String SELECT_BY_ID = "SELECT * FROM user WHERE isDeleted=0 and id=";
 	private static final String DELETE_BY_USERNAME = "UPDATE user SET isDeleted=1 where username=";
-
+	private static final String AVERAGE_RATING_FOR_USERID = "SELECT AVG( c.rating ) as rating FROM comment as c,user as u WHERE userId=u.id and u.id =";
 	private static final String INSERT_USER = "INSERT INTO user(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, username, password, email, skills, hobbies, location, loginTypeId) VALUES";
 
 	public Query query = new Query();
@@ -104,4 +104,20 @@ public class UserDao {
 			return null;
 		}
 	}
+	
+
+	public int getAverageRating(Connection conn, int userid) {
+		String checkQuery = AVERAGE_RATING_FOR_USERID + userid;
+		ResultSet rs = query.executeQuery(checkQuery, conn);
+		long rating = 0L;
+		try {
+			while (rs.next()) {
+				rating = rs.getLong("rating");
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return Integer.parseInt(rating + "");
+	}
+
 }
