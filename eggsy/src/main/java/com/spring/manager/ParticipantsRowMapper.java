@@ -22,6 +22,7 @@ public class ParticipantsRowMapper {
 			participantBean.setLastUpdateDate(rs.getDate("lastUpdateDate"));
 			participantBean.setUserId(rs.getInt("userId"));
 			participantBean.setLessonId(rs.getInt("lessonId"));
+			participantBean.setWasAttended(rs.getInt("wasAttended"));
 			participants.add(participantBean);
 		}
 		return participants;

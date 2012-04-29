@@ -45,16 +45,22 @@
                 echo $l->eventTime
                 ?></p>
                 <p><?php echo $l->description ?>
-                <div class="rating">
-                    Rating for the Expert:<br/> 
-                    <?php
-                    for ($i = 0; $i < $l->rating; $i++) {
+                    <?php if ($l->rating > 0) {
                         ?>
-                        <img src="images/gold_star.jpeg" />
+                        }
+                    <div class="rating">
+                        Rating for the Expert:<br/> 
                         <?php
-                    }
-                    ?>
-                </div></p>
+                        for ($i = 0; $i < $l->rating; $i++) {
+                            ?>
+                            <img src="images/gold_star.jpeg" />
+                            <?php
+                        }
+                        ?>
+                    </div>
+                <?php }
+                ?>
+                </p>
                 <?php if ($joined[$l->id] == 0) { ?>
                     <input type="button" name="joinLesson" id="joinLesson" value="Join" onclick="joinLesson(<?php echo $l->id . ",'" . $l->name . "'" ?>);disableElement(this)"/>
                     <?php

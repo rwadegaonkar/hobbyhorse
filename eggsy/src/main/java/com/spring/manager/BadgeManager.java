@@ -8,8 +8,7 @@ import org.codehaus.jackson.annotate.JsonIgnore;
 
 import com.spring.conf.ConnMysql;
 import com.spring.dao.BadgeDao;
-import com.spring.datasource.CommonBean;
-import com.spring.datasource.User;
+import com.spring.datasource.Badge;
 
 public class BadgeManager {
 	@JsonIgnore
@@ -19,9 +18,9 @@ public class BadgeManager {
 	Connection conn = ConnMysql.connect();
 	@JsonIgnore
 	BadgeDao delegate = new BadgeDao();
-	private ArrayList<CommonBean> badges = new ArrayList<CommonBean>();
+	private ArrayList<Badge> badges = new ArrayList<Badge>();
 
-	public ArrayList<CommonBean> getAllBadges() {
+	public ArrayList<Badge> getAllBadges() {
 		try {
 			badges = delegate.getAllBadges(conn);
 			return badges;

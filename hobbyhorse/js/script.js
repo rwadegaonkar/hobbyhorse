@@ -59,11 +59,11 @@ function updateResponse(resp) {
         divRatingElement.setAttribute("class","rating");
         var divRatingText = document.createTextNode("Ratings for the Expert: ");
         var brRating = document.createElement("br");
-        if(lessonJson[0].rating>0){
+        if(lessonJson[j].rating>0){
             divRatingElement.appendChild(divRatingText);
             divRatingElement.appendChild(brRating);
         }
-        for(k=0;k<lessonJson[0].rating;k++) {
+        for(k=0;k<lessonJson[j].rating;k++) {
             var divImageElement = document.createElement("img");
             divImageElement.src=host+"images/gold_star.jpeg";
             divRatingElement.appendChild(divImageElement);
@@ -402,4 +402,29 @@ function updateLessonObject(lessonId,isLiveVal) {
 
 function reloadPage(resp){
     window.location.href=window.location.href;
+}
+
+
+function updateWasAttended(lessonId) {
+    var lessonId = encodeURIComponent(lessonId);
+    var url = "http://mysite.fb/hobbyhorse/index.php/lesson/updateWasAttended/"+lessonId;
+    var xmlhttp;
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+        xmlhttp=new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+        xmlhttp=new ActiveXObject("Microsoft.XMLHTTP");
+    }
+    xmlhttp.onreadystatechange=function()
+    {
+        if (xmlhttp.readyState==4 && xmlhttp.status==200)
+        {
+            (xmlhttp.responseText);
+        }
+    }
+    xmlhttp.open("POST", url, true);
+    xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+    xmlhttp.send();  
 }

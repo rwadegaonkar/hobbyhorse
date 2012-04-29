@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
 
-import com.spring.datasource.CommonBean;
+import com.spring.datasource.Badge;
 import com.spring.manager.BadgeManager;
 
 @Controller
@@ -27,7 +27,7 @@ public class BadgeController {
 	@RequestMapping(method = RequestMethod.GET, value = "/")
 	public ModelAndView showBadges() {
 		BadgeManager badges = new BadgeManager();
-		ArrayList<CommonBean> allBadges = badges.getAllBadges();
+		ArrayList<Badge> allBadges = badges.getAllBadges();
 		ModelAndView mav = new ModelAndView(BADGE_VIEW_KEY);
 		mav.addObject("badges", allBadges);
 		return mav;

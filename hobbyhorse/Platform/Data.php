@@ -12,6 +12,7 @@ require_once('Platform/Data/Lessons.php');
 require_once('Platform/Data/LessonTypes.php');
 require_once('Platform/Data/Participants.php');
 require_once('Platform/Data/Comments.php');
+require_once('Platform/Data/Badges.php');
 
 /**
  *

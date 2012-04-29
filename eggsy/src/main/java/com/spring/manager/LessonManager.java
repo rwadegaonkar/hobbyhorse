@@ -84,6 +84,16 @@ public class LessonManager {
 			e.printStackTrace();
 		}
 		return null;
+	}	
+
+	public ArrayList<Lesson> getLessonsAttendedByUser(String username) {
+		try {
+			lessons = delegate.getLessonsAttendedByUser(conn, username);
+			return lessons;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 	
 	public ArrayList<Lesson> updateLessonIsLive(Lesson lesson) {

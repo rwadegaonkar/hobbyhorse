@@ -7,6 +7,8 @@ public class Participants extends CommonBean {
 	private int userId;
 	@JsonProperty
 	private int lessonId;
+	@JsonProperty
+	private int wasAttended;
 	
 	public int getUserId() {
 		return userId;
@@ -20,4 +22,11 @@ public class Participants extends CommonBean {
 	public void setLessonId(int lessonId) {
 		this.lessonId = lessonId;
 	}
+	public int getWasAttended() {
+		return wasAttended;
+	}
+	public void setWasAttended(int wasAttended) {
+		this.wasAttended = wasAttended;
+	}
+	
 }

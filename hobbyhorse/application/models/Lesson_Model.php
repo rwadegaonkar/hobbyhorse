@@ -27,7 +27,7 @@ class Lesson_Model extends CI_Model {
         $jsonObj = $myWrapper->request('lessons/lessontype/' . $lessonId);
         return Platform_Data::getDataObject($jsonObj);
     }
-    
+
     public function getLessonsByLessonId($lessonId) {
         $myWrapper = new Platform_Webservices_Wrapper();
         $jsonObj = $myWrapper->request('lessons/id/' . $lessonId);
@@ -45,20 +45,19 @@ class Lesson_Model extends CI_Model {
         $jsonObj = $myWrapper->request('lessons/lessontype/' . $lessonId);
         return $jsonObj;
     }
-    
+
     public function getLessonsByUsername() {
         $myWrapper = new Platform_Webservices_Wrapper();
         $jsonObj = $myWrapper->request('lessons/user/' . $_SESSION['user']->username);
         return Platform_Data::getDataObject($jsonObj);
     }
 
-    
     public function getLatestLesson($userId) {
         $myWrapper = new Platform_Webservices_Wrapper();
-        $jsonObj = $myWrapper->request('lessons/lastlesson/'.$userId);
+        $jsonObj = $myWrapper->request('lessons/lastlesson/' . $userId);
         return Platform_Data::getDataObject($jsonObj);
     }
-    
+
     public function joinLesson($participate) {
         $myWrapper = new Platform_Webservices_Wrapper();
         $jsonObj = $myWrapper->request('participants/join', "POST", $participate);
@@ -80,11 +79,31 @@ class Lesson_Model extends CI_Model {
             return $jsonObj;
         }
     }
-    
-    
+
+    public function lessonsAttended($method=null) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('lessons/attended/' . $_SESSION['user']->username);
+        if (!$method) {
+            return Platform_Data::getDataObject($jsonObj);
+        } else {
+            return $jsonObj;
+        }
+    }
+
     public function updateLessonIsLive($lesson) {
         $myWrapper = new Platform_Webservices_Wrapper();
         $myWrapper->request('lessons/updateislive', "POST", $lesson);
+    }
+
+    public function updateWasAttended($participant) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $myWrapper->request('participants/updatewasattended', "POST", $participant);
+    }
+    
+    public function getAllBadges() {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('badges/');
+        return Platform_Data::getDataObject($jsonObj);
     }
 
 }

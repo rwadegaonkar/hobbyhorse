@@ -26,7 +26,7 @@ public class LessonsController {
 		mav.addObject("lessons", lessonList);
 		return mav;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.POST, value = "/add", headers = "Accept=application/json")
 	@ResponseBody
 	public ModelAndView saveLesson(@RequestBody Lesson lesson) {
@@ -35,8 +35,8 @@ public class LessonsController {
 		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
 		mav.addObject("lessons", lessonSave);
 		return mav;
-	}	
-	
+	}
+
 	@RequestMapping(method = RequestMethod.POST, value = "/updateislive", headers = "Accept=application/json")
 	@ResponseBody
 	public ModelAndView updateLessonIsLive(@RequestBody Lesson lesson) {
@@ -45,36 +45,50 @@ public class LessonsController {
 		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
 		mav.addObject("lessons", lessonSave);
 		return mav;
-	}	
+	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/lessontype/{lessontypeid}")
-	public ModelAndView getLessonsByLessonId(@PathVariable("lessontypeid") int lessontypeid) {
+	public ModelAndView getLessonsByLessonId(
+			@PathVariable("lessontypeid") int lessontypeid) {
 		LessonManager lessonsByType = new LessonManager();
-		ArrayList<Lesson> lessonList = lessonsByType.getLessonsByLessonTypeId(lessontypeid);
+		ArrayList<Lesson> lessonList = lessonsByType
+				.getLessonsByLessonTypeId(lessontypeid);
 		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
 		mav.addObject("lessons", lessonList);
 		return mav;
 	}
-	
+
+	@RequestMapping(method = RequestMethod.GET, value = "/attended/{username}")
+	public ModelAndView getLessonsAttendedByUser(
+			@PathVariable("username") String username) {
+		LessonManager lessonsByType = new LessonManager();
+		ArrayList<Lesson> lessonList = lessonsByType
+				.getLessonsAttendedByUser(username);
+		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
+		mav.addObject("lessons", lessonList);
+		return mav;
+	}
 
 	@RequestMapping(method = RequestMethod.GET, value = "/user/{username}")
-	public ModelAndView getLessonsByUsername(@PathVariable("username") String username) {
+	public ModelAndView getLessonsByUsername(
+			@PathVariable("username") String username) {
 		LessonManager lessonsByType = new LessonManager();
-		ArrayList<Lesson> lessonList = lessonsByType.getLessonsByUsername(username);
+		ArrayList<Lesson> lessonList = lessonsByType
+				.getLessonsByUsername(username);
 		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
 		mav.addObject("lessons", lessonList);
 		return mav;
 	}
-	
+
 	@RequestMapping(method = RequestMethod.GET, value = "/lastlesson/{userId}")
 	public ModelAndView getLastLessonByUser(@PathVariable("userId") int userId) {
 		LessonManager lessonsByType = new LessonManager();
-		ArrayList<Lesson> lessonList = lessonsByType.getLastLessonByUser(userId);
+		ArrayList<Lesson> lessonList = lessonsByType
+				.getLastLessonByUser(userId);
 		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
 		mav.addObject("lessons", lessonList);
 		return mav;
 	}
-	
 
 	@RequestMapping(method = RequestMethod.GET, value = "/id/{id}")
 	public ModelAndView getLessonByLessonId(@PathVariable("id") int id) {

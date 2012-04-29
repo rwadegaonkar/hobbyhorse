@@ -66,6 +66,18 @@ class Lesson extends CI_Controller {
         $data['id'] = $lessonId;
         $this->lesson_model->updateLessonIsLive(json_encode($data));
     }
+    
+    public function updateWasAttended($lessonId) {
+        $data['name'] = 'a';
+        $data['description'] = "a";
+        $data['createdBy'] = $_SESSION['user']->username;
+        $data['lastUpdatedBy'] = $_SESSION['user']->username;
+        $data['lessonId'] = (int)$lessonId;
+        $data['id'] = (int)$lessonId;
+        $data['userId'] = 0;
+        $data['wasAttended'] = 1;
+        $this->lesson_model->updateWasAttended(json_encode($data));
+    }
 
     public function joinLesson($lessonId, $lessonName) {
         $request['lessonId'] = $lessonId;

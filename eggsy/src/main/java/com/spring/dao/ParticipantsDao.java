@@ -21,8 +21,8 @@ public class ParticipantsDao {
 	private static final String CURRENT_TIMESTAMP = dateFormat.format(date);
 	private static final String SELECT_ALL = "SELECT * FROM participants WHERE isDeleted=0";
 	private static final String SELECT_TO_CHECK_IF_JOINED = "SELECT * FROM participants as p, user as u WHERE p.isDeleted=0 and u.id=p.userId and p.lessonId =";
-	// Query to add participants in the participant table
-	private static final String INSERT_PARTICIPANT = "INSERT INTO participants(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, userId, lessonId) VALUES";
+	private static final String UPDATE_PARTICIPANT_ATTENDED = "UPDATE participants as p, user as u SET p.wasAttended=1 where u.id=p.userId and p.lessonId=";
+	private static final String INSERT_PARTICIPANT = "INSERT INTO participants(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, userId, lessonId, wasAttended) VALUES";
 	public Query query = new Query();
 	ArrayList<Participants> participants = new ArrayList<Participants>();
 
@@ -45,7 +45,7 @@ public class ParticipantsDao {
 				+ participant.getCreatedBy() + "','"
 				+ participant.getLastUpdatedBy() + "','" + CURRENT_TIMESTAMP
 				+ "','" + CURRENT_TIMESTAMP + "','" + participant.getUserId()
-				+ "','" + participant.getLessonId() + "')";
+				+ "','" + participant.getLessonId() + "',0)";
 		query.executeUpdate(insertQuery, conn);
 		return participants;
 
@@ -62,6 +62,14 @@ public class ParticipantsDao {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
+		return participants;
+	}
+
+	public ArrayList<Participants> updateParticipantAttendance(Connection conn,
+			Participants participant) {
+		query.executeUpdate(
+				UPDATE_PARTICIPANT_ATTENDED + participant.getLessonId()
+						+ " AND u.username='" + participant.getCreatedBy()+"'", conn);
 		return participants;
 	}
 

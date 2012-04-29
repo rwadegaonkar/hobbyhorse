@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.support.ByteArrayMultipartFileEditor;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.spring.datasource.Lesson;
 import com.spring.datasource.Participants;
 import com.spring.manager.BadgeManager;
+import com.spring.manager.LessonManager;
 import com.spring.manager.ParticipantsManager;
 
 @Controller
@@ -55,4 +57,15 @@ public class ParticipantsController {
 		mav.addObject("participants", allparticipants);
 		return mav;
 	}
+	
+
+	@RequestMapping(method = RequestMethod.POST, value = "/updatewasattended", headers = "Accept=application/json")
+	@ResponseBody
+	public ModelAndView updateWasAttended(@RequestBody Participants participant) {
+		ParticipantsManager participantUpdate = new ParticipantsManager();
+		participantUpdate.updateParticipantAttendance(participant);
+		ModelAndView mav = new ModelAndView(PARTICIPANTS_VIEW_KEY);
+		mav.addObject("participants", participantUpdate);
+		return mav;
+	}	
 }

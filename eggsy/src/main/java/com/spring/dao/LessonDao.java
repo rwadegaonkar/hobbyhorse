@@ -24,6 +24,7 @@ public class LessonDao {
 	private static final String SELECT_LAST_LESSON = "SELECT * FROM lesson WHERE id = (SELECT MAX( id ) FROM lesson ) and userId=";
 	private static final String SELECT_BY_LESSONID = "SELECT * FROM lesson WHERE isDeleted=0 and CONCAT_WS(' ', eventDate, eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and id=";
 	private static final String UPDATE_LESSON_ISLIVE = "UPDATE lesson SET isLive=";
+	private static final String LESSONS_ATTENDED_BY_USER = "Select l.* from participants as p, lesson as l, user as u where p.lessonId=l.id and p.userId=u.id and p.wasAttended=1 and u.username=";
 
 	public Query query = new Query();
 	ArrayList<Lesson> lessons = new ArrayList<Lesson>();
@@ -98,6 +99,19 @@ public class LessonDao {
 
 	public ArrayList<Lesson> getLessonByLessonId(Connection conn, int id) {
 		ResultSet rs = query.executeQuery(SELECT_BY_LESSONID + id, conn);
+		try {
+			lessons = rowMapper.convertLessonBean(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lessons;
+	}
+
+	public ArrayList<Lesson> getLessonsAttendedByUser(Connection conn,
+			String username) {
+		ResultSet rs = query.executeQuery(LESSONS_ATTENDED_BY_USER + "'"
+				+ username + "'", conn);
 		try {
 			lessons = rowMapper.convertLessonBean(rs);
 		} catch (SQLException e) {

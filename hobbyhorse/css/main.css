@@ -64,3 +64,18 @@
 .rating {
     padding: 5px 0 5px 0;
 }
+
+table.badgeDesc, table.badgeDesc tr, table.badgeDesc td{
+    border: 1px dotted gold;
+}
+table.badgeDesc tr, table.badgeDesc td{
+    padding: 5px;
+}
+
+.label {
+    font-weight: bold;
+}
+
+.red {
+    color: red;
+}

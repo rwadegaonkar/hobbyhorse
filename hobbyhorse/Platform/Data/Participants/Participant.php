@@ -17,6 +17,10 @@ class Platform_Data_Participants_Participant extends Platform_Data_Base {
      * @var
      */
     protected $_userId;
+    /**
+     * @var
+     */
+    protected $_wasAttended;
 
     public function getLessonId() {
         return $this->_lessonId;
@@ -38,6 +42,17 @@ class Platform_Data_Participants_Participant extends Platform_Data_Base {
      */
     public function setUserId($userId) {
         $this->_userId = $userId;
+    }
+    
+    public function getWasAttended() {
+        return $this->_wasAttended;
+    }
+
+    /**
+     * @param  $wasAttended
+     */
+    public function setWasAttended($wasAttended) {
+        $this->_wasAttended = $wasAttended;
     }
 
 }

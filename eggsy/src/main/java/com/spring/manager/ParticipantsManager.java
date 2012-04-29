@@ -45,4 +45,14 @@ public class ParticipantsManager {
 		participants = delegate.checkIfLessonJoined(conn, lessonid, username);
 		return participants;
 	}
+	
+	public ArrayList<Participants> updateParticipantAttendance(Participants participant) {
+		try {
+			participants = delegate.updateParticipantAttendance(conn, participant);
+			return participants;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

@@ -22,7 +22,7 @@ if ($l->username == $_SESSION['user']->name) {
 ?></p>
         <p><?php echo $l->description ?></p>
 
-          <input type="button" id="startLesson" value="Start Lesson" onclick="startLesson('<?php echo $l->sessionId ?>');showEndLessonButton('<?php echo $l->createdBy ?>','<?php echo $_SESSION['user']->username ?>');updateLessonObject('<?php echo $l->id ?>','1')"/>
+          <input type="button" id="startLesson" value="Start Lesson" onclick="startLesson('<?php echo $l->sessionId ?>');showEndLessonButton('<?php echo $l->createdBy ?>','<?php echo $_SESSION['user']->username ?>');updateLessonObject('<?php echo $l->id ?>','1');updateWasAttended('<?php echo $l->id ?>')"/>
     </div>
     <div id="myPublisherDiv"></div>
     <div id="endLesson"></div>
