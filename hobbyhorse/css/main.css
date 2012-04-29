@@ -72,7 +72,7 @@ table.badgeDesc tr, table.badgeDesc td{
     padding: 5px;
 }
 
-.label {
+.label, .badgeLevel {
     font-weight: bold;
 }
 
