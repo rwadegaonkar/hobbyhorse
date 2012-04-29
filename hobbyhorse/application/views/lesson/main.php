@@ -7,7 +7,7 @@ $l = $lesson;
 ?>
 <section class="main-content">
     <div class="">
-        <h2  class="lessonName"><?php echo $l->name ?></h2>
+        <h2  class="lessonName"><?php echo ucfirst($l->name) ?></h2>
         <h5 class="expertname">The Expert: <?php
 if ($l->username == $_SESSION['user']->name) {
     echo "Me !";

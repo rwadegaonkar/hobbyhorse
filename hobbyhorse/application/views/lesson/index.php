@@ -12,7 +12,7 @@
                 <?php
                 foreach ($lessonTypes->data as $lessontype) {
                     ?>
-                    <option value="<?php echo $lessontype->id ?>"><?php echo $lessontype->name ?></option>
+                    <option value="<?php echo $lessontype->id ?>"><?php echo ucfirst($lessontype->name) ?></option>
                 <?php } ?>
             </select>
         </p>
@@ -24,11 +24,11 @@
             ?>
             <div class="div2">
                 <?php if ($joined[$l->id] != 0) { ?>
-                    <h4 class="lessonName"><a href="<?php echo base_url() ?>index.php/lesson/main/<?php echo $l->id ?>"><?php echo $l->name ?></a></h4> 
+                    <h4 class="lessonName"><a href="<?php echo base_url() ?>index.php/lesson/main/<?php echo $l->id ?>"><?php echo ucfirst($l->name) ?></a></h4> 
                     <?php
                 } else {
                     ?>
-                    <h4 class="lessonName"><?php echo $l->name ?></h4> 
+                    <h4 class="lessonName"><?php echo ucfirst($l->name) ?></h4> 
                     <?php
                 }
                 ?>

@@ -38,19 +38,20 @@
         <p>You have attended: <span class="label"><?php echo count($lessons->data); ?> Lesson(s)
             </span></p>
         <?php
-        if (count($lessons->data) > 4) {
+        $badgeAttained = "None !";
+        if (count($lessons->data) > 0) {
             foreach ($badges->data as $badge) {
                 if (count($lessons->data) > $badge->lessonCount) {
                     $badgeAttained = $badge->name;
+                    echo "<br/>";
+                    echo "<img src='images/badges/$badge->id.jpg' class='badgeImg'>";
                 }
             }
-        } else {
-            $badgeAttained = "None !";
-        }
+        } 
         ?>
         <p>
             <?php if ($badgeAttained == "None !") { ?>
-               Badges Attained: <span class="red"> <?php echo $badgeAttained ?></span>
+                Badges Attained: <span class="red"> <?php echo $badgeAttained ?></span>
                 <br/><br/><a href="index.php/lesson/">Start Learning More Now! </a>
             <?php } else { ?>
                 Badges Attained: <span class="badgeLevel"><?php echo $badgeAttained ?></span>

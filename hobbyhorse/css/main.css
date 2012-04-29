@@ -79,3 +79,8 @@ table.badgeDesc tr, table.badgeDesc td{
 .red {
     color: red;
 }
+
+.badgeImg {
+    height: 200px;
+    width: 200px;
+}

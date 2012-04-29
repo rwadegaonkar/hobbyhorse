@@ -5,14 +5,14 @@
  */
 ?>
 <section class="main-content">
-        <?php echo "<h2> My Forthcoming Lessons</h2>" ?>
+    <?php echo "<h2> My Forthcoming Lessons</h2>" ?>
 
     <section id="lessonList">
         <?php
         foreach ($lessons->data as $l) {
             ?>
             <div class="div2">
-                <h4 class="lessonName"><a href="<?php echo base_url()?>index.php/lesson/main/<?php echo $l->id?>"><?php echo $l->name ?></a></h4> 
+                <h4 class="lessonName"><a href="<?php echo base_url() ?>index.php/lesson/main/<?php echo $l->id ?>"><?php echo ucfirst($l->name) ?></a></h4> 
                 <h5 class="expertname">The Expert: <?php
         if ($l->username == $_SESSION['user']->name) {
             echo "Me !";
@@ -21,21 +21,25 @@
         }
             ?></h5>
                 <p><?php
-                echo "Starts on: " . date("M d, Y",strtotime($l->eventDate));
+                echo "Starts on: " . date("M d, Y", strtotime($l->eventDate));
                 echo " at ";
                 echo $l->eventTime
             ?></p>
                 <p><?php echo $l->description ?>
-                <div class="rating">
-                    Rating for the Expert:<br/> 
-                    <?php
-                    for ($i = 0; $i < $l->rating; $i++) {
+                    <?php if ($l->rating > 0) {
                         ?>
-                        <img src="images/gold_star.jpeg" />
+                        }
+                    <div class="rating">
+                        Rating for the Expert:<br/> 
                         <?php
-                    }
-                    ?>
-                </div></p>
+                        for ($i = 0; $i < $l->rating; $i++) {
+                            ?>
+                            <img src="images/gold_star.jpeg" />
+                            <?php
+                        }
+                        ?>
+                    </div> <?php }
+                    ?></p>
                   </div>
             <?php
         }

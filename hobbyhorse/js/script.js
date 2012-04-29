@@ -3,6 +3,10 @@
  * and open the template in the editor.
  */
 
+String.prototype.capitalize = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
+
 function getLessonByTypes(id) {
     var e = document.getElementById("lessonCategories");
     var id = e.options[e.selectedIndex].value;
@@ -53,7 +57,7 @@ function updateResponse(resp) {
         h5Element.setAttribute("class","expertname");
         h4Element.setAttribute("class","lessonName");
         h4Element.setAttribute("id","lessonName"+lessonJson[j].id)
-        var h4Text = document.createTextNode(lessonJson[j].name)
+        var h4Text = document.createTextNode(lessonJson[j].name.capitalize())
         var h5Text = document.createTextNode("The Expert: " +lessonJson[j].username);
         var divRatingElement = document.createElement("div");
         divRatingElement.setAttribute("class","rating");
@@ -170,7 +174,7 @@ function checkResponse(resp) {
     var lessonJson = eval('(' + resp + ')');
     if(lessonJson.length > 0) {
         document.getElementById(lessonJson[0].lessonId).disabled = true;
-        document.getElementById("lessonName"+lessonJson[0].lessonId).innerHTML = "<a href='http://mysite.fb/hobbyhorse/index.php/lesson/main/"+lessonJson[0].lessonId+"'>"+lessonJson[0].name+"</a>";
+        document.getElementById("lessonName"+lessonJson[0].lessonId).innerHTML = "<a href='http://mysite.fb/hobbyhorse/index.php/lesson/main/"+lessonJson[0].lessonId+"'>"+lessonJson[0].name.capitalize()+"</a>";
     }
 }
 
