@@ -25,6 +25,7 @@ public class LessonDao {
 	private static final String SELECT_BY_LESSONID = "SELECT * FROM lesson WHERE isDeleted=0 and CONCAT_WS(' ', eventDate, eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and id=";
 	private static final String UPDATE_LESSON_ISLIVE = "UPDATE lesson SET isLive=";
 	private static final String LESSONS_ATTENDED_BY_USER = "Select l.* from participants as p, lesson as l, user as u where p.lessonId=l.id and p.userId=u.id and p.wasAttended=1 and u.username=";
+	private static final String SELECT_SUGGESTED_LESSONS = "Select l.* from lesson as l, lessonType as lt where l.lessonTypeId=lt.id and (LOWER(l.name) like";
 
 	public Query query = new Query();
 	ArrayList<Lesson> lessons = new ArrayList<Lesson>();
@@ -111,6 +112,30 @@ public class LessonDao {
 			String username) {
 		ResultSet rs = query.executeQuery(LESSONS_ATTENDED_BY_USER + "'"
 				+ username + "'", conn);
+		try {
+			lessons = rowMapper.convertLessonBean(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lessons;
+	}
+
+	public ArrayList<Lesson> getSuggestedLesson(Connection conn, String name,
+			String category, String username) {
+		ResultSet rs = query
+				.executeQuery(
+						SELECT_SUGGESTED_LESSONS
+								+ "'%"
+								+ name
+								+ "%' or LOWER(l.name) like '%"
+								+ category
+								+ "%' or LOWER(lt.name) like '%"
+								+ name
+								+ "%' or LOWER(lt.name) like '%"
+								+ category
+								+ "%') AND l.id NOT IN ( SELECT p.lessonId FROM participants AS p, user as u WHERE p.userId = u.id and u.username= '"
+								+ username + "')  group by l.id", conn);
 		try {
 			lessons = rowMapper.convertLessonBean(rs);
 		} catch (SQLException e) {

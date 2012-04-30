@@ -90,6 +90,18 @@ class Lesson_Model extends CI_Model {
         }
     }
 
+    public function getSuggestedLessons($name, $category, $method=null) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $clean_name = preg_replace('/[^a-zA-Z0-9.]/', '', $name);
+        $clean_category = preg_replace('/[^a-zA-Z0-9.]/', '', $category);
+        $jsonObj = $myWrapper->request('lessons/suggest/' . strtolower($clean_name) . "/" . strtolower($clean_category) . "/" . $_SESSION['user']->username);
+        if (!$method) {
+            return Platform_Data::getDataObject($jsonObj);
+        } else {
+            return $jsonObj;
+        }
+    }
+
     public function updateLessonIsLive($lesson) {
         $myWrapper = new Platform_Webservices_Wrapper();
         $myWrapper->request('lessons/updateislive', "POST", $lesson);
@@ -99,7 +111,7 @@ class Lesson_Model extends CI_Model {
         $myWrapper = new Platform_Webservices_Wrapper();
         $myWrapper->request('participants/updatewasattended', "POST", $participant);
     }
-    
+
     public function getAllBadges() {
         $myWrapper = new Platform_Webservices_Wrapper();
         $jsonObj = $myWrapper->request('badges/');

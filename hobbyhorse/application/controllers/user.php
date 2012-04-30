@@ -15,6 +15,7 @@ class User extends CI_Controller {
     public function __construct() {
         parent::__construct();
         $this->load->model('User_Model', 'user_model');
+        $this->load->model('Lesson_Model', 'lesson_model');
     }
 
     public function index() {
@@ -50,6 +51,9 @@ class User extends CI_Controller {
             $data['likes'] = $likes;
             $_SESSION['user'] = $user;
             $_SESSION['likes'] = $likes;
+            foreach ($data['likes']->data as $like) {
+                $data['suggested_lessons'][] = $this->lesson_model->getSuggestedLessons($like->name, $like->category)->lessons->data;
+            }
             $_SESSION['loginType'] = 2;
             $dataToSend = createUserObject($user);
             $user = $this->user_model->saveUser(json_encode($dataToSend));
@@ -69,6 +73,7 @@ class User extends CI_Controller {
                 $data['likes'] = $_SESSION['likes'];
             }
             $data['loginType'] = $_SESSION['loginType'];
+            $data['suggested_lessons'][] = $this->lesson_model->getSuggestedLessons('guitar', 'guitar')->lessons->data;
             $data['content'] = $this->load->view('user/home', $data, true);
             $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
             $this->load->view('templates/main', $data);
@@ -128,6 +133,16 @@ class User extends CI_Controller {
             $_SESSION['loginType'] = 1;
             $data['title'] = 'Hobbyhorse - Home';
             $data['user'] = $_SESSION['user'];
+            $skills = explode("^:^", $_SESSION['user']->skills);
+            $hobbies = explode("^:^", $_SESSION['user']->hobbies);
+            $combination = array();
+            foreach ($skills as $skill) {
+                foreach ($hobbies as $hobby) {
+                    if ($hobby != $skill) {
+                        $data['suggested_lessons'][] = $this->lesson_model->getSuggestedLessons($skill, $hobby)->lessons->data;
+                    }
+                }
+            }
             $data['content'] = $this->load->view('user/home', $data, true);
             $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
             $this->load->view('templates/main', $data);
@@ -151,7 +166,7 @@ class User extends CI_Controller {
     }
 
     function getUserByUsername($userName) {
-        $userData = $this->user_model->getUserByUsername($userName,"ajax");
+        $userData = $this->user_model->getUserByUsername($userName, "ajax");
         echo(json_encode($userData->users));
     }
 

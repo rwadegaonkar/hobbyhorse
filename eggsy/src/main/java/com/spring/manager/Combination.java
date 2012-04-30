@@ -95,10 +95,6 @@ public class Combination {
 								1));
 						aprioriLesson.setSupport((sup * 100) + "");
 						aprioriLessonManager.saveAprioriLesson(aprioriLesson);
-						System.out.println("Total support for lessonId "
-								+ lessonId + " and Set: "
-								+ combinations.get(key).toString() + " is "
-								+ (sup * 100) + "%");
 					}
 				}
 			}

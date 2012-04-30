@@ -12,24 +12,24 @@ import com.spring.conf.ConnMysql;
 import com.spring.dao.LessonDao;
 import com.spring.datasource.Lesson;
 
-@XmlRootElement(name="lessons")
+@XmlRootElement(name = "lessons")
 public class LessonManager {
 	@JsonIgnore
 	Connection conn = ConnMysql.connect();
 	@JsonIgnore
-	LessonDao delegate = new LessonDao();	
-	
+	LessonDao delegate = new LessonDao();
+
 	private ArrayList<Lesson> lessons = new ArrayList<Lesson>();
-	
+
 	public ArrayList<Lesson> getLessons() {
 		return lessons;
-	}	
-	
+	}
+
 	@XmlElement
 	public void setLessons(ArrayList<Lesson> lessonBeanList) {
 		this.lessons = lessonBeanList;
 	}
-	
+
 	public ArrayList<Lesson> getAllLessons() {
 		try {
 			lessons = delegate.getAllLessons(conn);
@@ -43,7 +43,7 @@ public class LessonManager {
 	public void saveLesson(Lesson lesson) {
 		lessons = delegate.saveLesson(conn, lesson);
 	}
-	
+
 	public ArrayList<Lesson> getLessonsByLessonTypeId(int lessonId) {
 		try {
 			lessons = delegate.getLessonsByLessonTypeId(conn, lessonId);
@@ -53,7 +53,6 @@ public class LessonManager {
 		}
 		return null;
 	}
-	
 
 	public ArrayList<Lesson> getLessonsByUsername(String username) {
 		try {
@@ -64,7 +63,7 @@ public class LessonManager {
 		}
 		return null;
 	}
-	
+
 	public ArrayList<Lesson> getLastLessonByUser(int userId) {
 		try {
 			lessons = delegate.getLastLessonByUser(conn, userId);
@@ -74,7 +73,6 @@ public class LessonManager {
 		}
 		return null;
 	}
-	
 
 	public ArrayList<Lesson> getLessonByLessonId(int id) {
 		try {
@@ -84,7 +82,7 @@ public class LessonManager {
 			e.printStackTrace();
 		}
 		return null;
-	}	
+	}
 
 	public ArrayList<Lesson> getLessonsAttendedByUser(String username) {
 		try {
@@ -95,7 +93,7 @@ public class LessonManager {
 		}
 		return null;
 	}
-	
+
 	public ArrayList<Lesson> updateLessonIsLive(Lesson lesson) {
 		try {
 			lessons = delegate.updateLessonIsLive(conn, lesson);
@@ -105,5 +103,15 @@ public class LessonManager {
 		}
 		return null;
 	}
-	
+
+	public ArrayList<Lesson> getSuggestedLesson(String name, String category, String username) {
+		try {
+			lessons = delegate.getSuggestedLesson(conn, name, category, username);
+			return lessons;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 }

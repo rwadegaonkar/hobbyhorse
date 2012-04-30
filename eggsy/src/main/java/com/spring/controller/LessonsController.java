@@ -98,4 +98,16 @@ public class LessonsController {
 		mav.addObject("lessons", lessonList);
 		return mav;
 	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/suggest/{name}/{category}/{username}")
+	public ModelAndView getSuggestedLesson(@PathVariable("name") String name,
+			@PathVariable("category") String category,
+			@PathVariable("username") String username) {
+		LessonManager lessonsByType = new LessonManager();
+		ArrayList<Lesson> lessonList = lessonsByType.getSuggestedLesson(name,
+				category, username);
+		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
+		mav.addObject("lessons", lessonList);
+		return mav;
+	}
 }
