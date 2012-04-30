@@ -24,6 +24,7 @@ public class UserDao {
 	private static final String DELETE_BY_USERNAME = "UPDATE user SET isDeleted=1 where username=";
 	private static final String AVERAGE_RATING_FOR_USERID = "SELECT AVG( c.rating ) as rating FROM comment as c,user as u WHERE userId=u.id and u.id =";
 	private static final String INSERT_USER = "INSERT INTO user(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, username, password, email, skills, hobbies, location, loginTypeId) VALUES";
+	private static final String SELECT_BY_USERS_BY_LESSONID = "SELECT u.* from user as u, participants as p WHERE p.userId=u.id and p.lessonId=";
 
 	public Query query = new Query();
 	ArrayList<User> users = new ArrayList<User>();
@@ -73,6 +74,19 @@ public class UserDao {
 		return users;
 	}
 
+	public ArrayList<User> getTotalUsersParticipatedByLessonId(Connection conn,
+			int lessonid) {
+		ResultSet rs = query.executeQuery(SELECT_BY_USERS_BY_LESSONID
+				+ lessonid, conn);
+		try {
+			users = rowMapper.convertUserBean(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return users;
+	}
+
 	public void deleteUser(Connection conn, String username) {
 		query.executeUpdate(DELETE_BY_USERNAME + "'" + username + "'", conn);
 	}
@@ -104,7 +118,6 @@ public class UserDao {
 			return null;
 		}
 	}
-	
 
 	public int getAverageRating(Connection conn, int userid) {
 		String checkQuery = AVERAGE_RATING_FOR_USERID + userid;

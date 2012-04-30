@@ -12,7 +12,7 @@ import com.spring.conf.ConnMysql;
 import com.spring.dao.UserDao;
 import com.spring.datasource.User;
 
-@XmlRootElement(name="users")
+@XmlRootElement(name = "users")
 public class UserManager {
 	@JsonIgnore
 	Connection conn = ConnMysql.connect();
@@ -24,7 +24,7 @@ public class UserManager {
 	public ArrayList<User> getUsers() {
 		return users;
 	}
-	
+
 	@XmlElement
 	public void setUsers(ArrayList<User> userBeanList) {
 		this.users = userBeanList;
@@ -49,17 +49,19 @@ public class UserManager {
 		}
 		return null;
 	}
-	
-	public ArrayList<User> getUserByUsernameAndPassword(String username, String password) {
+
+	public ArrayList<User> getUserByUsernameAndPassword(String username,
+			String password) {
 		try {
-			users = delegate.getUserByUsernameAndPassword(conn, username, password);
+			users = delegate.getUserByUsernameAndPassword(conn, username,
+					password);
 			return users;
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return null;
 	}
-	
+
 	public ArrayList<User> getUserByUserId(long id) {
 		try {
 			users = delegate.getUserByUserId(conn, id);
@@ -76,18 +78,27 @@ public class UserManager {
 
 	public ArrayList<User> saveUser(User user) {
 		users = delegate.saveUser(conn, user);
-		System.out.println(users+"MANAGER*****");
 		return users;
 	}
-	
 
 	public int getAverageRating(int userid) {
 		int rating = 0;
 		try {
 			rating = delegate.getAverageRating(conn, userid);
-		}catch (Exception e) {
+		} catch (Exception e) {
 			e.printStackTrace();
 		}
 		return rating;
+	}
+
+	public ArrayList<User> getTotalUsersParticipatedByLessonId(int lessonid) {
+		try {
+			users = delegate
+					.getTotalUsersParticipatedByLessonId(conn, lessonid);
+			return users;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
 	}
 }

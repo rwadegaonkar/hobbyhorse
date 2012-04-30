@@ -1,0 +1,617 @@
+Connected to the database
+Connected to the database
+Connected to the database
+Connected to the database
+Connected to the database
+INSERT INTO apriori(main, association, support) VALUES('23','38','100.0')***********
+Total support for lessonId 23 and Set: [23, 38] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('23','40','50.0')***********
+Total support for lessonId 23 and Set: [23, 40] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','41','50.0')***********
+Total support for lessonId 23 and Set: [23, 41] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','44','50.0')***********
+Total support for lessonId 23 and Set: [23, 44] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','51','50.0')***********
+Total support for lessonId 23 and Set: [23, 51] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','52','50.0')***********
+Total support for lessonId 23 and Set: [23, 52] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','53','50.0')***********
+Total support for lessonId 23 and Set: [23, 53] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','60','50.0')***********
+Total support for lessonId 23 and Set: [23, 60] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','61','50.0')***********
+Total support for lessonId 23 and Set: [23, 61] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','62','50.0')***********
+Total support for lessonId 23 and Set: [23, 62] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','81','50.0')***********
+Total support for lessonId 23 and Set: [23, 81] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','82','50.0')***********
+Total support for lessonId 23 and Set: [23, 82] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','87','50.0')***********
+Total support for lessonId 23 and Set: [23, 87] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','89','50.0')***********
+Total support for lessonId 23 and Set: [23, 89] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('23','93','50.0')***********
+Total support for lessonId 23 and Set: [23, 93] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','23','100.0')***********
+Total support for lessonId 38 and Set: [38, 23] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('38','40','50.0')***********
+Total support for lessonId 38 and Set: [38, 40] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','41','50.0')***********
+Total support for lessonId 38 and Set: [38, 41] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','44','50.0')***********
+Total support for lessonId 38 and Set: [38, 44] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','51','50.0')***********
+Total support for lessonId 38 and Set: [38, 51] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','52','50.0')***********
+Total support for lessonId 38 and Set: [38, 52] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','53','50.0')***********
+Total support for lessonId 38 and Set: [38, 53] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','60','50.0')***********
+Total support for lessonId 38 and Set: [38, 60] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','61','50.0')***********
+Total support for lessonId 38 and Set: [38, 61] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','62','50.0')***********
+Total support for lessonId 38 and Set: [38, 62] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','81','50.0')***********
+Total support for lessonId 38 and Set: [38, 81] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','82','50.0')***********
+Total support for lessonId 38 and Set: [38, 82] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','87','50.0')***********
+Total support for lessonId 38 and Set: [38, 87] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','89','50.0')***********
+Total support for lessonId 38 and Set: [38, 89] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('38','93','50.0')***********
+Total support for lessonId 38 and Set: [38, 93] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('40','23','100.0')***********
+Total support for lessonId 40 and Set: [40, 23] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('40','38','100.0')***********
+Total support for lessonId 40 and Set: [40, 38] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('40','41','100.0')***********
+Total support for lessonId 40 and Set: [40, 41] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('40','44','100.0')***********
+Total support for lessonId 40 and Set: [40, 44] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('40','82','100.0')***********
+Total support for lessonId 40 and Set: [40, 82] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('41','23','100.0')***********
+Total support for lessonId 41 and Set: [41, 23] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('41','38','100.0')***********
+Total support for lessonId 41 and Set: [41, 38] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('41','40','100.0')***********
+Total support for lessonId 41 and Set: [41, 40] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('41','44','100.0')***********
+Total support for lessonId 41 and Set: [41, 44] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('41','82','100.0')***********
+Total support for lessonId 41 and Set: [41, 82] is 100.0%
+INSERT INTO apriori(main, association, support) VALUES('44','23','33.33333333333333')***********
+Total support for lessonId 44 and Set: [44, 23] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('44','38','33.33333333333333')***********
+Total support for lessonId 44 and Set: [44, 38] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('44','40','33.33333333333333')***********
+Total support for lessonId 44 and Set: [44, 40] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('44','41','33.33333333333333')***********
+Total support for lessonId 44 and Set: [44, 41] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('44','50','33.33333333333333')***********
+Total support for lessonId 44 and Set: [44, 50] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('44','63','33.33333333333333')***********
+Total support for lessonId 44 and Set: [44, 63] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('44','82','33.33333333333333')***********
+Total support for lessonId 44 and Set: [44, 82] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('46','52','25.0')***********
+Total support for lessonId 46 and Set: [46, 52] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('46','54','25.0')***********
+Total support for lessonId 46 and Set: [46, 54] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('46','60','25.0')***********
+Total support for lessonId 46 and Set: [46, 60] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('46','67','25.0')***********
+Total support for lessonId 46 and Set: [46, 67] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('47','49','33.33333333333333')***********
+Total support for lessonId 47 and Set: [47, 49] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('47','53','33.33333333333333')***********
+Total support for lessonId 47 and Set: [47, 53] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('47','82','33.33333333333333')***********
+Total support for lessonId 47 and Set: [47, 82] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('47','89','33.33333333333333')***********
+Total support for lessonId 47 and Set: [47, 89] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('48','51','25.0')***********
+Total support for lessonId 48 and Set: [48, 51] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('48','73','25.0')***********
+Total support for lessonId 48 and Set: [48, 73] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('49','47','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 47] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('49','53','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 53] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('49','57','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 57] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('49','62','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 62] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('49','68','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 68] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('49','73','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 73] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('49','74','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 74] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('49','87','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 87] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('49','89','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 89] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('49','93','16.666666666666664')***********
+Total support for lessonId 49 and Set: [49, 93] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('50','44','50.0')***********
+Total support for lessonId 50 and Set: [50, 44] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('51','23','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 23] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','38','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 38] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','48','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 48] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','52','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 52] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','53','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 53] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','57','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 57] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','60','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 60] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','61','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 61] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','62','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 62] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','74','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 74] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','81','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 81] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','82','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 82] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','87','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 87] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','89','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 89] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('51','93','16.666666666666664')***********
+Total support for lessonId 51 and Set: [51, 93] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('52','23','25.0')***********
+Total support for lessonId 52 and Set: [52, 23] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','38','25.0')***********
+Total support for lessonId 52 and Set: [52, 38] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','46','25.0')***********
+Total support for lessonId 52 and Set: [52, 46] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','51','25.0')***********
+Total support for lessonId 52 and Set: [52, 51] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','53','25.0')***********
+Total support for lessonId 52 and Set: [52, 53] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','60','25.0')***********
+Total support for lessonId 52 and Set: [52, 60] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','61','25.0')***********
+Total support for lessonId 52 and Set: [52, 61] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','62','25.0')***********
+Total support for lessonId 52 and Set: [52, 62] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','67','25.0')***********
+Total support for lessonId 52 and Set: [52, 67] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','71','25.0')***********
+Total support for lessonId 52 and Set: [52, 71] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','81','25.0')***********
+Total support for lessonId 52 and Set: [52, 81] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','85','25.0')***********
+Total support for lessonId 52 and Set: [52, 85] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','87','25.0')***********
+Total support for lessonId 52 and Set: [52, 87] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','89','25.0')***********
+Total support for lessonId 52 and Set: [52, 89] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('52','93','25.0')***********
+Total support for lessonId 52 and Set: [52, 93] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('53','23','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 23] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','38','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 38] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','47','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 47] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','49','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 49] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','51','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 51] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','52','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 52] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','60','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 60] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','61','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 61] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','62','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 62] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','71','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 71] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','81','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 81] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','87','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 87] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('53','89','33.33333333333333')***********
+Total support for lessonId 53 and Set: [53, 89] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('53','93','16.666666666666664')***********
+Total support for lessonId 53 and Set: [53, 93] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('54','46','50.0')***********
+Total support for lessonId 54 and Set: [54, 46] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('54','56','50.0')***********
+Total support for lessonId 54 and Set: [54, 56] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('54','60','50.0')***********
+Total support for lessonId 54 and Set: [54, 60] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('54','78','50.0')***********
+Total support for lessonId 54 and Set: [54, 78] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('54','84','50.0')***********
+Total support for lessonId 54 and Set: [54, 84] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('55','76','25.0')***********
+Total support for lessonId 55 and Set: [55, 76] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('56','54','16.666666666666664')***********
+Total support for lessonId 56 and Set: [56, 54] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('56','58','16.666666666666664')***********
+Total support for lessonId 56 and Set: [56, 58] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('56','66','16.666666666666664')***********
+Total support for lessonId 56 and Set: [56, 66] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('56','70','16.666666666666664')***********
+Total support for lessonId 56 and Set: [56, 70] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('56','78','16.666666666666664')***********
+Total support for lessonId 56 and Set: [56, 78] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('56','84','16.666666666666664')***********
+Total support for lessonId 56 and Set: [56, 84] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('56','85','16.666666666666664')***********
+Total support for lessonId 56 and Set: [56, 85] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('56','87','16.666666666666664')***********
+Total support for lessonId 56 and Set: [56, 87] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('56','90','16.666666666666664')***********
+Total support for lessonId 56 and Set: [56, 90] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('57','49','33.33333333333333')***********
+Total support for lessonId 57 and Set: [57, 49] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('57','51','33.33333333333333')***********
+Total support for lessonId 57 and Set: [57, 51] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('58','56','33.33333333333333')***********
+Total support for lessonId 58 and Set: [58, 56] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('58','81','33.33333333333333')***********
+Total support for lessonId 58 and Set: [58, 81] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('58','87','33.33333333333333')***********
+Total support for lessonId 58 and Set: [58, 87] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('58','94','33.33333333333333')***********
+Total support for lessonId 58 and Set: [58, 94] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('59','66','33.33333333333333')***********
+Total support for lessonId 59 and Set: [59, 66] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('59','81','33.33333333333333')***********
+Total support for lessonId 59 and Set: [59, 81] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('60','23','25.0')***********
+Total support for lessonId 60 and Set: [60, 23] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','38','25.0')***********
+Total support for lessonId 60 and Set: [60, 38] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','46','25.0')***********
+Total support for lessonId 60 and Set: [60, 46] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','51','25.0')***********
+Total support for lessonId 60 and Set: [60, 51] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','52','25.0')***********
+Total support for lessonId 60 and Set: [60, 52] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','53','25.0')***********
+Total support for lessonId 60 and Set: [60, 53] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','54','25.0')***********
+Total support for lessonId 60 and Set: [60, 54] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','61','25.0')***********
+Total support for lessonId 60 and Set: [60, 61] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','62','25.0')***********
+Total support for lessonId 60 and Set: [60, 62] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','64','25.0')***********
+Total support for lessonId 60 and Set: [60, 64] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','81','25.0')***********
+Total support for lessonId 60 and Set: [60, 81] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','87','25.0')***********
+Total support for lessonId 60 and Set: [60, 87] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','89','25.0')***********
+Total support for lessonId 60 and Set: [60, 89] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('60','93','25.0')***********
+Total support for lessonId 60 and Set: [60, 93] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('61','23','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 23] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','38','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 38] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','51','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 51] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','52','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 52] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','53','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 53] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','60','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 60] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','62','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 62] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','64','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 64] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','68','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 68] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','72','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 72] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','81','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 81] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','87','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 87] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','89','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 89] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('61','93','16.666666666666664')***********
+Total support for lessonId 61 and Set: [61, 93] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('62','23','20.0')***********
+Total support for lessonId 62 and Set: [62, 23] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','38','20.0')***********
+Total support for lessonId 62 and Set: [62, 38] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','49','20.0')***********
+Total support for lessonId 62 and Set: [62, 49] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','51','20.0')***********
+Total support for lessonId 62 and Set: [62, 51] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','52','20.0')***********
+Total support for lessonId 62 and Set: [62, 52] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','53','20.0')***********
+Total support for lessonId 62 and Set: [62, 53] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','60','20.0')***********
+Total support for lessonId 62 and Set: [62, 60] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','61','20.0')***********
+Total support for lessonId 62 and Set: [62, 61] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','74','20.0')***********
+Total support for lessonId 62 and Set: [62, 74] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','81','20.0')***********
+Total support for lessonId 62 and Set: [62, 81] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','87','20.0')***********
+Total support for lessonId 62 and Set: [62, 87] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','89','20.0')***********
+Total support for lessonId 62 and Set: [62, 89] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('62','93','40.0')***********
+Total support for lessonId 62 and Set: [62, 93] is 40.0%
+INSERT INTO apriori(main, association, support) VALUES('63','44','25.0')***********
+Total support for lessonId 63 and Set: [63, 44] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('63','78','25.0')***********
+Total support for lessonId 63 and Set: [63, 78] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('63','83','25.0')***********
+Total support for lessonId 63 and Set: [63, 83] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('64','60','33.33333333333333')***********
+Total support for lessonId 64 and Set: [64, 60] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('64','61','33.33333333333333')***********
+Total support for lessonId 64 and Set: [64, 61] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('64','72','33.33333333333333')***********
+Total support for lessonId 64 and Set: [64, 72] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('64','81','33.33333333333333')***********
+Total support for lessonId 64 and Set: [64, 81] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('64','82','33.33333333333333')***********
+Total support for lessonId 64 and Set: [64, 82] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('66','56','20.0')***********
+Total support for lessonId 66 and Set: [66, 56] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('66','59','20.0')***********
+Total support for lessonId 66 and Set: [66, 59] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('66','74','20.0')***********
+Total support for lessonId 66 and Set: [66, 74] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('66','81','20.0')***********
+Total support for lessonId 66 and Set: [66, 81] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('66','82','20.0')***********
+Total support for lessonId 66 and Set: [66, 82] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('66','83','20.0')***********
+Total support for lessonId 66 and Set: [66, 83] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('67','46','25.0')***********
+Total support for lessonId 67 and Set: [67, 46] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('67','52','25.0')***********
+Total support for lessonId 67 and Set: [67, 52] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('67','78','25.0')***********
+Total support for lessonId 67 and Set: [67, 78] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('68','49','16.666666666666664')***********
+Total support for lessonId 68 and Set: [68, 49] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('68','61','16.666666666666664')***********
+Total support for lessonId 68 and Set: [68, 61] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('68','75','16.666666666666664')***********
+Total support for lessonId 68 and Set: [68, 75] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('69','86','25.0')***********
+Total support for lessonId 69 and Set: [69, 86] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('69','90','25.0')***********
+Total support for lessonId 69 and Set: [69, 90] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('70','56','33.33333333333333')***********
+Total support for lessonId 70 and Set: [70, 56] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('70','85','33.33333333333333')***********
+Total support for lessonId 70 and Set: [70, 85] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('71','52','50.0')***********
+Total support for lessonId 71 and Set: [71, 52] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('71','53','50.0')***********
+Total support for lessonId 71 and Set: [71, 53] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('72','61','33.33333333333333')***********
+Total support for lessonId 72 and Set: [72, 61] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('72','64','33.33333333333333')***********
+Total support for lessonId 72 and Set: [72, 64] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('73','48','16.666666666666664')***********
+Total support for lessonId 73 and Set: [73, 48] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('73','49','16.666666666666664')***********
+Total support for lessonId 73 and Set: [73, 49] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('73','85','16.666666666666664')***********
+Total support for lessonId 73 and Set: [73, 85] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('73','87','16.666666666666664')***********
+Total support for lessonId 73 and Set: [73, 87] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('74','49','25.0')***********
+Total support for lessonId 74 and Set: [74, 49] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('74','51','25.0')***********
+Total support for lessonId 74 and Set: [74, 51] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('74','62','25.0')***********
+Total support for lessonId 74 and Set: [74, 62] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('74','66','25.0')***********
+Total support for lessonId 74 and Set: [74, 66] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('74','93','25.0')***********
+Total support for lessonId 74 and Set: [74, 93] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('75','68','25.0')***********
+Total support for lessonId 75 and Set: [75, 68] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('75','88','25.0')***********
+Total support for lessonId 75 and Set: [75, 88] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('76','55','33.33333333333333')***********
+Total support for lessonId 76 and Set: [76, 55] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('78','54','20.0')***********
+Total support for lessonId 78 and Set: [78, 54] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('78','56','20.0')***********
+Total support for lessonId 78 and Set: [78, 56] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('78','63','20.0')***********
+Total support for lessonId 78 and Set: [78, 63] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('78','67','20.0')***********
+Total support for lessonId 78 and Set: [78, 67] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('78','84','20.0')***********
+Total support for lessonId 78 and Set: [78, 84] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('81','23','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 23] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','38','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 38] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','51','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 51] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','52','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 52] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','53','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 53] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','58','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 58] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','59','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 59] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','60','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 60] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','61','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 61] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','62','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 62] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','64','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 64] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','66','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 66] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','82','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 82] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','87','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 87] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','89','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 89] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','93','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 93] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('81','94','16.666666666666664')***********
+Total support for lessonId 81 and Set: [81, 94] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','23','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 23] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','38','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 38] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','40','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 40] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','41','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 41] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','44','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 44] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','47','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 47] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','51','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 51] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','64','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 64] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','66','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 66] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('82','81','16.666666666666664')***********
+Total support for lessonId 82 and Set: [82, 81] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('83','63','25.0')***********
+Total support for lessonId 83 and Set: [83, 63] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('83','66','25.0')***********
+Total support for lessonId 83 and Set: [83, 66] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('84','54','20.0')***********
+Total support for lessonId 84 and Set: [84, 54] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('84','56','20.0')***********
+Total support for lessonId 84 and Set: [84, 56] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('84','78','20.0')***********
+Total support for lessonId 84 and Set: [84, 78] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('84','89','20.0')***********
+Total support for lessonId 84 and Set: [84, 89] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('85','52','16.666666666666664')***********
+Total support for lessonId 85 and Set: [85, 52] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('85','56','16.666666666666664')***********
+Total support for lessonId 85 and Set: [85, 56] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('85','70','16.666666666666664')***********
+Total support for lessonId 85 and Set: [85, 70] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('85','73','16.666666666666664')***********
+Total support for lessonId 85 and Set: [85, 73] is 16.666666666666664%
+INSERT INTO apriori(main, association, support) VALUES('86','69','50.0')***********
+Total support for lessonId 86 and Set: [86, 69] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('87','23','25.0')***********
+Total support for lessonId 87 and Set: [87, 23] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','38','25.0')***********
+Total support for lessonId 87 and Set: [87, 38] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','49','25.0')***********
+Total support for lessonId 87 and Set: [87, 49] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','51','25.0')***********
+Total support for lessonId 87 and Set: [87, 51] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','52','25.0')***********
+Total support for lessonId 87 and Set: [87, 52] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','53','25.0')***********
+Total support for lessonId 87 and Set: [87, 53] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','56','25.0')***********
+Total support for lessonId 87 and Set: [87, 56] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','58','25.0')***********
+Total support for lessonId 87 and Set: [87, 58] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','60','25.0')***********
+Total support for lessonId 87 and Set: [87, 60] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','61','25.0')***********
+Total support for lessonId 87 and Set: [87, 61] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','62','25.0')***********
+Total support for lessonId 87 and Set: [87, 62] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','73','25.0')***********
+Total support for lessonId 87 and Set: [87, 73] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','81','25.0')***********
+Total support for lessonId 87 and Set: [87, 81] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','89','25.0')***********
+Total support for lessonId 87 and Set: [87, 89] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('87','93','25.0')***********
+Total support for lessonId 87 and Set: [87, 93] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('88','75','33.33333333333333')***********
+Total support for lessonId 88 and Set: [88, 75] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('89','23','25.0')***********
+Total support for lessonId 89 and Set: [89, 23] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','38','25.0')***********
+Total support for lessonId 89 and Set: [89, 38] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','47','25.0')***********
+Total support for lessonId 89 and Set: [89, 47] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','49','25.0')***********
+Total support for lessonId 89 and Set: [89, 49] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','51','25.0')***********
+Total support for lessonId 89 and Set: [89, 51] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','52','25.0')***********
+Total support for lessonId 89 and Set: [89, 52] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','53','50.0')***********
+Total support for lessonId 89 and Set: [89, 53] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('89','60','25.0')***********
+Total support for lessonId 89 and Set: [89, 60] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','61','25.0')***********
+Total support for lessonId 89 and Set: [89, 61] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','62','25.0')***********
+Total support for lessonId 89 and Set: [89, 62] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','81','25.0')***********
+Total support for lessonId 89 and Set: [89, 81] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','84','25.0')***********
+Total support for lessonId 89 and Set: [89, 84] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','87','25.0')***********
+Total support for lessonId 89 and Set: [89, 87] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('89','93','25.0')***********
+Total support for lessonId 89 and Set: [89, 93] is 25.0%
+INSERT INTO apriori(main, association, support) VALUES('90','56','50.0')***********
+Total support for lessonId 90 and Set: [90, 56] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('90','69','50.0')***********
+Total support for lessonId 90 and Set: [90, 69] is 50.0%
+INSERT INTO apriori(main, association, support) VALUES('93','23','20.0')***********
+Total support for lessonId 93 and Set: [93, 23] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','38','20.0')***********
+Total support for lessonId 93 and Set: [93, 38] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','49','20.0')***********
+Total support for lessonId 93 and Set: [93, 49] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','51','20.0')***********
+Total support for lessonId 93 and Set: [93, 51] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','52','20.0')***********
+Total support for lessonId 93 and Set: [93, 52] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','53','20.0')***********
+Total support for lessonId 93 and Set: [93, 53] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','60','20.0')***********
+Total support for lessonId 93 and Set: [93, 60] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','61','20.0')***********
+Total support for lessonId 93 and Set: [93, 61] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','62','40.0')***********
+Total support for lessonId 93 and Set: [93, 62] is 40.0%
+INSERT INTO apriori(main, association, support) VALUES('93','74','20.0')***********
+Total support for lessonId 93 and Set: [93, 74] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','81','20.0')***********
+Total support for lessonId 93 and Set: [93, 81] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','87','20.0')***********
+Total support for lessonId 93 and Set: [93, 87] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('93','89','20.0')***********
+Total support for lessonId 93 and Set: [93, 89] is 20.0%
+INSERT INTO apriori(main, association, support) VALUES('94','58','33.33333333333333')***********
+Total support for lessonId 94 and Set: [94, 58] is 33.33333333333333%
+INSERT INTO apriori(main, association, support) VALUES('94','81','33.33333333333333')***********
+Total support for lessonId 94 and Set: [94, 81] is 33.33333333333333%

@@ -60,7 +60,6 @@ public class LessonDao {
 				+ "'", conn);
 		try {
 			lessons = rowMapper.convertLessonBean(rs);
-			System.out.println(lessons.size());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
