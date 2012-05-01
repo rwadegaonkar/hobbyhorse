@@ -29,6 +29,7 @@
     foreach ($uniqueLesson as $l) {
         ?>
         <div class="div2">
+            <img class="descImg" src="images/lessontype/<?php echo $l->lessonTypeId ?>.jpg" />
             <h4 class="lessonName"><?php echo ucfirst($l->name) ?></h4>
             <h5 class="expertname">The Expert: <?php
     if ($l->username == $_SESSION['user']->name) {

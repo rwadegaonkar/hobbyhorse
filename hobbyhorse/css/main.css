@@ -97,3 +97,11 @@ table.badgeDesc tr, table.badgeDesc td{
     margin-top:0px;
     color: #6F7D04;
 }
+
+.descImg {
+    height: 50px;
+    width: 50px;
+    padding: 2px;
+    margin: 2px;
+    float: left;
+}

@@ -25,8 +25,8 @@ public class LessonDao {
 	private static final String SELECT_BY_LESSONID = "SELECT * FROM lesson WHERE isDeleted=0 and CONCAT_WS(' ', eventDate, eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and id=";
 	private static final String UPDATE_LESSON_ISLIVE = "UPDATE lesson SET isLive=";
 	private static final String LESSONS_ATTENDED_BY_USER = "Select l.* from participants as p, lesson as l, user as u where p.lessonId=l.id and p.userId=u.id and p.wasAttended=1 and u.username=";
-	private static final String SELECT_SUGGESTED_LESSONS = "Select l.* from lesson as l, lessonType as lt where l.lessonTypeId=lt.id and (LOWER(l.name) like";
-	private static final String SELECT_SUGGESTED_LESSONS_APRIORI = "SELECT l.*,a.support from lesson as l, apriori as a WHERE l.id=a.association and a.main=";
+	private static final String SELECT_SUGGESTED_LESSONS = "Select l.* from lesson as l, lessonType as lt where l.lessonTypeId=lt.id and CONCAT_WS(' ', l.eventDate, l.eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and (LOWER(l.name) like";
+	private static final String SELECT_SUGGESTED_LESSONS_APRIORI = "SELECT l.*,a.support from lesson as l, apriori as a WHERE CONCAT_WS(' ', l.eventDate, l.eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and l.id=a.association and a.main=";
 	public Query query = new Query();
 	ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 
