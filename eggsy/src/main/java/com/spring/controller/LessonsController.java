@@ -110,4 +110,15 @@ public class LessonsController {
 		mav.addObject("lessons", lessonList);
 		return mav;
 	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/suggestapriori/{lessonid}")
+	public ModelAndView getSuggestedLessonsApriori(
+			@PathVariable("lessonid") String lessonid) {
+		LessonManager lessonsByType = new LessonManager();
+		ArrayList<Lesson> lessonList = lessonsByType
+				.getSuggestedLessonsApriori(lessonid);
+		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
+		mav.addObject("lessons", lessonList);
+		return mav;
+	}
 }

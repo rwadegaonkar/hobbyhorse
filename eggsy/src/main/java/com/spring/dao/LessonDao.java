@@ -26,7 +26,7 @@ public class LessonDao {
 	private static final String UPDATE_LESSON_ISLIVE = "UPDATE lesson SET isLive=";
 	private static final String LESSONS_ATTENDED_BY_USER = "Select l.* from participants as p, lesson as l, user as u where p.lessonId=l.id and p.userId=u.id and p.wasAttended=1 and u.username=";
 	private static final String SELECT_SUGGESTED_LESSONS = "Select l.* from lesson as l, lessonType as lt where l.lessonTypeId=lt.id and (LOWER(l.name) like";
-
+	private static final String SELECT_SUGGESTED_LESSONS_APRIORI = "SELECT l.*,a.support from lesson as l, apriori as a WHERE l.id=a.association and a.main=";
 	public Query query = new Query();
 	ArrayList<Lesson> lessons = new ArrayList<Lesson>();
 
@@ -136,6 +136,20 @@ public class LessonDao {
 								+ category
 								+ "%') AND l.id NOT IN ( SELECT p.lessonId FROM participants AS p, user as u WHERE p.userId = u.id and u.username= '"
 								+ username + "')  group by l.id", conn);
+		try {
+			lessons = rowMapper.convertLessonBean(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lessons;
+	}
+	
+
+	public ArrayList<Lesson> getSuggestedLessonsApriori(Connection conn,
+			String lessonid) {
+		ResultSet rs = query.executeQuery(SELECT_SUGGESTED_LESSONS_APRIORI + "'"
+				+ lessonid + "'", conn);
 		try {
 			lessons = rowMapper.convertLessonBean(rs);
 		} catch (SQLException e) {

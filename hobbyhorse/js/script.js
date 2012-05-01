@@ -72,7 +72,6 @@ function updateResponse(resp) {
             divImageElement.src=host+"images/gold_star.jpeg";
             divRatingElement.appendChild(divImageElement);
         }
-        var pElement = document.createElement("p");
         var pElementDate = document.createElement("p");
         var pText = document.createTextNode(lessonJson[j].description)
         var formattedDate = formatDate(lessonJson[j].eventDate);
@@ -86,14 +85,12 @@ function updateResponse(resp) {
         joinBtn.setAttribute("onClick", "joinLesson("+lessonJson[j].id+");disableElement(this);");
         h4Element.appendChild(h4Text);
         h5Element.appendChild(h5Text);
-        pElement.appendChild(pText);  
-        pElement.appendChild(brElement);
-        pElement.appendChild(divRatingElement);
         pElementDate.appendChild(pTextDate);
         divElement.appendChild(h4Element);
         divElement.appendChild(h5Element);
         divElement.appendChild(pElementDate);
-        divElement.appendChild(pElement);
+        divElement.appendChild(pText);
+        divElement.appendChild(divRatingElement);
         divElement.appendChild(joinBtn);
         elementToUpdate.appendChild(divElement);
         checkIfLessonJoined(lessonJson[j].id);

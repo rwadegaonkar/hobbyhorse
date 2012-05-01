@@ -104,9 +104,21 @@ public class LessonManager {
 		return null;
 	}
 
-	public ArrayList<Lesson> getSuggestedLesson(String name, String category, String username) {
+	public ArrayList<Lesson> getSuggestedLesson(String name, String category,
+			String username) {
 		try {
-			lessons = delegate.getSuggestedLesson(conn, name, category, username);
+			lessons = delegate.getSuggestedLesson(conn, name, category,
+					username);
+			return lessons;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
+	public ArrayList<Lesson> getSuggestedLessonsApriori(String lessonid) {
+		try {
+			lessons = delegate.getSuggestedLessonsApriori(conn, lessonid);
 			return lessons;
 		} catch (Exception e) {
 			e.printStackTrace();

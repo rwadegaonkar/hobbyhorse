@@ -26,6 +26,7 @@
     padding-left:20px;
     margin: 10px;
     border-left: 1px dotted #efefef;
+    max-height: 275px;
 }
 .clr{
     clear: both;
@@ -62,7 +63,6 @@
 }
 
 .rating {
-    padding: 5px 0 5px 0;
 }
 
 table.badgeDesc, table.badgeDesc tr, table.badgeDesc td{
@@ -83,4 +83,17 @@ table.badgeDesc tr, table.badgeDesc td{
 .badgeImg {
     height: 200px;
     width: 200px;
+}
+
+.suggestedP{
+    margin:0px;
+    padding:0px;
+    padding-top: 18px;
+    border-top: 1px dotted silver;
+    border-bottom: 1px dotted silver;
+}
+
+.suggestedH {
+    margin-top:0px;
+    color: #6F7D04;
 }

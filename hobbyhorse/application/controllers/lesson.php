@@ -52,7 +52,7 @@ class Lesson extends CI_Controller {
         $lessonData = $this->lesson_model->getAjaxLessonsByLessonType($lessonId);
         echo(json_encode($lessonData->lessons));
     }
-    
+
     public function updateLessonIsLive($lessonId, $isLiveVal) {
         $data['name'] = 'a';
         $data['description'] = "a";
@@ -66,14 +66,14 @@ class Lesson extends CI_Controller {
         $data['id'] = $lessonId;
         $this->lesson_model->updateLessonIsLive(json_encode($data));
     }
-    
+
     public function updateWasAttended($lessonId) {
         $data['name'] = 'a';
         $data['description'] = "a";
         $data['createdBy'] = $_SESSION['user']->username;
         $data['lastUpdatedBy'] = $_SESSION['user']->username;
-        $data['lessonId'] = (int)$lessonId;
-        $data['id'] = (int)$lessonId;
+        $data['lessonId'] = (int) $lessonId;
+        $data['id'] = (int) $lessonId;
         $data['userId'] = 0;
         $data['wasAttended'] = 1;
         $this->lesson_model->updateWasAttended(json_encode($data));
@@ -117,6 +117,9 @@ class Lesson extends CI_Controller {
     public function joinedLesson() {
         $lessonData = $this->lesson_model->getLessonsByUsername();
         $data['lessons'] = $lessonData->lessons;
+        foreach ($lessonData->lessons->data as $joinedLesson) {
+            $data['suggested_lessons'][$joinedLesson->id."^:^".$joinedLesson->name] = $this->lesson_model->getSuggestedLessonsApriori($joinedLesson->id);
+        }
         $data['title'] = 'Hobbyhorse - My Forthcoming Lessons';
         $data['content'] = $this->load->view('lesson/joinedLesson', $data, true);
         $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);

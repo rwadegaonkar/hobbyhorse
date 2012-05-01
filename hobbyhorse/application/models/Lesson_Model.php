@@ -101,6 +101,16 @@ class Lesson_Model extends CI_Model {
             return $jsonObj;
         }
     }
+    
+    public function getSuggestedLessonsApriori($lessonid, $method=null) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('lessons/suggestapriori/' . $lessonid);
+        if (!$method) {
+            return Platform_Data::getDataObject($jsonObj);
+        } else {
+            return $jsonObj;
+        }
+    }
 
     public function updateLessonIsLive($lesson) {
         $myWrapper = new Platform_Webservices_Wrapper();

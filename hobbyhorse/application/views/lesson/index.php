@@ -44,7 +44,7 @@
                 echo " at ";
                 echo $l->eventTime
                 ?></p>
-                <p><?php echo $l->description ?>
+                <?php echo $l->description ?>
                     <?php if ($l->rating > 0) {
                         ?>
                         }
@@ -60,7 +60,7 @@
                     </div>
                 <?php }
                 ?>
-                </p>
+                
                 <?php if ($joined[$l->id] == 0) { ?>
                     <input type="button" name="joinLesson" id="joinLesson" value="Join" onclick="joinLesson(<?php echo $l->id . ",'" . $l->name . "'" ?>);disableElement(this)"/>
                     <?php
