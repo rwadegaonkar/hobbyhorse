@@ -25,7 +25,7 @@ public class UserDao {
 	private static final String AVERAGE_RATING_FOR_USERID = "SELECT AVG( c.rating ) as rating FROM comment as c,user as u WHERE userId=u.id and u.id =";
 	private static final String INSERT_USER = "INSERT INTO user(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, username, password, email, skills, hobbies, location, loginTypeId) VALUES";
 	private static final String SELECT_BY_USERS_BY_LESSONID = "SELECT u.* from user as u, participants as p WHERE p.userId=u.id and p.lessonId=";
-
+	private static final String SELECT_USER_WITH_LESSON = "SELECT u.* FROM participants as p, user as u WHERE u.id=userId GROUP BY userId";
 	public Query query = new Query();
 	ArrayList<User> users = new ArrayList<User>();
 
@@ -60,6 +60,13 @@ public class UserDao {
 		return users;
 	}
 
+	public ArrayList<User> getUsersWithAtleastOneLesson(Connection conn)
+			throws SQLException {
+		ResultSet rs = query.executeQuery(SELECT_USER_WITH_LESSON, conn);
+		users = rowMapper.convertUserBean(rs);
+		return users;
+	}
+
 	public ArrayList<User> getUserByUsernameAndPassword(Connection conn,
 			String username, String password) {
 		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME_AND_PASSWORD + "'"
@@ -78,6 +85,29 @@ public class UserDao {
 			int lessonid) {
 		ResultSet rs = query.executeQuery(SELECT_BY_USERS_BY_LESSONID
 				+ lessonid, conn);
+		try {
+			users = rowMapper.convertUserBean(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return users;
+	}
+
+	public ArrayList<User> getTotalUsersParticipatedByLessonIds(
+			Connection conn, ArrayList<Integer> lessonids) {
+		String cql = SELECT_BY_USERS_BY_LESSONID + lessonids.get(0);
+		if (lessonids.size() > 1) {
+			int i = 0;
+			for (int lessonid : lessonids) {
+				i++;
+				if (i > 1) {
+					cql = cql + " AND lessonId=" + lessonid;
+				}
+			}
+			System.out.println(cql);
+		}
+		ResultSet rs = query.executeQuery(cql, conn);
 		try {
 			users = rowMapper.convertUserBean(rs);
 		} catch (SQLException e) {

@@ -105,3 +105,7 @@ table.badgeDesc tr, table.badgeDesc td{
     margin: 2px;
     float: left;
 }
+
+.hideDesc {
+    display:none;
+}

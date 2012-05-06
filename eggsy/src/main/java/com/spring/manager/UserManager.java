@@ -71,6 +71,16 @@ public class UserManager {
 		}
 		return null;
 	}
+	
+	public ArrayList<User> getUsersWithAtleastOneLesson() {
+		try {
+			users = delegate.getUsersWithAtleastOneLesson(conn);
+			return users;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 
 	public void deleteUser(String username) {
 		delegate.deleteUser(conn, username);
@@ -95,6 +105,17 @@ public class UserManager {
 		try {
 			users = delegate
 					.getTotalUsersParticipatedByLessonId(conn, lessonid);
+			return users;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+	
+	public ArrayList<User> getTotalUsersParticipatedByLessonIds(ArrayList<Integer> lessonids) {
+		try {
+			users = delegate
+					.getTotalUsersParticipatedByLessonIds(conn, lessonids);
 			return users;
 		} catch (Exception e) {
 			e.printStackTrace();

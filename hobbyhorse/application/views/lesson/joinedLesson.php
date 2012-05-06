@@ -88,9 +88,9 @@
                             echo " at ";
                             echo $l->eventTime
                             ?></p>
-                                <?php echo $l->description ?>
-                    <?php if ($l->rating > 0) { ?>
-                                    }
+                                <?php echo substr($l->description,0,50)."...<br/>" ?>
+                    <?php if ($l->rating > 0) {
+                        ?>
                                     <div class="rating">
                                         Rating for the Expert:<br/>
                                         <?php

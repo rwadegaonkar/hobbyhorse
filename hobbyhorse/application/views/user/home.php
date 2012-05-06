@@ -20,11 +20,7 @@
         }
     }
     if ($flag) {
-        ?>
-        <h4>
-            Here are some suggested lessons for you:
-        </h4>
-        <?php
+        echo "<h3 class='suggestedH'><i>Some Recommended Lessons For You</i></h3>";
     }
     foreach ($uniqueLesson as $l) {
         ?>
@@ -43,7 +39,7 @@
             echo " at ";
             echo $l->eventTime
         ?></p>
-            <p><?php echo $l->description ?>
+            <p><?php echo $l->description; ?>
                 <?php if ($l->rating > 0) { ?>
                     }
                 <div class="rating">

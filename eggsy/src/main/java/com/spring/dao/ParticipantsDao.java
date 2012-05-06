@@ -69,7 +69,8 @@ public class ParticipantsDao {
 			Participants participant) {
 		query.executeUpdate(
 				UPDATE_PARTICIPANT_ATTENDED + participant.getLessonId()
-						+ " AND u.username='" + participant.getCreatedBy()+"'", conn);
+						+ " AND u.username='" + participant.getCreatedBy()
+						+ "'", conn);
 		return participants;
 	}
 

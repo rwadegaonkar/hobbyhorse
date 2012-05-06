@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class Query {
 	public ResultSet executeQuery(String cql, Connection conn) {
-		System.out.println(cql + "***********");
+		//System.out.println(cql + "***********");
 		Statement stmt;
 		try {
 			stmt = conn.createStatement();
