@@ -84,6 +84,7 @@ class Lesson extends CI_Controller {
         $request['lessonName'] = $lessonName;
         $request['userId'] = $this->user_model->getUserByUsername($_SESSION['user']->username)->users->user->id;
         $participate = createParticipantObject($request);
+        $this->sendEmail($this->user_model->getUserByUsername($_SESSION['user']->username)->users->user->email, $this->lesson_model->getLessonsByLessonId($lessonId)->lessons->lesson);
         $this->lesson_model->joinLesson(json_encode($participate));
     }
 
@@ -118,9 +119,9 @@ class Lesson extends CI_Controller {
         $lessonData = $this->lesson_model->getLessonsByUsername();
         $data['lessons'] = $lessonData->lessons;
         foreach ($lessonData->lessons->data as $joinedLesson) {
-            $data['suggested_lessons'][$joinedLesson->id."^:^".$joinedLesson->name] = $this->lesson_model->getSuggestedLessonsApriori($joinedLesson->id);
+            $data['suggested_lessons'][$joinedLesson->id . "^:^" . $joinedLesson->name] = $this->lesson_model->getSuggestedLessonsApriori($joinedLesson->id);
         }
-        $data['title'] = 'Hobbyhorse - My Forthcoming Lessons';
+        $data['title'] = 'Hobbyhorse - My Lessons';
         $data['content'] = $this->load->view('lesson/joinedLesson', $data, true);
         $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
         $this->load->view('templates/main', $data);
@@ -133,6 +134,40 @@ class Lesson extends CI_Controller {
         $data['lesson'] = $lessonData->lessons->lesson;
         $data['title'] = 'Hobbyhorse - My Forthcoming Lessons';
         $data['content'] = $this->load->view('lesson/main', $data, true);
+        $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
+        $this->load->view('templates/main', $data);
+    }
+
+    public function sendEmail($email, $lessonObj) {
+        $subject = "HobbyHorse - Lesson Participation Confirmation";
+        $body = "Hello " . $_SESSION['user']->name . ",\nThank you for participating in a lesson on HobbyHorse.\n\n";
+        $headers = 'From: hobbyhorse.com' . "\r\n" .
+                'Reply-To: hobbyhorse.com' . "\r\n" .
+                'X-Mailer: PHP/' . phpversion();
+        $body = $body . "Here are your Lesson Details:\n";
+        $body = $body . "Lesson Name: " . $lessonObj->name . "\n";
+        $body = $body . "Lesson Date: " . $lessonObj->eventDate . "\n";
+        $body = $body . "Lesson Time: " . $lessonObj->eventTime . "\n";
+        $body = $body . "Expert Hobbyist: " . $lessonObj->username . "\n";
+        $body = $body . "\nWe look forward to enjoying your learning experience. For more interesting lessons, please visit http://mysite.fb/hobbyhorse !\n";
+        $body = $body . "-- The HobbyHorse Team.";
+        mail($email, $subject, $body, $headers);
+    }
+    
+    public function expertLessons($username) {
+        $lessonData = $this->lesson_model->getLessonsByExpert($username);
+        $data['lessons'] = $lessonData->lessons;
+        foreach ($data['lessons']->data as $l) {
+            $check = $this->lesson_model->checkIfAlreadyJoined($l->id);
+            $check = $check->participants->data;
+            if (!$check) {
+                $data['joined'][$l->id] = 0;
+            } else {
+                $data['joined'][$l->id] = 1;
+            }
+        }
+        $data['title'] = 'Hobbyhorse - Expert Lessons';
+        $data['content'] = $this->load->view('lesson/expertLessons', $data, true);
         $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
         $this->load->view('templates/main', $data);
     }

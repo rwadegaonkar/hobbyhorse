@@ -20,10 +20,11 @@ public class LessonDao {
 	private static final String SELECT_ALL = "SELECT * FROM lesson WHERE isDeleted=0 and CONCAT_WS(' ', eventDate, eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR";
 	private static final String SELECT_BY_LESSONTYPE_ID = "SELECT * FROM lesson WHERE isDeleted=0 and CONCAT_WS(' ', eventDate, eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and lessonTypeId=";
 	private static final String INSERT_LESSON = "INSERT INTO lesson(name, description, isDeleted, createdBy, lastUpdatedBy, createDate, lastUpdateDate, eventDate, eventTime, lessonTypeId, userId, sessionId, isLive) VALUES";
-	private static final String SELECT_BY_USERNAME = "SELECT l.* FROM lesson as l, user as u, participants as p WHERE l.isDeleted=0 and p.userId=u.id and p.lessonId=l.id and p.isDeleted=0 and CONCAT_WS(' ', l.eventDate, l.eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and u.username=";
+	private static final String SELECT_BY_USERNAME = "SELECT l.* FROM lesson as l, user as u, participants as p WHERE l.isDeleted=0 and p.userId=u.id and p.lessonId=l.id and p.isDeleted=0 and u.username=";
 	private static final String SELECT_LAST_LESSON = "SELECT * FROM lesson WHERE id = (SELECT MAX( id ) FROM lesson ) and userId=";
-	private static final String SELECT_BY_LESSONID = "SELECT * FROM lesson WHERE isDeleted=0 and CONCAT_WS(' ', eventDate, eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and id=";
+	private static final String SELECT_BY_LESSONID = "SELECT * FROM lesson WHERE isDeleted=0 and id=";
 	private static final String UPDATE_LESSON_ISLIVE = "UPDATE lesson SET isLive=";
+	private static final String SELECT_BY_EXPERT = "SELECT * FROM lesson where userId=";
 	private static final String LESSONS_ATTENDED_BY_USER = "Select l.* from participants as p, lesson as l, user as u where p.lessonId=l.id and p.userId=u.id and p.wasAttended=1 and u.username=";
 	private static final String SELECT_SUGGESTED_LESSONS = "Select l.* from lesson as l, lessonType as lt where l.lessonTypeId=lt.id and CONCAT_WS(' ', l.eventDate, l.eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and (LOWER(l.name) like";
 	private static final String SELECT_SUGGESTED_LESSONS_APRIORI = "SELECT l.*,a.support from lesson as l, apriori as a WHERE CONCAT_WS(' ', l.eventDate, l.eventTime ) > CURRENT_TIMESTAMP - INTERVAL 2 HOUR and l.id=a.association and a.main=";
@@ -58,7 +59,20 @@ public class LessonDao {
 	public ArrayList<Lesson> getLessonsByUsername(Connection conn,
 			String username) {
 		ResultSet rs = query.executeQuery(SELECT_BY_USERNAME + "'" + username
-				+ "'", conn);
+				+ "' ORDER BY eventDate desc", conn);
+		try {
+			lessons = rowMapper.convertLessonBean(rs);
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		return lessons;
+	}
+	
+	public ArrayList<Lesson> getLessonsByExpert(Connection conn,
+			String userId) {
+		ResultSet rs = query.executeQuery(SELECT_BY_EXPERT + userId
+				+ " ORDER BY eventDate desc", conn);
 		try {
 			lessons = rowMapper.convertLessonBean(rs);
 		} catch (SQLException e) {

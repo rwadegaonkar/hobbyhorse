@@ -5,30 +5,37 @@
  */
 ?>
 <section class="main-content">
-    <?php echo "<h2> My Forthcoming Lessons</h2>" ?>
+    <?php echo "<h2> My Lessons</h2>" ?>
 
     <section id="lessonList">
         <?php
         foreach ($lessons->data as $l) {
+            $minutes = strtotime($l->eventDate) - strtotime(date("Ymdhms"));
+            $minutes = ($minutes / 100) / 24;
             ?>
             <div class="div2">                                
-                <img class="descImg" src="images/lessontype/<?php echo $l->lessonTypeId?>.jpg" />
+                <img class="descImg" src="images/lessontype/<?php echo $l->lessonTypeId ?>.jpg" />
                 <h4 class="lessonName"><a href="<?php echo base_url() ?>index.php/lesson/main/<?php echo $l->id ?>"><?php echo ucfirst($l->name) ?></a></h4> 
+                <?php
+                if ($minutes <= -2.1) {
+                    echo "<span class='inactive'><i>(Inactive)</i></span>";
+                }
+                ?>
                 <h5 class="expertname">The Expert: <?php
-        if ($l->username == $_SESSION['user']->name) {
-            echo "Me !";
-        } else {
-            echo $l->username;
-        }
-            ?></h5>
+            if ($l->username == $_SESSION['user']->name) {
+                echo "<a href='" . base_url() . "index.php/lesson/expertLessons/" . $l->userId . "'>Me</a>";
+            } else {
+                echo "<a href='" . base_url() . "index.php/lesson/expertLessons/" . $l->userId . "'>$l->username</a>";
+            }
+                ?></h5>
+
                 <p><?php
                 echo "Starts on: " . date("M d, Y", strtotime($l->eventDate));
                 echo " at ";
                 echo $l->eventTime
-            ?></p>
+                ?></p>
                 <p><?php echo $l->description ?>
-                    <?php if ($l->rating > 0) {
-                        ?>
+                    <?php if ($l->rating > 0) { ?>
                         }
                     <div class="rating">
                         Rating for the Expert:<br/> 
@@ -36,6 +43,11 @@
                         for ($i = 0; $i < $l->rating; $i++) {
                             ?>
                             <img src="images/gold_star.jpeg" />
+                            <?php
+                        }
+                        for ($i = 0; $i < 5 - $l->rating; $i++) {
+                            ?>
+                            <img src="images/white_star.jpeg" />
                             <?php
                         }
                         ?>
@@ -46,21 +58,23 @@
         }
         ?>
     </section>
-    <div class="clr"></div>
+    <div class="clr"></div><br/>
     <section>
         <?php
         if (!empty($suggested_lessons)) {
             $flag = false;
             echo "<h3 class='suggestedH'><i>Some Recommended Lessons For You</i></h3>";
             foreach ($suggested_lessons as $suggestedLessonNameId => $suggestedLesson) {
-                echo "<section";
+                echo "<section>";
                 $suggestedLessonNameIdArray = explode("^:^", $suggestedLessonNameId);
                 ?>
                 <?php
-                if (count($suggestedLesson->lessons->data) > 0) {
-                    foreach ($suggestedLesson->lessons->data as $l) {
-                        echo $l->id;
+                $sugLeson = $suggestedLesson->lessons->data;
+                if (count($sugLeson) > 0) {
+                    foreach ($sugLeson as $l) {
                         if (!in_array($l, $lessons->data)) {
+                            $flag = false;
+                        } else {
                             $flag = true;
                         }
                     }
@@ -70,27 +84,28 @@
                             also joined:</p>
                         <?php
                     }
-                    foreach ($suggestedLesson->lessons->data as $l) {
+                    foreach ($sugLeson as $l) {
                         if (!in_array($l, $lessons->data)) {
                             ?>
                             <div class="div2">
-                                <img class="descImg" src="images/lessontype/<?php echo $l->lessonTypeId?>.jpg" />
+                                <img class="descImg" src="images/lessontype/<?php echo $l->lessonTypeId ?>.jpg" />
                                 <h4 class="lessonName"><?php echo ucfirst($l->name) ?></h4>
-                                <h5 class="expertname">The Expert: <?php
-                            if ($l->username == $_SESSION['user']->name) {
-                                echo "Me !";
-                            } else {
-                                echo $l->username;
-                            }
-                            ?></h5>
+                                    <h5 class="expertname">The Expert: <?php
+            if ($l->username == $_SESSION['user']->name) {
+                echo "<a href='".base_url()."index.php/lesson/expertLessons/".$l->userId."'>Me</a>";
+            } else {
+                echo "<a href='".base_url()."index.php/lesson/expertLessons/".$l->userId."'>$l->username</a>";
+            }
+                ?></h5>
+            
                                 <p><?php
-                            echo "Starts on: " . date("M d, Y", strtotime($l->eventDate));
-                            echo " at ";
-                            echo $l->eventTime
+                    echo "Starts on: " . date("M d, Y", strtotime($l->eventDate));
+                    echo " at ";
+                    echo $l->eventTime
                             ?></p>
-                                <?php echo substr($l->description,0,50)."...<br/>" ?>
-                    <?php if ($l->rating > 0) {
-                        ?>
+                                <?php echo substr($l->description, 0, 50) . "...<br/>" ?>
+                                <?php if ($l->rating > 0) {
+                                    ?>
                                     <div class="rating">
                                         Rating for the Expert:<br/>
                                         <?php
@@ -99,9 +114,14 @@
                                             <img src="images/gold_star.jpeg" />
                                             <?php
                                         }
+                                        for ($i = 0; $i < 5 - $l->rating; $i++) {
+                                            ?>
+                                            <img src="images/white_star.jpeg" />
+                                            <?php
+                                        }
                                         ?>
                                     </div>
-                    <?php } ?>
+                                <?php } ?>
 
                                 <input type="button" name="joinLesson" id="joinLesson" value="Join" onclick="joinLesson(<?php echo $l->id ?>, '<?php echo $l->name ?>');disableElement(this)"/>
 

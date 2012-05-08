@@ -79,6 +79,16 @@ class Lesson_Model extends CI_Model {
             return $jsonObj;
         }
     }
+    
+    public function getLessonsByExpert($username, $method=null) {
+        $myWrapper = new Platform_Webservices_Wrapper();
+        $jsonObj = $myWrapper->request('lessons/expert/' . $username);
+        if (!$method) {
+            return Platform_Data::getDataObject($jsonObj);
+        } else {
+            return $jsonObj;
+        }
+    }
 
     public function lessonsAttended($method=null) {
         $myWrapper = new Platform_Webservices_Wrapper();

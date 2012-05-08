@@ -4,17 +4,30 @@
  * and open the template in the editor.
  */
 $l = $lesson;
+$minutes = strtotime($l->eventDate) - strtotime(date("Ymdhms"));
+$minutes = ($minutes / 100) / 24;
 ?>
 <section class="main-content">
     <div class="">
         <h2  class="lessonName"><?php echo ucfirst($l->name) ?></h2>
-        <h5 class="expertname">The Expert: <?php
-if ($l->username == $_SESSION['user']->name) {
-    echo "Me !";
-} else {
-    echo $l->username;
+        <div id="activeLesson" class="activeLesson">The Lesson is now Active! If you are the Expert hobbyist, you can now start your lesson.<br/>
+        If you are a Novice, please check back when the expert hobbyist starts the lesson!</div>
+                <?php
+if ($minutes <= -2.1) {
+    echo "&nbsp;<p class='inactive'><i>(Inactive)</i></p>";
 }
-?></h5>
+?>
+           <img class="mainlessontype" src="/hobbyhorse/images/lessontype/<?php echo $l->lessonTypeId ?>.jpg" />
+
+
+            <h5 class="expertname">The Expert: <?php
+            if ($l->username == $_SESSION['user']->name) {
+                echo "<a href='".base_url()."index.php/lesson/expertLessons/".$l->userId."'>Me</a>";
+            } else {
+                echo "<a href='".base_url()."index.php/lesson/expertLessons/".$l->userId."'>$l->username</a>";
+            }
+                ?></h5>
+            
         <p><?php
             echo "Starts on: " . date("M d, Y", strtotime($l->eventDate));
             echo " at ";
@@ -28,17 +41,33 @@ if ($l->username == $_SESSION['user']->name) {
     <div id="endLesson"></div>
 
     <section class="comments">
-        Comments:
+        <h3 class="commentlabel">Comments:</h3>
         <div id="commentsDiv"><?php
             foreach ($comments->data as $comment) {
+                echo "<div>";
                 echo "<li>" . $comment->description . "</li>";
+                echo "<span class='rating'>";
+                for ($i = 0; $i < $comment->rating; $i++) {
+        ?>
+                    <img src="images/gold_star.jpeg" />
+                    <?php
+                }
+                for ($i = 0; $i < 5 - $comment->rating; $i++) {
+                    ?>
+                    <img src="images/white_star.jpeg" />
+                    <?php
+                }
+                echo "</span>";
+                echo "<p class='createdBy'>Posted By $comment->createdBy on " . date("M d, Y", strtotime($comment->createDate)) . "</p>";
+                echo "</div>";
             }
-?></div>
+            ?></div>
         <p>
             <input type="hidden" id="lessonId" value="<?php echo $l->id ?>" />
             <input type="hidden" id="lessonName" value="<?php echo $l->name ?>" />
-            <textarea id="comment" name="comment"></textarea>
-        <div class="rating">
+        <h4>Write your review:</h4>
+        <textarea id="comment" name="comment" rows="5" cols="80"></textarea>
+        <div class="rating"><br/>
             <img src="images/white_star.jpeg" id="img1" onClick="changeImage(this)"/>
             <img src="images/white_star.jpeg" id="img2" onClick="changeImage(this)"/>
             <img src="images/white_star.jpeg" id="img3" onClick="changeImage(this)"/>
@@ -52,8 +81,9 @@ if ($l->username == $_SESSION['user']->name) {
 <script src="http://staging.tokbox.com/v0.91/js/TB.min.js"></script>
  
   <script type="text/javascript">
+    // setInterval("alert(document.getElementsByTagName('object').length)",5000);
     checkCommentCanBePosted('<?php echo $l->eventDate . " " . $l->eventTime; ?>');
-    checkExpertHobbyistAndTimeOfLesson('<?php echo $l->userId ?>','<?php echo $_SESSION['user']->username ?>','<?php echo $l->eventDate . " " . $l->eventTime; ?>','<?php echo $l->isLive ?>');
+    setInterval("checkExpertHobbyistAndTimeOfLesson('<?php echo $l->userId ?>','<?php echo $_SESSION['user']->username ?>','<?php echo $l->eventDate . " " . $l->eventTime; ?>','<?php echo $l->isLive ?>')",2000);
     checkIfCommented('<?php echo $l->id ?>');
     function showEndLessonButton(lessonUser,sessionUser) {
         if(lessonUser==sessionUser) {
@@ -62,6 +92,7 @@ if ($l->username == $_SESSION['user']->name) {
         else {
             document.getElementById('endLesson').innerHTML = "<a href=\"javascript:(window.location.href=window.location.href);\"><input type='button' name='closeLesson' value='End My Lesson'/></a>";
         }
+        setInterval("checkCommentCanBePosted('<?php echo $l->eventDate . " " . $l->eventTime; ?>')",10000);
     }
 
     function startLesson(sessionId) {

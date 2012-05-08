@@ -160,11 +160,15 @@ function joinLesson(id, name) {
     {
         if (xmlhttp.readyState==4 && xmlhttp.status==200)
         {
-            xmlhttp.responseText;
+            confirmJoin(xmlhttp.responseText);
         }
     }
     xmlhttp.open("GET",url,true);
     xmlhttp.send();
+}
+
+function confirmJoin(resp) {
+    alert("Thank You for Joining this lesson. A confirmation email has been sent to your email!");
 }
 
 function checkResponse(resp) {
@@ -219,9 +223,31 @@ function updateMainLessonPage(resp) {
         var lastComment = commentJson.comments[0].description;
     }    
     var allComments = document.getElementById("commentsDiv");
+    var innerDiv = document.createElement("div");
     var liElement = document.createElement("li");
+    var spanElement = document.createElement("span");
+    var pElement = document.createElement("p");
+    pElement.setAttribute("class","createdBy");
+    var pText = document.createTextNode("Posted By " +commentJson.comments[0].createdBy+" on "+formatDate(commentJson.comments[0].createDate));
+    spanElement.setAttribute("class","rating");
+    var img = Array();
+    for(i=0;i<commentJson.comments[0].rating;i++) {
+        img[i] = document.createElement("img");
+        img[i].src="images/gold_star.jpeg";
+        spanElement.appendChild(img[i]);
+    }
+    var imgWhite = Array();
+    for(i=0;i<5-commentJson.comments[0].rating;i++) {
+        imgWhite[i] = document.createElement("img");
+        imgWhite[i].src="images/white_star.jpeg";
+        spanElement.appendChild(imgWhite[i]);
+    }
+    innerDiv.appendChild(liElement);
+    innerDiv.appendChild(spanElement);
+    pElement.appendChild(pText);
+    innerDiv.appendChild(pElement);
     liElement.appendChild(document.createTextNode(lastComment));
-    allComments.appendChild(liElement);
+    allComments.appendChild(innerDiv);
     document.getElementById("comment").value="";
 }
 
@@ -323,7 +349,11 @@ function checkCommentCanBePosted(eventDateTime) {
     if(diffInMinutes > 0) {
         document.getElementById("post").disabled = true;
         return;
-    }  
+    } 
+    if(diffInMinutes < 0) {
+        document.getElementById("post").disabled=false;
+        return;
+    }
 }
 
 
@@ -331,6 +361,10 @@ function checkExpertHobbyistAndTimeOfLesson(lessonUserId, username, eventDateTim
     var today = new Date();
     var diffInMinutes = ((new Date(eventDateTime) - today)/(1000*60));
     if(diffInMinutes > 5) {
+        document.getElementById("startLesson").disabled = true;
+        return;
+    }
+    if(diffInMinutes < -120) {
         document.getElementById("startLesson").disabled = true;
         return;
     }
@@ -365,10 +399,12 @@ function checkId(lessonUserId,isLiveVal,resp){
     }
     if(userJson[0].id==lessonUserId){
         document.getElementById("startLesson").disabled=false;
+        document.getElementById("activeLesson").style.display = "block";
         return;
     }
     if(userJson[0].id!=lessonUserId && isLiveVal==1){
         document.getElementById("startLesson").disabled=false;
+        document.getElementById("activeLesson").style.display = "block";
         return;
     }
 }
@@ -428,5 +464,43 @@ function updateWasAttended(lessonId) {
     xmlhttp.open("POST", url, true);
     xmlhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
     xmlhttp.send();  
+}
+
+function checkRequired(el,id) {
+    if(el.value=="") {
+        document.getElementById(id).style.display="inline";
+    }
+    else {
+        document.getElementById(id).style.display="none";
+    }
+}
+
+function checkIfMatch(el,id) {
+    if(el.value!=document.getElementById("checkpass").value) {
+        document.getElementById(id).style.display="inline";
+    }
+    else {
+        document.getElementById(id).style.display="none";
+    }
+}
+
+function validatePage() {
+    var flag = true;
+    var nodisplayEl = document.getElementsByClassName("req");
+    for(i=0;i<nodisplayEl.length;i++) {
+        if(nodisplayEl[i].value == "") {
+            flag = false;
+        } 
+    }
+    if(!flag) {
+        alert("Please enter all the required fields!")
+        return flag;
+    }
+    if(document.getElementById("confpasscheck").value!=document.getElementById("checkpass").value) {
+        flag = false;
+        alert("Passwords do not match!");
+        return flag;
+    }
+    return flag;
 }
 

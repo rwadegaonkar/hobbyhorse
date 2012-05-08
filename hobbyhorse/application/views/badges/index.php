@@ -20,15 +20,15 @@
                     <td>Foal</td>
                 </tr>
                 <tr>
-                    <td>15</td>
+                    <td>10</td>
                     <td>Weanling</td>
                 </tr>
                 <tr>
-                    <td>25</td>
+                    <td>15</td>
                     <td>Yearling</td>
                 </tr>
                 <tr>
-                    <td>35</td>
+                    <td>20</td>
                     <td>Stallion</td>
                 </tr>
             </tbody>

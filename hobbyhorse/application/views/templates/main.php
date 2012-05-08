@@ -45,8 +45,8 @@ if (!isset($_SESSION['user'])) {
                 <div class="header_resize">
                     <div class="menu_nav">
                         <ul>
-                            <li class="active"><a href="<?= base_url() ?>">Home</a></li>
-                            <li class=""><a href="user/profile">Profile</a></li>
+                            <li class="active"><a href="<?= base_url() ?>"><?php echo ucfirst($_SESSION['user']->name) ?></a></li>
+                            <li class="active"><a href="<?php echo base_url() ?>index.php/user/logout">Logout</a></li>
                         </ul>
                     </div>
                     <div class="logo">

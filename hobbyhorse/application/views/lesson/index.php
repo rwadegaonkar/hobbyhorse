@@ -34,9 +34,9 @@
                 ?>
                 <h5 class="expertname">The Expert: <?php
             if ($l->username == $_SESSION['user']->name) {
-                echo "Me !";
+                echo "<a href='".base_url()."index.php/lesson/expertLessons/".$l->userId."'>Me</a>";
             } else {
-                echo $l->username;
+                echo "<a href='".base_url()."index.php/lesson/expertLessons/".$l->userId."'>$l->username</a>";
             }
                 ?></h5>
                 <p><?php

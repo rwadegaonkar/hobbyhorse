@@ -116,6 +116,16 @@ public class LessonManager {
 		return null;
 	}
 
+	public ArrayList<Lesson> getLessonsByExpert(String userId) {
+		try {
+			lessons = delegate.getLessonsByExpert(conn, userId);
+			return lessons;
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
+
 	public ArrayList<Lesson> getSuggestedLessonsApriori(String lessonid) {
 		try {
 			lessons = delegate.getSuggestedLessonsApriori(conn, lessonid);

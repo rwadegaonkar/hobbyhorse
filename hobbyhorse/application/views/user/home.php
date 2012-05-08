@@ -9,6 +9,7 @@
     <?php
     $flag = false;
     $uniqueLesson = array();
+    $suggested_lessons = $_SESSION['suggested_lessons'];
     foreach ($suggested_lessons as $lessons) {
         if (!empty($lessons)) {
             foreach ($lessons as $l) {
@@ -28,12 +29,12 @@
             <img class="descImg" src="images/lessontype/<?php echo $l->lessonTypeId ?>.jpg" />
             <h4 class="lessonName"><?php echo ucfirst($l->name) ?></h4>
             <h5 class="expertname">The Expert: <?php
-    if ($l->username == $_SESSION['user']->name) {
-        echo "Me !";
-    } else {
-        echo $l->username;
-    }
-        ?></h5>
+            if ($l->username == $_SESSION['user']->name) {
+                echo "<a href='" . base_url() . "index.php/lesson/expertLessons/" . $l->userId . "'>Me</a>";
+            } else {
+                echo "<a href='" . base_url() . "index.php/lesson/expertLessons/" . $l->userId . "'>$l->username</a>";
+            }
+                ?></h5>
             <p><?php
             echo "Starts on: " . date("M d, Y", strtotime($l->eventDate));
             echo " at ";

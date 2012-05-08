@@ -121,4 +121,15 @@ public class LessonsController {
 		mav.addObject("lessons", lessonList);
 		return mav;
 	}
+
+	@RequestMapping(method = RequestMethod.GET, value = "/expert/{userId}")
+	public ModelAndView getLessonsByExpert(
+			@PathVariable("userId") String userId) {
+		LessonManager lessonsByType = new LessonManager();
+		ArrayList<Lesson> lessonList = lessonsByType
+				.getLessonsByExpert(userId);
+		ModelAndView mav = new ModelAndView(LESSON_VIEW_KEY);
+		mav.addObject("lessons", lessonList);
+		return mav;
+	}
 }

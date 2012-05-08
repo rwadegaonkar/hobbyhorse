@@ -54,6 +54,7 @@ class User extends CI_Controller {
             foreach ($data['likes']->data as $like) {
                 $data['suggested_lessons'][] = $this->lesson_model->getSuggestedLessons($like->name, $like->category)->lessons->data;
             }
+            $_SESSION['suggested_lessons'] = $data['suggested_lessons'];
             $_SESSION['loginType'] = 2;
             $dataToSend = createUserObject($user);
             $user = $this->user_model->saveUser(json_encode($dataToSend));
@@ -73,7 +74,6 @@ class User extends CI_Controller {
                 $data['likes'] = $_SESSION['likes'];
             }
             $data['loginType'] = $_SESSION['loginType'];
-            $data['suggested_lessons'][] = $this->lesson_model->getSuggestedLessons('guitar', 'guitar')->lessons->data;
             $data['content'] = $this->load->view('user/home', $data, true);
             $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
             $this->load->view('templates/main', $data);
@@ -86,6 +86,17 @@ class User extends CI_Controller {
         $user = $this->user_model->saveUser(json_encode($data));
         if (!empty($user->data[0])) {
             $_SESSION['user'] = $user->users->user;
+            $skills = explode("^:^", $_SESSION['user']->skills);
+            $hobbies = explode("^:^", $_SESSION['user']->hobbies);
+            $combination = array();
+            foreach ($skills as $skill) {
+                foreach ($hobbies as $hobby) {
+                    if ($hobby != $skill) {
+                        $data['suggested_lessons'][] = $this->lesson_model->getSuggestedLessons($skill, $hobby)->lessons->data;
+                    }
+                }
+            }
+            $_SESSION['suggested_lessons'] = $data['suggested_lessons'];
             $data['title'] = 'Hobbyhorse - Home';
             $data['user'] = $_SESSION['user'];
             $data['content'] = $this->load->view('user/home', $data, true);
@@ -143,6 +154,7 @@ class User extends CI_Controller {
                     }
                 }
             }
+            $_SESSION['suggested_lessons'] = $data['suggested_lessons'];
             $data['content'] = $this->load->view('user/home', $data, true);
             $data['sidebar'] = $this->load->view('common/right-sidebar', '', true);
             $this->load->view('templates/main', $data);

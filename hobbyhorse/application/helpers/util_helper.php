@@ -22,8 +22,8 @@ function createUserObject($request) {
         $data['username'] = $request['username'];
         $data['password'] = $request['password'];
         $data['email'] = $request['email'];
-        $data['skills'] = $request['skills'];
-        $data['hobbies'] = $request['hobbies'];
+        $data['skills'] = str_replace(",","^:^",$request['skills']);
+        $data['hobbies'] = str_replace(",","^:^",$request['hobbies']);
         $data['location'] = $request['city'];
         $data['loginTypeId'] = 1;
         $data['createdBy'] = $request['username'];
